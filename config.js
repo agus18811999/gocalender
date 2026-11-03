@@ -37,15 +37,19 @@
   /* HtmlService bridge: no Firebase tokens in URLs, JSONP, or localStorage.
      iframe support is browser/GAS-deployment-dependent; failures are reported, never faked. */
   function makeMetadataBridge() {
-    let frame, endpoint, alive = false, initializing, seq = 0;
+    let frame, endpoint, endpointOrigin = '', alive = false, initializing, seq = 0;
     const nonce = uid() + uid();
     const pending = new Map();
     function deliver(event) {
       const msg = event.data;
       if (!frame || !msg || msg.channel !== CONFIG.RPC_CHANNEL || msg.nonce !== nonce) return;
-      if (event.origin !== 'null' && !/^https:\/\/(?:[a-z0-9-]+\.)*googleusercontent\.com$/.test(event.origin) && event.origin !== 'https://script.google.com') return;
+      if (!/^https:\/\/(?:[a-z0-9-]+\.)*googleusercontent\.com$/.test(event.origin) && event.origin !== 'https://script.google.com') return;
       if (msg.type === 'ready') {
+        // event.source is the *inner* Apps Script HtmlService iframe.
+        // frame.contentWindow may point at Google's outer wrapper instead.
+        if (!event.source) return;
         endpoint = event.source;
+        endpointOrigin = event.origin;
         alive = true;
         const task = pending.get('init');
         if (task) { clearTimeout(task.timer); pending.delete('init'); task.resolve(true); }
@@ -63,14 +67,23 @@
         frame.style.cssText='position:absolute;width:1px;height:1px;border:0;opacity:0;pointer-events:none;';
         frame.title='Jalur aman metadata';
         frame.setAttribute('aria-hidden','true');
-        const timer = setTimeout(() => {pending.delete('init'); reject(Error('Bridge Google Apps Script tidak dapat dimuat. Periksa izin iframe, deployment, atau kebijakan browser.'));}, 11000);
+        const timer = setTimeout(() => {pending.delete('init'); reject(Error('Bridge Google Apps Script tidak dapat dimuat. Cek versi deployment Code.gs terbaru, allowed origins, dan izin iframe.'));}, 13000);
         pending.set('init',{resolve,reject,timer});
         window.addEventListener('message',deliver);
-        frame.addEventListener('load', () => { try {frame.contentWindow.postMessage({channel:CONFIG.RPC_CHANNEL,type:'ping',nonce},'*');} catch {} });
+        // The bridge now proactively sends 'ready' from the actual inner iframe.
+        // Keep this ping only as a compatible fallback for a direct iframe.
+        frame.addEventListener('load', () => { try {frame.contentWindow?.postMessage({channel:CONFIG.RPC_CHANNEL,type:'ping',nonce},'*');} catch {} });
         frame.src = CONFIG.GAS_WEB_APP_URL + (CONFIG.GAS_WEB_APP_URL.includes('?')?'&':'?') + 'bridge=1&nonce=' + encodeURIComponent(nonce);
         document.body.append(frame);
       });
-      try { return await initializing; } finally { initializing = null; }
+      try { return await initializing; }
+      catch (error) {
+        alive = false; endpoint = null; endpointOrigin = '';
+        pending.delete('init');
+        frame?.remove(); frame = null;
+        window.removeEventListener('message',deliver);
+        throw error;
+      } finally { initializing = null; }
     }
     async function call(action, payload, idToken) {
       await init();
@@ -79,12 +92,13 @@
       return new Promise((resolve,reject) => {
         const timer = setTimeout(() => {pending.delete(id);reject(Error('Backend tidak merespons dalam 18 detik.'));}, 18000);
         pending.set(id,{resolve,reject,timer});
-        endpoint.postMessage({channel:CONFIG.RPC_CHANNEL,type:'request',nonce,id,action,payload:payload||{},idToken},'*');
+        try {endpoint.postMessage({channel:CONFIG.RPC_CHANNEL,type:'request',nonce,id,action,payload:payload||{},idToken},endpointOrigin);}
+        catch (error) { clearTimeout(timer); pending.delete(id); reject(Error('Tidak dapat mengirim pesan ke bridge Apps Script: '+String(error?.message||error))); }
       });
     }
     function dispose() {
       for (const [,p] of pending) { clearTimeout(p.timer); p.reject?.(Error('Bridge ditutup.')); }
-      pending.clear(); frame?.remove(); frame = null; endpoint = null; alive = false; window.removeEventListener('message',deliver);
+      pending.clear(); frame?.remove(); frame = null; endpoint = null; endpointOrigin = ''; alive = false; window.removeEventListener('message',deliver);
     }
     return {init,call,dispose,get connected(){return alive;}};
   }
