@@ -305,9 +305,48 @@ body{background:linear-gradient(180deg,#f9f9fd,#f8f7fe 40%,#f5f5fb);color:var(--
 .atelier-activity-line{display:flex;gap:12px;padding:14px 6px;border-bottom:1px solid #f3effa}.atelier-activity-line:last-child{border:0}.atelier-activity-indicator{height:32px;width:32px;display:grid;place-items:center;border-radius:9px;background:#f3efff;color:#7c51d7;flex-shrink:0}.atelier-activity-indicator svg{width:15px;height:15px}
 @media(max-width:760px){.atelier-drawer-decoration{display:none}.panel form.fieldgrid:not(.atelier-editor-form){padding:17px}.atelier-notice-summary{padding:16px;flex-wrap:wrap;gap:13px}.atelier-note-signal{height:40px;width:40px}.atelier-notice-summary strong{font-size:14px}.atelier-notice-summary p{font-size:10px}.atelier-notice-unread{margin-left:54px}.atelier-notice{flex-wrap:wrap}.atelier-notice .btn{margin-left:52px}}
 
+
+/* CALENDRA 2.4 — focused accessibility/behavior fixes. Source favicon remains intact. */
+.atelier-editor-section .form-group-heading.field > .form-group-number{
+ display:grid!important;place-items:center!important;align-items:center!important;justify-items:center!important;
+ flex:0 0 42px!important;width:42px!important;min-width:42px!important;height:42px!important;
+ padding:0!important;margin:0!important;line-height:1!important;text-align:center!important;
+ font:900 12px/1 'Plus Jakarta Sans',sans-serif!important;
+ color:#6540ca!important;border-radius:13px;
+}
+/* Floating notification inbox: independent of Activity Center routing. */
+#notiBtn{position:relative}
+#notiBtn[aria-expanded="true"]{background:#ede7ff;color:#6942d6;border-color:#c9b5f6;box-shadow:0 0 0 3px #7a53e513}
+#unreadDot[hidden],.cal-noti-panel[hidden]{display:none!important}
+.cal-noti-panel{position:fixed;right:clamp(15px,3vw,49px);top:78px;width:min(415px,calc(100vw - 28px));max-height:min(75dvh,690px);z-index:95;display:flex;flex-direction:column;border:1px solid #e9e0f8;border-radius:23px;background:#fff;box-shadow:0 30px 90px #25133e30,0 3px 15px #3c27531b;overflow:hidden;animation:calNotiOpen .18s cubic-bezier(.2,.8,.2,1) both}
+@keyframes calNotiOpen{from{opacity:0;transform:translateY(-10px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.cal-noti-head{padding:20px 21px 18px;background:radial-gradient(circle at 93% 4%,#ba99ff77,transparent 52%),linear-gradient(120deg,#221b48,#6a42cf);color:#fff;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.cal-noti-kicker{font-size:8px;letter-spacing:1.7px;font-weight:900;color:#e4d4ff}.cal-noti-head h3{font:850 19px 'Plus Jakarta Sans',sans-serif;letter-spacing:-.55px;margin:7px 0 4px;color:#fff}.cal-noti-head p{font-size:10px;color:#eae2ffbd;margin:0;line-height:1.5}
+.cal-noti-head button{border:1px solid #ffffff55;background:#ffffff20;color:white;width:31px;height:31px;border-radius:10px;display:grid;place-items:center;flex-shrink:0;cursor:pointer}
+.cal-noti-head button svg{width:15px;height:15px}.cal-noti-summary{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#f9f7ff;border-bottom:1px solid #efeafa;padding:11px 19px;font-size:10px;color:#776999;font-weight:800}.cal-noti-summary span{display:flex;align-items:center;gap:6px}.cal-noti-summary i{width:15px;height:15px}
+.cal-noti-items{min-height:110px;max-height:390px;overflow-y:auto;overscroll-behavior:contain;padding:10px 13px}.cal-noti-item{display:flex;align-items:flex-start;gap:11px;padding:13px 10px;border:1px solid transparent;border-bottom-color:#f0ebf8;border-radius:12px}.cal-noti-item.is-unread{background:#faf7ff;border-color:#eae1fb;margin:3px 0}.cal-noti-icon{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:#efe9ff;color:#7145d7;flex-shrink:0}.cal-noti-icon svg{height:17px;width:17px}.cal-noti-copy{flex:1;min-width:0}.cal-noti-copy strong{font:800 11px 'Plus Jakarta Sans',sans-serif;color:#35284e;display:block}.cal-noti-copy p{font-size:10px;color:#817590;line-height:1.55;margin:4px 0;overflow-wrap:anywhere}.cal-noti-copy time{font-size:9px;color:#aaa0b7}.cal-noti-read{border:1px solid #ddd0fa;background:#fff;color:#6d44d2;font-size:9px;font-weight:800;border-radius:9px;padding:7px 8px;cursor:pointer;flex-shrink:0}
+.cal-noti-empty{text-align:center;display:grid;justify-items:center;align-content:center;gap:9px;padding:31px 18px}.cal-noti-empty>span{width:49px;height:49px;border-radius:16px;background:#f0ebff;color:#784adb;display:grid;place-items:center}.cal-noti-empty svg{height:23px;width:23px}.cal-noti-empty strong{color:#433560;font-size:12px}.cal-noti-empty p{margin:0;color:#9083a5;font-size:10px;line-height:1.65}
+.cal-noti-foot{display:flex;gap:9px;padding:13px 16px;border-top:1px solid #eee8f6;background:#fff}.cal-noti-foot button{display:flex;justify-content:center;align-items:center;gap:7px;flex:1;border:1px solid #e9e2f3;background:#fff;color:#68548a;border-radius:11px;font-size:10px;font-weight:850;min-height:39px;cursor:pointer}.cal-noti-foot button svg{width:14px;height:14px}.cal-noti-foot .cal-noti-all{background:linear-gradient(110deg,#8a5af0,#6940d2);color:white;border:0;box-shadow:0 6px 15px #6c44d72a}
+/* Dedicated logout confirmation and progress feedback. */
+.confirm-card.logout-dialog .confirm-top{background:radial-gradient(circle at 92% 20%,#a58ff362,transparent 58%),linear-gradient(120deg,#21193e,#5536a4)}
+.confirm-card.logout-dialog .confirm-emblem{background:#ffffff22;border:1px solid #ffffff62}
+.confirm-card.logout-dialog .confirm-actions .btn.primary{background:linear-gradient(110deg,#8b5cef,#6a3bd0);box-shadow:0 8px 18px #7147de30}
+.logout-progress{position:fixed;inset:0;z-index:250;display:grid;place-items:center;background:#16102e9e;backdrop-filter:blur(9px);padding:20px;animation:overlayIn .16s both}
+.logout-progress-card{width:min(100%,355px);background:#fff;border:1px solid #ece4f8;border-radius:24px;box-shadow:0 25px 90px #1912335c;padding:34px 28px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:11px}
+.logout-progress-icon{width:58px;height:58px;display:grid;place-items:center;border-radius:19px;background:linear-gradient(130deg,#9170f1,#6340d0);color:#fff;box-shadow:0 11px 22px #764ade3c}.logout-progress-icon svg{height:25px;width:25px}
+.logout-progress h3{font:850 18px 'Plus Jakarta Sans',sans-serif;color:#302448;margin:10px 0 0}.logout-progress p{font-size:11px;color:#8a7b9f;line-height:1.7;margin:0}.logout-progress-meter{height:4px;background:#efe9fa;border-radius:100px;overflow:hidden;width:100%;margin-top:10px}.logout-progress-meter span{height:100%;width:40%;border-radius:100px;display:block;background:linear-gradient(90deg,#9c78ff,#613cdb);animation:calLogoutMove 1.2s ease-in-out infinite alternate}
+@keyframes calLogoutMove{to{transform:translateX(150%)}}
+@media(max-width:760px){.cal-noti-panel{top:68px;right:12px;width:calc(100vw - 24px);max-height:calc(100dvh - 83px);border-radius:18px}.cal-noti-items{max-height:min(49dvh,360px)}.atelier-editor-section .form-group-heading.field > .form-group-number{flex-basis:38px!important;width:38px!important;min-width:38px!important;height:38px!important}}
+@media(prefers-reduced-motion:reduce){.cal-noti-panel,.logout-progress,.logout-progress-meter span{animation:none!important}}
+
 </style></head><body>
 <div id="authGate" class="loading-gate"><div class="symbol">✦</div><b style="font:800 25px 'Plus Jakarta Sans'">calendra.</b><p>Protecting your personal space…</p></div>
-<div class="side-overlay" id="overlay"></div><div class="app"><aside class="sidebar" id="sidebar"><div class="side-top"><a class="logo" href="main.html"><b>✦</b><span>calendra<small>.</small><em>PERSONAL TIME STUDIO</em></span></a></div><div class="sidebar-workspace-caption"><span class="sidebar-identity-icon">✧</span><span>PRIVATE WORKSPACE<br><strong>My calendar suite</strong></span><i data-lucide="chevrons-up-down"></i></div><div class="side-scroll" id="nav"></div><div class="side-bottom"><div class="connection-mini"><i>✦</i><div><b id="connectionLabel">Calendar not connected</b><div class="small"><span class="status-dot" id="connectionDot"></span><span id="syncLabel">Connect to sync</span></div></div></div><button class="profile-mini" id="profileBtn"><span class="avatar" id="sideAvatar">✦</span><span style="min-width:0"><div class="name" id="sideName">My workspace</div><div class="small">Personal account</div></span><i data-lucide="chevrons-up-down"></i></button></div></aside><div class="workspace"><header class="topbar"><button class="top-icon mobmenu" id="menuBtn" aria-label="Open navigation"><i data-lucide="menu"></i></button><div class="top-start"><div class="breadcrumb">WORKSPACE / <span id="crumb">OVERVIEW</span></div><div class="pagetitle" id="pageTitle">Overview</div></div><label class="top-search"><i data-lucide="search"></i><input id="globalSearch" placeholder="Search your schedule…" autocomplete="off" aria-label="Search events"><span style="font-size:9px">⌘ K</span></label><button class="top-icon" id="notiBtn" aria-label="Notifications"><i data-lucide="bell"></i><span class="red" id="unreadDot" hidden></span></button><button class="btn primary" id="quickBtn"><i data-lucide="plus"></i> <span>New event</span></button></header><main class="content" id="content" aria-live="polite"></main></div></div>
+<div class="side-overlay" id="overlay"></div><div class="app"><aside class="sidebar" id="sidebar"><div class="side-top"><a class="logo" href="main.html"><b>✦</b><span>calendra<small>.</small><em>PERSONAL TIME STUDIO</em></span></a></div><div class="sidebar-workspace-caption"><span class="sidebar-identity-icon">✧</span><span>PRIVATE WORKSPACE<br><strong>My calendar suite</strong></span><i data-lucide="chevrons-up-down"></i></div><div class="side-scroll" id="nav"></div><div class="side-bottom"><div class="connection-mini"><i>✦</i><div><b id="connectionLabel">Calendar not connected</b><div class="small"><span class="status-dot" id="connectionDot"></span><span id="syncLabel">Connect to sync</span></div></div></div><button class="profile-mini" id="profileBtn"><span class="avatar" id="sideAvatar">✦</span><span style="min-width:0"><div class="name" id="sideName">My workspace</div><div class="small">Personal account</div></span><i data-lucide="chevrons-up-down"></i></button></div></aside><div class="workspace"><header class="topbar"><button class="top-icon mobmenu" id="menuBtn" aria-label="Open navigation"><i data-lucide="menu"></i></button><div class="top-start"><div class="breadcrumb">WORKSPACE / <span id="crumb">OVERVIEW</span></div><div class="pagetitle" id="pageTitle">Overview</div></div><label class="top-search"><i data-lucide="search"></i><input id="globalSearch" placeholder="Search your schedule…" autocomplete="off" aria-label="Search events"><span style="font-size:9px">⌘ K</span></label><button class="top-icon" id="notiBtn" type="button" aria-label="Buka notifikasi" aria-haspopup="dialog" aria-expanded="false" aria-controls="notificationPanel"><i data-lucide="bell"></i><span class="red" id="unreadDot" hidden></span></button><button class="btn primary" id="quickBtn"><i data-lucide="plus"></i> <span>New event</span></button></header><section class="cal-noti-panel" id="notificationPanel" role="dialog" aria-modal="false" aria-label="Notifikasi Calendra" hidden>
+ <div class="cal-noti-head"><div><div class="cal-noti-kicker">✦ CALENDRA / NOTIFICATION CENTER</div><h3>Inbox & Updates</h3><p>Notifikasi dari workspace pribadi Anda.</p></div><button type="button" id="notificationClose" aria-label="Tutup notifikasi"><i data-lucide="x"></i></button></div>
+ <div class="cal-noti-summary"><span><i data-lucide="bell-ring"></i><span id="notificationCount">0 belum dibaca</span></span><span id="notificationState">Disinkronkan dengan Calendra</span></div>
+ <div class="cal-noti-items" id="notificationItems" aria-live="polite"></div>
+ <div class="cal-noti-foot"><button type="button" data-noti-action="refresh"><i data-lucide="refresh-cw"></i> Refresh</button><button type="button" class="cal-noti-all" data-noti-action="all"><i data-lucide="inbox"></i> Activity Center</button></div>
+</section><main class="content" id="content" aria-live="polite"></main></div></div>
 <div class="modal-backdrop" id="modalLayer" hidden><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><header class="modal-header"><div class="modal-hero-decor"></div><div class="atelier-drawer-decoration" aria-hidden="true"><div class="atelier-dec-top"><span>✦</span><span>CALENDRA / 03</span></div><div class="atelier-dec-line"></div><div class="atelier-dec-pill"></div><div class="atelier-dec-tiles"><i></i><i></i><i></i></div></div><div class="modal-head-inner"><div class="modal-security-badge"><span class="modal-badge-dot"></span> CALENDRA · SECURE WORKSPACE ACTION</div><div class="modal-head-content"><span class="modal-header-emblem"><i data-lucide="sparkles"></i></span><div><div class="modal-head-overline">CALENDRA / PERSONAL TIME STUDIO</div><h3 id="modalTitle">Event</h3><p>Setiap momen tersinkron aman dengan Google Calendar Anda.</p></div></div></div><button class="icon-btn" id="closeModal" aria-label="Close dialog"><i data-lucide="x"></i></button></header><div class="modal-body" id="modalBody"></div></section></div><div class="toast-container" id="toastContainer" aria-live="polite"></div>
 <script type="module">
 import{initializeApp,getApps,getApp}from'https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js';
@@ -387,6 +426,54 @@ function toast(msg,kind='info'){
  const pause=()=>{if(removed)return;clearTimeout(timer);remaining=Math.max(0,remaining-(Date.now()-started));t.style.setProperty('--toast-anim','paused');};
  t.addEventListener('mouseenter',pause);t.addEventListener('mouseleave',resume);resume();
 }
+
+/* Notification button: opens a real interactive inbox, including when already in Activity Center. */
+let notificationPreviewBusy=false;
+const isNotificationRead=n=>n.read===true||String(n.read).toLowerCase()==='true';
+function updateNotificationBadge(){
+ const unread=(state.notifications||[]).filter(n=>!isNotificationRead(n)).length;
+ el('unreadDot').hidden=unread===0;
+ el('notiBtn').setAttribute('aria-label',unread?`Notifikasi, ${unread} belum dibaca`:'Buka notifikasi');
+ return unread;
+}
+function renderNotificationPreview({loading=false,error=''}={}){
+ const area=el('notificationItems'),unread=updateNotificationBadge();
+ el('notificationCount').textContent=`${unread} belum dibaca`;
+ el('notificationState').textContent=loading?'Memuat…':state.metadata==='connected'?'Metadata synced':'Mode offline metadata';
+ if(loading){area.innerHTML=`<div class="cal-noti-empty"><span>${icon('loader-circle')}</span><strong>Memuat notifikasi…</strong><p>Mengambil pembaruan terbaru dari Calendra.</p></div>`;refreshIcons();return;}
+ if(error){area.innerHTML=`<div class="cal-noti-empty"><span>${icon('alert-circle')}</span><strong>Belum bisa memuat notifikasi</strong><p>${esc(error)}</p></div>`;refreshIcons();return;}
+ if(!state.notifications?.length){area.innerHTML=`<div class="cal-noti-empty"><span>${icon('bell-off')}</span><strong>Belum ada notifikasi</strong><p>Setelah Anda membuat event atau memperbarui pengaturan, pembaruan aplikasi akan muncul di sini.</p></div>`;refreshIcons();return;}
+ area.innerHTML=state.notifications.slice(0,6).map(n=>{
+  const read=isNotificationRead(n),date=new Date(n.createdAt);
+  const time=Number.isNaN(date.getTime())?'':date.toLocaleString('id-ID',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
+  return `<article class="cal-noti-item ${read?'':'is-unread'}"><span class="cal-noti-icon">${icon(read?'check-check':'bell-ring')}</span><div class="cal-noti-copy"><strong>${esc(String(n.title||'Pembaruan Calendra'))}</strong><p>${esc(String(n.detail||'Notifikasi workspace'))}</p><time>${esc(time)}</time></div>${read?'':`<button class="cal-noti-read" type="button" data-preview-read="${esc(String(n.id||''))}" aria-label="Tandai notifikasi dibaca">Baca</button>`}</article>`;
+ }).join('');refreshIcons();
+}
+async function refreshNotificationPreview(){
+ if(notificationPreviewBusy)return;
+ if(state.metadata!=='connected'){renderNotificationPreview({error:'Backend metadata belum terhubung. Buka Activity Center untuk memeriksa status koneksi.'});return;}
+ notificationPreviewBusy=true;
+ if(!el('notificationPanel').hidden)renderNotificationPreview({loading:true});
+ try{
+  const items=await metadata('notifications.list');state.notifications=Array.isArray(items)?items:[];
+  updateNotificationBadge();
+  if(!el('notificationPanel').hidden)renderNotificationPreview();
+  if(state.view==='notifications')render();
+ }catch(e){if(!el('notificationPanel').hidden)renderNotificationPreview({error:niceError(e)});}
+ finally{notificationPreviewBusy=false;}
+}
+function closeNotificationPanel(){
+ const panel=el('notificationPanel');panel.hidden=true;
+ el('notiBtn').setAttribute('aria-expanded','false');
+}
+async function toggleNotificationPanel(){
+ const panel=el('notificationPanel');
+ if(!panel.hidden){closeNotificationPanel();return;}
+ panel.hidden=false;el('notiBtn').setAttribute('aria-expanded','true');
+ renderNotificationPreview();
+ await refreshNotificationPreview();
+}
+
 function gate(open){el('authGate').hidden=!open;}
 function closeSide(){el('sidebar').classList.remove('open');el('overlay').classList.remove('open');}
 function menu(){el('sidebar').classList.toggle('open');el('overlay').classList.toggle('open');}
@@ -461,15 +548,15 @@ function showModal(title,html,after){
 }
 function hideModal(){el('modalLayer').hidden=true;el('modalBody').innerHTML='';document.body.classList.remove('modal-open');state.lastFocused?.focus?.();}
 /* Accessible, non-blocking premium confirmation and text-entry dialogs. */
-function premiumAsk(message,{title='Please confirm',danger=false,text=false,defaultValue=''}={}){
+function premiumAsk(message,{title='Please confirm',danger=false,text=false,defaultValue='',confirmLabel='',cancelLabel='Batal',glyph='',variant=''}={}){
  return new Promise(resolve=>{
    const previous=document.activeElement;
    const layer=document.createElement('div');layer.className='confirm-layer';
-   layer.innerHTML=`<div class="confirm-card" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
-    <div class="confirm-top"><span class="confirm-emblem">${icon(danger?'shield-alert':text?'pencil-line':'sparkles')}</span><button class="confirm-x" type="button" data-ask="cancel" aria-label="Tutup">${icon('x')}</button></div>
+   layer.innerHTML=`<div class="confirm-card ${variant==='logout'?'logout-dialog':''}" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+    <div class="confirm-top"><span class="confirm-emblem">${icon(glyph|| (danger?'shield-alert':text?'pencil-line':'sparkles'))}</span><button class="confirm-x" type="button" data-ask="cancel" aria-label="Tutup">${icon('x')}</button></div>
     <h3 id="confirmTitle"></h3><p></p>
     ${text?'<input class="input confirm-input" maxlength="140" aria-label="Value" required>':''}
-    <div class="confirm-actions"><button class="btn" data-ask="cancel">Batal</button><button class="btn ${danger?'danger':'primary'}" data-ask="ok">${danger?'Ya, lanjutkan':text?'Simpan':'Lanjutkan'}</button></div>
+    <div class="confirm-actions"><button class="btn" data-ask="cancel">${esc(cancelLabel)}</button><button class="btn ${danger?'danger':'primary'}" data-ask="ok">${esc(confirmLabel||(danger?'Ya, lanjutkan':text?'Simpan':'Lanjutkan'))}</button></div>
    </div>`;
    layer.querySelector('h3').textContent=title;layer.querySelector('p').textContent=message;
    const input=layer.querySelector('.confirm-input');if(input)input.value=defaultValue;
@@ -487,7 +574,7 @@ function profileHeader(){const u=state.user,profile=state.profile;el('sideName')
 function pageStamp(){return `${state.revision}|${state.selected.getTime()}|${state.calendarView}|${state.search}|${state.filterCalendar}|${!!state.token}|${state.googleRestore}|${state.rangePending}`;}
 function cacheCurrentPane(){const root=el('content').firstElementChild;if(!root||root.dataset.view!==state.view)return;state.paneCache.delete(state.view);state.paneCache.set(state.view,{stamp:pageStamp(),node:root});while(state.paneCache.size>5)state.paneCache.delete(state.paneCache.keys().next().value);}
 function navigate(v){
- if(!TITLES[v])return;if(v===state.view){closeSide();if(v==='search')render();return;}
+ if(!TITLES[v])return;closeNotificationPanel();if(v===state.view){closeSide();if(v==='search')render();return;}
  cacheCurrentPane();state.view=v;el('crumb').textContent=TITLES[v].toUpperCase();el('pageTitle').textContent=TITLES[v];closeSide();renderNav();
  const cached=state.paneCache.get(v),area=el('content');
  if(cached&&cached.stamp===pageStamp()){area.replaceChildren(cached.node);state.paneCache.delete(v);state.paneCache.set(v,cached);}
@@ -792,13 +879,28 @@ async function disconnectCalendar(){
  state.syncAt=0;state.lastRange='';state.revision++;state.paneCache.clear();state.fetchEpoch++;fetchAbort?.abort();setConnection();render();
  toast('Calendar disconnected. Event Google Anda tidak dihapus.','success');
 }
-async function refreshMeta(){await metaGuard(async()=>{const [n,a]=await Promise.all([metadata('notifications.list'),metadata('activity.list')]);state.notifications=n||[];state.activity=a||[];render();});}
+async function refreshMeta(){await metaGuard(async()=>{const [n,a]=await Promise.all([metadata('notifications.list'),metadata('activity.list')]);state.notifications=n||[];state.activity=a||[];updateNotificationBadge();if(!el('notificationPanel').hidden)renderNotificationPreview();render();});}
 async function saveProfile(form){await metaGuard(async()=>{const f=new FormData(form),name=String(f.get('name')||'').trim(),email=String(f.get('email')||'').trim(),photoURL=String(f.get('photoURL')||'').trim(),bio=String(f.get('bio')||'');if(!name)throw Error('Name is required.');if(photoURL&&!/^https:\/\//i.test(photoURL))throw Error('Photo URL must use HTTPS.');const u=state.user;if(email!==u.email){if(!await askConfirm('Mengubah alamat email Firebase mungkin memerlukan login ulang. Lanjutkan?',{title:'Ubah email'}))return;await verifyBeforeUpdateEmail(u,email,{url:new URL('index.html',location.href).href});toast('Email change verification sent. Click the link in the new inbox.','success');return;}
  await updateProfile(u,{displayName:name,photoURL:photoURL||null});state.profile=await metadata('user.profile.update',{name,photoURL,bio});profileHeader();render();toast('Profile updated successfully.','success');});}
 async function saveSettings(form){await metaGuard(async()=>{const p=Object.fromEntries(new FormData(form));if(p.workStart>=p.workEnd)throw Error('Working hours are invalid.');try{new Intl.DateTimeFormat('en-US',{timeZone:p.timezone});}catch{throw Error('Invalid IANA timezone.');}p.defaultDuration=Number(p.defaultDuration);p.defaultReminder=Number(p.defaultReminder);state.settings=await metadata('user.settings.update',p);render();toast('Preferences saved to Google Sheets.','success');});}
 async function resetPrefs(){await metaGuard(async()=>{if(!await askConfirm('Kembalikan semua preferensi dashboard ke pengaturan awal?',{title:'Reset preferences',danger:true}))return;state.settings=await metadata('user.settings.update',{timezone:'Asia/Jakarta',workStart:'09:00',workEnd:'17:00',defaultDuration:60,defaultReminder:15,defaultCalendar:'primary',goals:''});render();toast('Preferences reset.','success');});}
+let logoutInProgress=false;
 async function doLogout(){
- try{fetchAbort?.abort();clearInterval(state.syncTimer);state.token=null;state.expires=0;state.scope.clear();state.paneCache.clear();state.bridge?.dispose();await signOut(state.auth);}finally{location.replace('index.html?page=login');}
+ if(logoutInProgress)return;
+ closeNotificationPanel();
+ const approved=await premiumAsk('Anda akan keluar dari akun Calendra. Event Google Calendar dan data Google Sheets tetap tersimpan. Anda bisa login kembali kapan saja.',{
+  title:'Keluar dari workspace?',glyph:'log-out',variant:'logout',confirmLabel:'Ya, keluar',cancelLabel:'Tetap di sini'
+ });
+ if(!approved){toast('Logout dibatalkan. Anda tetap berada di Calendra.','info');return;}
+ logoutInProgress=true;
+ const progress=document.createElement('div');progress.className='logout-progress';progress.setAttribute('role','status');progress.setAttribute('aria-live','polite');
+ progress.innerHTML=`<div class="logout-progress-card"><span class="logout-progress-icon">${icon('shield-check')}</span><h3>Mengamankan sesi Anda…</h3><p>Keluar dari Calendra dengan aman. Kalender dan agenda tetap tersimpan.</p><div class="logout-progress-meter"><span></span></div></div>`;
+ document.body.append(progress);refreshIcons();
+ try{
+  await signOut(state.auth);
+  fetchAbort?.abort();clearInterval(state.syncTimer);state.token=null;state.expires=0;state.scope.clear();state.paneCache.clear();state.bridge?.dispose();
+  location.replace('index.html?page=login');
+ }catch(e){progress.remove();logoutInProgress=false;toast('Tidak dapat logout: '+niceError(e),'error');}
 }
 async function handleAction(action){switch(action){case'connect':return connectCalendar();case'sync':return syncAll(true);case'create':return openEventForm();case'meeting':return openEventForm(null,{kind:'meeting'});case'block':return openEventForm(null,{kind:'block'});case'today':state.selected=TODAY();return refreshAfterDate();case'prev':case'next':{const jump=action==='next'?1:-1,d=state.selected,view=state.calendarView;state.selected=view==='month'||view==='agenda'?new Date(d.getFullYear(),d.getMonth()+jump,Math.min(d.getDate(),28)):addDays(d,jump*(view==='week'?7:1));return refreshAfterDate();}case'closeModal':return hideModal();case'clearFilters':state.search='';state.filterCalendar='all';el('globalSearch').value='';return render();case'templateCreate':return openTemplateForm();case'newcal':return newCalendar();case'newCategory':return addCategory();case'csvExport':return exportCSV();case'icsExport':return exportICS();case'refreshMeta':return refreshMeta();case'disconnect':return disconnectCalendar();case'clearCache':state.cache.clear();return toast('Local cache cleared.','success');case'resetPrefs':return resetPrefs();case'logout':return doLogout();case'deleteMetadata':return metaGuard(async()=>{if(!await askConfirm('Hapus SELURUH metadata Calendra di Google Sheets? Event Google Calendar tidak diubah.',{title:'Hapus data aplikasi',danger:true}))return;await metadata('user.profile.delete');state.profile=null;state.templates=[];state.categories=[];state.preferences=[];state.settings={timezone:'Asia/Jakarta',workStart:'09:00',workEnd:'17:00',defaultDuration:60,defaultReminder:15,defaultCalendar:'primary',goals:''};profileHeader();render();toast('Your Calendra metadata has been deleted.','success');});}}
 /* Instrument existing functions while retaining data flow, handlers, and OAuth logic. */
@@ -838,8 +940,25 @@ document.addEventListener('change',async ev=>{const t=ev.target;
 document.addEventListener('submit',async ev=>{const id=ev.target.id;if(!['quickForm','scheduleForm','profileForm','settingsForm'].includes(id))return;ev.preventDefault();const btn=ev.target.querySelector('[type=submit]');if(btn?.disabled)return;try{if(btn)btn.disabled=true;if(id==='quickForm')await createQuick(ev);if(id==='scheduleForm')await scheduling(ev);if(id==='profileForm')await saveProfile(ev.target);if(id==='settingsForm')await saveSettings(ev.target);}finally{if(btn?.isConnected)btn.disabled=false;}});
 let searchTimer;document.addEventListener('input',ev=>{if(ev.target.id==='filterQuery'){const value=ev.target.value;clearTimeout(searchTimer);searchTimer=setTimeout(()=>{state.search=value;const results=el('searchResults');if(results){results.innerHTML=eventCards(filterEvents());refreshIcons();}},190);}});
 el('globalSearch').addEventListener('input',e=>{clearTimeout(searchTimer);const val=e.target.value;searchTimer=setTimeout(()=>{state.search=val;navigate('search');},210);});
-el('quickBtn').onclick=()=>openEventForm();el('notiBtn').onclick=()=>{navigate('notifications');refreshMeta();};el('profileBtn').onclick=()=>navigate('profile');el('menuBtn').onclick=menu;el('overlay').onclick=closeSide;el('closeModal').onclick=hideModal;el('modalLayer').onclick=e=>{if(e.target===el('modalLayer'))hideModal();};
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!el('modalLayer').hidden)hideModal();else closeSide();}if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();el('globalSearch').focus();}if(e.key.toLowerCase()==='n'&&!e.metaKey&&!e.ctrlKey&&!e.altKey&&!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName)&&el('modalLayer').hidden){e.preventDefault();openEventForm();}if(e.key==='Tab'&&!el('modalLayer').hidden){const focusable=[...el('modalLayer').querySelectorAll('button:not([disabled]),[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled])')].filter(x=>x.offsetParent!==null);if(focusable.length){const first=focusable[0],last=focusable.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}}});
+el('quickBtn').onclick=()=>openEventForm();el('notiBtn').onclick=ev=>{ev.stopPropagation();void toggleNotificationPanel();};el('profileBtn').onclick=()=>navigate('profile');
+el('notificationClose').onclick=closeNotificationPanel;
+el('notificationPanel').addEventListener('click',async ev=>{
+ ev.stopPropagation(); // A re-rendered button must not trigger outside-click closing.
+ const b=ev.target.closest('button');if(!b)return;
+ if(b.dataset.notiAction==='all'){closeNotificationPanel();navigate('notifications');void refreshMeta();return;}
+ if(b.dataset.notiAction==='refresh'){void refreshNotificationPreview();return;}
+ if(b.dataset.previewRead){
+  if(state.metadata!=='connected')return toast('Backend metadata belum terhubung.','error');
+  b.disabled=true;
+  try{await metadata('notifications.markRead',{id:b.dataset.previewRead});state.notifications=state.notifications.map(n=>String(n.id)===b.dataset.previewRead?{...n,read:true}:n);renderNotificationPreview();if(state.view==='notifications')render();}
+  catch(e){b.disabled=false;toast('Tidak bisa menandai notifikasi: '+niceError(e),'error');}
+ }
+});
+document.addEventListener('click',ev=>{
+ if(!el('notificationPanel').hidden&&!el('notificationPanel').contains(ev.target)&&!el('notiBtn').contains(ev.target))closeNotificationPanel();
+});
+el('menuBtn').onclick=menu;el('overlay').onclick=closeSide;el('closeModal').onclick=hideModal;el('modalLayer').onclick=e=>{if(e.target===el('modalLayer'))hideModal();};
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!el('notificationPanel').hidden){closeNotificationPanel();el('notiBtn').focus();}else if(!el('modalLayer').hidden)hideModal();else closeSide();}if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();el('globalSearch').focus();}if(e.key.toLowerCase()==='n'&&!e.metaKey&&!e.ctrlKey&&!e.altKey&&!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName)&&el('modalLayer').hidden){e.preventDefault();openEventForm();}if(e.key==='Tab'&&!el('modalLayer').hidden){const focusable=[...el('modalLayer').querySelectorAll('button:not([disabled]),[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled])')].filter(x=>x.offsetParent!==null);if(focusable.length){const first=focusable[0],last=focusable.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}}});
 window.addEventListener('online',()=>{toast('Back online. You may sync again.','success');render();});window.addEventListener('offline',()=>render());
 try{if(!C.configured())throw Error('Konfigurasi Firebase belum lengkap. Perbarui config.js terlebih dahulu.');state.auth=getAuth(getApps().length?getApp():initializeApp(C.CONFIG.FIREBASE_CONFIG));onAuthStateChanged(state.auth,async user=>{if(!user){location.replace('index.html');return;}if(!user.emailVerified){location.replace('verify.html');return;}state.user=user;gate(false);profileHeader();renderNav();render();initMetadata();state.syncTimer=setInterval(()=>{if(document.visibilityState!=='visible')return;
    if(state.persisted&&state.expires<Date.now()+180000)void restoreGoogleSession(true);
