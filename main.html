@@ -638,6 +638,92 @@ body{background:linear-gradient(180deg,#f9f9fd,#f8f7fe 40%,#f5f5fb);color:var(--
 @keyframes calendraPlanningSpin{to{transform:rotate(360deg)}}
 @media(max-width:700px){.pl-backend-banner{align-items:flex-start;flex-wrap:wrap}.pl-backend-actions{width:100%}.pl-backend-actions .pl-btn{flex:1;justify-content:center}}
 @media(prefers-reduced-motion:reduce){.pl-backend-indicator.pl-loading svg{animation:none}}
+/* ===== CALENDRA LUXE CALENDAR REFRESH ===== */
+.calendar-shell{display:flex;flex-direction:column;gap:18px}
+.calendar-toolbar-luxe{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:18px 20px;border-radius:24px;border:1px solid #e9e4f4;background:radial-gradient(circle at 100% 0%,#efe7ff 0,#f8f5ff 36%,#fff 74%);box-shadow:0 18px 42px rgba(83,54,146,.08)}
+.calendar-toolbar-main{display:flex;align-items:center;gap:12px;flex-wrap:wrap;min-width:0}
+.calendar-period-badge{display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border-radius:999px;background:rgba(117,67,227,.08);border:1px solid rgba(117,67,227,.12);font-size:10px;font-weight:900;letter-spacing:1.8px;text-transform:uppercase;color:#7a55cf}
+.calendar-period-badge i{display:block;width:8px;height:8px;border-radius:999px;background:linear-gradient(135deg,#49d5b7,#7b5af0);box-shadow:0 0 0 5px rgba(73,213,183,.12)}
+.calendar-range-title{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font:850 clamp(18px,2vw,24px)/1.1 'Plus Jakarta Sans';letter-spacing:-.7px;color:#261f45}
+.calendar-range-title .calendar-mini-tag{padding:7px 11px;border-radius:12px;background:#fff;border:1px solid #ece5f6;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#8c79ac;box-shadow:0 10px 24px rgba(76,45,127,.05)}
+.calendar-toolbar-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-left:auto}
+.calendar-toolbar-tools .seg{display:flex;align-items:center;gap:6px;padding:6px;border-radius:17px;background:#f3effa;border:1px solid #ece6f6;box-shadow:inset 0 1px 0 rgba(255,255,255,.9)}
+.calendar-toolbar-tools .seg button{border:0;background:transparent;color:#8c82a1;padding:10px 14px;border-radius:13px;font-size:11px;font-weight:800;transition:all .16s ease;min-width:72px}
+.calendar-toolbar-tools .seg button:hover{color:#6341c8;background:rgba(255,255,255,.6)}
+.calendar-toolbar-tools .seg button.active{background:#fff;color:#6738d9;box-shadow:0 10px 22px rgba(86,54,150,.16)}
+.calendar-stats-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.calendar-stat-card{border:1px solid #ece6f6;border-radius:20px;background:linear-gradient(180deg,#fff,#fcfbff);padding:15px 16px;box-shadow:0 12px 26px rgba(71,42,117,.05)}
+.calendar-stat-cap{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:10px;font-weight:900;letter-spacing:1.3px;color:#9c8fb3;text-transform:uppercase}
+.calendar-stat-cap i{height:34px;width:34px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#f2ebff,#ebe6ff);color:#7043dd;box-shadow:inset 0 1px 0 rgba(255,255,255,.9)}
+.calendar-stat-card strong{display:block;margin-top:13px;font:850 26px/1 'Plus Jakarta Sans';letter-spacing:-1px;color:#261f45}
+.calendar-stat-card small{display:block;margin-top:8px;font-size:11px;line-height:1.6;color:#9489a6}
+.cal-surface{padding:18px;border-radius:28px;border:1px solid #ece7f5;background:linear-gradient(180deg,#fff,#fcfbfe 100%);box-shadow:0 16px 34px rgba(72,43,123,.06)}
+.month-grid.month-grid-luxe{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border:1px solid #ebe6f4;border-radius:22px;overflow:hidden;background:#f7f4fb}
+.cal-month-head{min-height:54px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#fcfbff,#f5f0fb);border-right:1px solid #ebe6f4;font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:#8e82a7}
+.cal-month-head:last-child{border-right:0}
+.month-day{height:170px;min-width:0;background:linear-gradient(180deg,#fff,#fcfbfe);border-right:1px solid #ebe6f4;border-bottom:1px solid #ebe6f4;padding:12px 11px 10px;cursor:pointer;overflow:hidden;display:flex;flex-direction:column;gap:9px;transition:background .18s ease,transform .18s ease,box-shadow .18s ease;position:relative}
+.month-day:hover{background:linear-gradient(180deg,#fff,#faf7ff);transform:translateY(-1px);box-shadow:inset 0 0 0 1px rgba(121,74,221,.10)}
+.month-day.out{background:linear-gradient(180deg,#fcfbfe,#f8f5fb);color:#b8aec8}
+.month-day.out .month-day-date strong{opacity:.72}
+.month-day.today-cell{background:linear-gradient(180deg,#fff,#f8f4ff)}
+.month-day::after{content:'';position:absolute;inset:auto 0 0 0;height:3px;background:linear-gradient(90deg,transparent,rgba(123,90,240,.45),transparent);opacity:0;transition:opacity .18s ease}
+.month-day:hover::after,.month-day.today-cell::after{opacity:1}
+.month-day-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.month-day-date{display:flex;align-items:center;gap:8px;min-width:0}
+.month-day .daynumber{display:grid;place-items:center;min-width:30px;height:30px;padding:0 8px;border-radius:11px;background:#f5f0ff;color:#6d47d9;font-size:12px;font-weight:900;letter-spacing:-.2px}
+.month-day .daynumber.now{background:linear-gradient(135deg,#8d63f8,#6238d6);color:#fff;box-shadow:0 12px 24px rgba(98,56,214,.28)}
+.month-day-date strong{font-size:12px;font-weight:900;color:#2a214a}
+.month-day-date span{display:block;font-size:10px;color:#a79db8;margin-top:2px}
+.month-day-count{padding:6px 9px;border-radius:999px;background:#fff;border:1px solid #ece5f6;font-size:10px;font-weight:800;color:#8d7da8;white-space:nowrap}
+.month-events{display:flex;flex-direction:column;gap:7px;min-height:0;overflow:hidden}
+.m-event.cal-month-event{border:1px solid rgba(126,98,203,.10);display:flex;flex-direction:column;align-items:flex-start;gap:4px;width:100%;text-align:left;color:#433165;border-radius:14px;font-size:10px;font-weight:800;margin:0;padding:8px 9px;background:linear-gradient(180deg,#fbf9ff,#f3edff);box-shadow:0 8px 18px rgba(71,42,117,.06);position:relative;overflow:hidden}
+.m-event.cal-month-event::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--evt,#865de1)}
+.m-event.cal-month-event:hover{filter:none;transform:translateY(-1px);box-shadow:0 12px 22px rgba(89,60,150,.10)}
+.cal-month-event-time{font-size:9px;font-weight:900;letter-spacing:.8px;text-transform:uppercase;color:#8b7ea7;padding-left:7px}
+.cal-month-event-title{display:block;padding-left:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.month-more{margin-top:auto;font-size:10px;font-weight:800;color:#7c59d6;padding-left:2px}
+.cal-timeline-wrap{display:flex;flex-direction:column;gap:16px}
+.cal-all-day-shell{border:1px solid #ebe5f5;border-radius:22px;background:linear-gradient(180deg,#fff,#fcfbff);padding:16px 17px;box-shadow:0 12px 28px rgba(74,44,127,.05)}
+.cal-all-day-list{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+.cal-all-day-event{display:flex;align-items:center;gap:16px;width:100%;text-align:left;border:1px solid #ebdefb;background:linear-gradient(180deg,#fff,#fbf8ff);border-radius:20px;padding:16px 18px;box-shadow:0 12px 24px rgba(71,42,117,.05)}
+.cal-all-day-accent{width:6px;align-self:stretch;border-radius:999px;background:var(--evt,#82d4e3)}
+.cal-all-day-date{flex:0 0 84px;border-radius:15px;background:#f6f1ff;padding:10px 8px;text-align:center}
+.cal-all-day-date strong{display:block;font-size:11px;font-weight:900;color:#6d47d9;text-transform:uppercase}
+.cal-all-day-date span{display:block;margin-top:4px;font:850 22px/1 'Plus Jakarta Sans';color:#2a214a}
+.cal-all-day-copy{min-width:0;flex:1}
+.cal-all-day-copy b{display:block;font:850 15px/1.25 'Plus Jakarta Sans';letter-spacing:-.4px;color:#261f45;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cal-all-day-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px}
+.cal-all-day-meta span{display:inline-flex;align-items:center;gap:6px;padding:7px 9px;border-radius:11px;background:#f6f2ff;font-size:10px;font-weight:800;color:#7856c9}
+.cal-all-day-tail{margin-left:auto;display:inline-flex;align-items:center;gap:8px;padding:11px 13px;border-radius:14px;background:#fff;border:1px solid #ece6f6;color:#6d47d9;font-size:11px;font-weight:800;white-space:nowrap}
+.cal-all-day-tail svg{width:16px;height:16px}
+.cal-timeline-note{font-size:11px;color:#aa9cb9;padding:0 2px}
+.timeline-scroll.cal-timeline-scroll{overflow-x:auto;border:0;background:transparent}
+.timeboard.cal-timeboard{display:grid;align-items:stretch;background:#fff;border:1px solid #ebe5f5;border-radius:22px;overflow:hidden;box-shadow:0 16px 34px rgba(72,43,123,.06)}
+.timeboard.cal-timeboard .timehead{position:sticky;top:0;z-index:4;min-height:62px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:linear-gradient(180deg,#fcfbff,#f6f1fb);border-bottom:1px solid #ebe5f5;border-right:1px solid #ebe5f5;color:#82759a;font-size:11px;font-weight:900;letter-spacing:.7px;text-transform:uppercase}
+.timeboard.cal-timeboard .timehead span{font-size:10px;color:#a194b5}
+.timeboard.cal-timeboard .timehead strong{font-size:13px;letter-spacing:-.3px;color:#312651;text-transform:none}
+.timeboard.cal-timeboard .timehead.today{background:linear-gradient(180deg,#f5efff,#ede5ff)}
+.timeboard.cal-timeboard .timehead.today strong{color:#6a3fe0}
+.timeboard.cal-timeboard .timehead em{font-style:normal;font-size:9px;font-weight:900;color:#fff;background:linear-gradient(135deg,#8d63f8,#6238d6);padding:4px 8px;border-radius:999px;letter-spacing:.7px;text-transform:uppercase;box-shadow:0 10px 20px rgba(98,56,214,.22)}
+.timeboard.cal-timeboard .timehead.cal-corner{justify-content:center;align-items:flex-start;padding-left:14px}
+.timeaxis{position:relative;background:linear-gradient(180deg,#fbf9fe,#f6f1fb);border-right:1px solid #ebe5f5}
+.timelabel{position:absolute;left:12px;transform:translateY(-50%);color:#a89db8;font-size:10px;font-weight:700}
+.timeday{position:relative;height:1392px;border-right:1px solid #ebe5f5;background:linear-gradient(180deg,rgba(124,90,214,.02),rgba(124,90,214,0) 18%),repeating-linear-gradient(to bottom,#fff 0,#fff 57px,#f1ebf9 57px,#f1ebf9 58px);cursor:crosshair}
+.timeday.today-col{background:linear-gradient(180deg,rgba(124,90,214,.06),rgba(124,90,214,0) 22%),repeating-linear-gradient(to bottom,#fff 0,#fff 57px,#f1ebf9 57px,#f1ebf9 58px)}
+.timeday::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,rgba(120,89,205,.18),rgba(120,89,205,0));opacity:0;transition:opacity .18s ease}
+.timeday.today-col::before{opacity:1}
+.timeevent.cal-time-event{position:absolute;z-index:2;text-align:left;min-height:28px;padding:10px 11px 9px;overflow:hidden;border:1px solid rgba(120,92,196,.10);border-left:4px solid var(--evt,#8052e9);border-radius:16px;background:linear-gradient(180deg,#faf7ff,#f2ebff);color:#483267;font-size:11px;line-height:1.35;box-shadow:0 14px 24px rgba(69,42,117,.10);cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,filter .15s ease}
+.timeevent.cal-time-event:hover{filter:none;transform:translateY(-1px);z-index:3;box-shadow:0 16px 28px rgba(69,42,117,.16)}
+.cal-time-kicker{display:block;font-size:9px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:#8d7ea8;margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cal-time-title{display:block;font-size:12px;font-weight:900;color:#2d224d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cal-time-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:5px;font-size:9px;color:#7f71a0}
+.cal-time-pill{display:inline-flex;align-items:center;gap:4px;padding:4px 7px;border-radius:999px;background:rgba(255,255,255,.75);font-weight:800}
+.nowline{position:absolute;height:3px;background:linear-gradient(90deg,#ff5a8f,#ff8d8d);left:0;right:0;z-index:3;pointer-events:none;box-shadow:0 0 0 1px rgba(255,255,255,.8)}
+.nowline:before{content:'';position:absolute;height:11px;width:11px;left:-5px;top:-4px;border-radius:50%;background:#ff5a8f;box-shadow:0 0 0 3px rgba(255,90,143,.16)}
+.nowline:after{content:'Now';position:absolute;right:10px;top:-12px;padding:2px 8px;border-radius:999px;background:#ff5a8f;color:#fff;font-size:9px;font-weight:900;letter-spacing:.8px;text-transform:uppercase;box-shadow:0 8px 18px rgba(255,90,143,.18)}
+@media(max-width:1050px){.calendar-stats-strip{grid-template-columns:repeat(3,minmax(0,1fr))}.month-day{height:156px}.cal-all-day-event{padding:14px}.calendar-toolbar-tools{width:100%;justify-content:space-between}.calendar-toolbar-tools .seg{margin-left:auto}}
+@media(max-width:760px){.calendar-toolbar-luxe{padding:15px;border-radius:20px}.calendar-toolbar-main,.calendar-toolbar-tools{width:100%}.calendar-range-title{font-size:19px}.calendar-stats-strip{grid-template-columns:1fr}.calendar-stat-card strong{font-size:24px}.cal-surface{padding:13px;border-radius:22px}.month-grid.month-grid-luxe{border-radius:18px}.cal-month-head{min-height:42px;font-size:10px}.month-day{height:118px;padding:8px 7px 7px;gap:6px}.month-day .daynumber{min-width:26px;height:26px;border-radius:9px;font-size:11px}.month-day-date strong{font-size:11px}.month-day-date span,.month-day-count,.cal-month-event-time{display:none}.m-event.cal-month-event{padding:6px 7px;border-radius:10px;font-size:9px}.cal-month-event-title{padding-left:5px}.month-more{font-size:9px}.cal-all-day-shell{padding:13px}.cal-all-day-event{gap:10px;padding:12px 12px 12px 10px;border-radius:16px}.cal-all-day-date{flex-basis:62px;border-radius:12px;padding:8px 6px}.cal-all-day-date span{font-size:18px}.cal-all-day-copy b{font-size:13px;white-space:normal}.cal-all-day-meta span{padding:6px 7px;font-size:9px}.cal-all-day-tail{display:none}.timeboard.cal-timeboard{border-radius:18px}.timeboard.cal-timeboard .timehead{min-height:54px;font-size:10px}.timeboard.cal-timeboard .timehead strong{font-size:11px}.timelabel{left:8px;font-size:9px}.timeday{height:1392px}.timeevent.cal-time-event{padding:7px 7px 6px;border-radius:12px}.cal-time-title{font-size:10px}.cal-time-meta{display:none}}
+
 </style></head><body>
 <div id="authGate" class="loading-gate"><div class="symbol">✦</div><b style="font:800 25px 'Plus Jakarta Sans'">calendra.</b><p>Protecting your personal space…</p></div>
 <div class="side-overlay" id="overlay"></div><div class="app"><aside class="sidebar" id="sidebar"><div class="side-top"><a class="logo" href="main.html"><b>✦</b><span>calendra<em>PERSONAL TIME STUDIO</em></span></a></div><div class="sidebar-workspace-caption"><span class="sidebar-identity-icon">✧</span><span>PRIVATE WORKSPACE<br><strong>My calendar suite</strong></span><i data-lucide="chevrons-up-down"></i></div><div class="side-scroll" id="nav"></div><div class="side-bottom"><button class="connection-mini cal-sync-control" data-action="sync" id="sidebarSync" title="Klik untuk sinkronisasi kalender" aria-label="Sinkronkan Google Calendar" type="button"><i class="cal-sync-icon">✦</i><div><b id="connectionLabel">Calendar not connected</b><div class="small"><span class="status-dot" id="connectionDot"></span><span id="syncLabel">Connect to sync</span></div></div></button><button class="profile-mini" id="profileBtn"><span class="avatar" id="sideAvatar">✦</span><span style="min-width:0"><div class="name" id="sideName">My workspace</div><div class="small">Personal account</div></span><i data-lucide="chevrons-up-down"></i></button></div></aside><div class="workspace"><header class="topbar"><button class="top-icon mobmenu" id="menuBtn" aria-label="Open navigation"><i data-lucide="menu"></i></button><div class="top-start"><div class="breadcrumb">WORKSPACE / <span id="crumb">OVERVIEW</span></div><div class="pagetitle" id="pageTitle">Overview</div></div><label class="top-search"><i data-lucide="search"></i><input id="globalSearch" placeholder="Search your schedule…" autocomplete="off" aria-label="Search events"><span style="font-size:9px">⌘ K</span></label><button class="top-icon" id="notiBtn" type="button" aria-label="Buka notifikasi" aria-haspopup="dialog" aria-expanded="false" aria-controls="notificationPanel"><i data-lucide="bell"></i><span class="red" id="unreadDot" hidden></span></button><button class="btn primary" id="quickBtn"><i data-lucide="plus"></i> <span>New event</span></button></header><section class="cal-noti-panel" id="notificationPanel" role="dialog" aria-modal="false" aria-label="Notifikasi Calendra" hidden>
@@ -1871,26 +1957,101 @@ function overview() {
   </div>
   `;
 }
-function monthView(){const d=state.selected,first=firstMonth(d),offset=(first.getDay()+6)%7,start=addDays(first,-offset),events=visibleEvents(),now=isoDay(TODAY());const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];return `<div class="month-grid">${days.map(x=>`<div class="month-head">${x}</div>`).join('')}${Array.from({length:42},(_,i)=>{const day=addDays(start,i),key=isoDay(day),items=events.filter(e=>dateStart(e)<addDays(day,1)&&dateEnd(e)>day);return `<div class="month-day ${day.getMonth()!==d.getMonth()?'out':''}" data-day="${key}"><span class="daynumber ${key===now?'now':''}">${day.getDate()}</span>${items.slice(0,3).map(e=>`<button class="m-event" style="border-color:${eventColor(e)}" data-open="${esc(e.id)}" data-calid="${esc(e._calendarId)}" title="${esc(e.summary||'Event')}">${esc(e.summary||'Event')}</button>`).join('')}${items.length>3?`<div class="help">+${items.length-3} more</div>`:''}</div>`}).join('')}</div>`;}
+function monthView(){
+ const d=state.selected,first=firstMonth(d),offset=(first.getDay()+6)%7,start=addDays(first,-offset),todayKey=isoDay(TODAY());
+ const dayNames=['Sen','Sel','Rab','Kam','Jum','Sab','Min'];
+ const gridDays=Array.from({length:42},(_,i)=>addDays(start,i));
+ const dayMap=new Map(gridDays.map(day=>[isoDay(day),[]]));
+ const gridEnd=addDays(start,42);
+ visibleEvents().forEach(e=>{
+   const a=dateStart(e), b=dateEnd(e);
+   let cursor=new Date(Math.max(new Date(a.getFullYear(),a.getMonth(),a.getDate()).getTime(), start.getTime()));
+   const stop=new Date(Math.min(gridEnd.getTime(), b.getTime()));
+   while(cursor<stop){
+     const key=isoDay(cursor);
+     if(dayMap.has(key)) dayMap.get(key).push(e);
+     cursor=addDays(cursor,1);
+   }
+ });
+ return `
+ <div class="calendar-stats-strip">
+   <div class="calendar-stat-card">
+     <div class="calendar-stat-cap"><span>This month</span><i>${icon('calendar-days')}</i></div>
+     <strong>${visibleEvents().filter(e=>dateStart(e)<new Date(d.getFullYear(),d.getMonth()+1,1)&&dateEnd(e)>new Date(d.getFullYear(),d.getMonth(),1)).length}</strong>
+     <small>Agenda yang tampil pada bulan ${dateLabel(d,{month:'long',year:'numeric'})}.</small>
+   </div>
+   <div class="calendar-stat-card">
+     <div class="calendar-stat-cap"><span>Today spotlight</span><i>${icon('sparkles')}</i></div>
+     <strong>${(dayMap.get(todayKey)||[]).length}</strong>
+     <small>Momen yang jatuh di hari ini untuk memudahkan fokus Anda.</small>
+   </div>
+   <div class="calendar-stat-card">
+     <div class="calendar-stat-cap"><span>Connected calendars</span><i>${icon('layers-3')}</i></div>
+     <strong>${state.calendars.length}</strong>
+     <small>Semua kalender aktif tersaji dalam tampilan bulanan yang lebih rapi.</small>
+   </div>
+ </div>
+ <div class="cal-surface">
+   <div class="month-grid month-grid-luxe">
+     ${dayNames.map(x=>`<div class="cal-month-head">${x}</div>`).join('')}
+     ${gridDays.map(day=>{
+       const key=isoDay(day);
+       const items=(dayMap.get(key)||[]).slice().sort((a,b)=>{
+         const aa=a.start?.date?0:1, bb=b.start?.date?0:1;
+         return aa-bb || dateStart(a)-dateStart(b);
+       });
+       const shown=items.slice(0,4);
+       return `<div class="month-day ${day.getMonth()!==d.getMonth()?'out':''} ${key===todayKey?'today-cell':''}" data-day="${key}">
+         <div class="month-day-top">
+           <div class="month-day-date">
+             <span class="daynumber ${key===todayKey?'now':''}">${day.getDate()}</span>
+             <div>
+               <strong>${dateLabel(day,{weekday:'short'})}</strong>
+               <span>${day.getMonth()===d.getMonth()?'In view':'Adjacent'}</span>
+             </div>
+           </div>
+           <span class="month-day-count">${items.length||'0'} agenda</span>
+         </div>
+         <div class="month-events">
+           ${shown.map(e=>`<button class="m-event cal-month-event" style="--evt:${eventColor(e)}" data-open="${esc(e.id)}" data-calid="${esc(e._calendarId)}" title="${esc(e.summary||'Event')}"><span class="cal-month-event-time">${esc(e.start?.date?'All day':C.fmtTime(dateStart(e)))}</span><span class="cal-month-event-title">${esc(e.summary||'Event')}</span></button>`).join('')}
+           ${items.length>4?`<div class="month-more">+${items.length-4} momen lainnya</div>`:''}
+         </div>
+       </div>`;
+     }).join('')}
+   </div>
+ </div>`;
+}
 function timelineView(days){
  const start=days===7?startWeek(state.selected):new Date(state.selected.getFullYear(),state.selected.getMonth(),state.selected.getDate());
- const now=TODAY(),hours=Array.from({length:24},(_,i)=>`<span class="timelabel" style="top:${i*54+4}px">${String(i).padStart(2,'0')}:00</span>`).join('');
- const headings=Array.from({length:days},(_,i)=>{const d=addDays(start,i);return `<div class="timehead">${dateLabel(d,{weekday:'short',day:'numeric',month:'short'})}</div>`;}).join('');
- const allDay=visibleEvents().filter(e=>e.start?.date&&dateStart(e)<addDays(start,days)&&dateEnd(e)>start);
+ const rowH=58, now=TODAY(), endRange=addDays(start,days);
+ const labels=Array.from({length:24},(_,i)=>`<span class="timelabel" style="top:${i*rowH+4}px">${String(i).padStart(2,'0')}:00</span>`).join('');
+ const headings=Array.from({length:days},(_,i)=>{const d=addDays(start,i),isToday=isoDay(d)===isoDay(now);return `<div class="timehead ${isToday?'today':''}"><span>${dateLabel(d,{weekday:'short'})}</span><strong>${dateLabel(d,{day:'numeric',month:'short'})}</strong>${isToday?'<em>Hari ini</em>':''}</div>`;}).join('');
+ const allDay=visibleEvents().filter(e=>e.start?.date&&dateStart(e)<endRange&&dateEnd(e)>start);
+ const allDayCards=allDay.length?`<div class="cal-all-day-shell"><div class="eyecap">ALL-DAY MOMENTS</div><div class="cal-all-day-list">${allDay.map(e=>{const st=dateStart(e),day=dateLabel(st,{weekday:'short'}).toUpperCase();return `<button class="cal-all-day-event" data-open="${esc(e.id)}" data-calid="${esc(e._calendarId)}" style="--evt:${eventColor(e)}"><span class="cal-all-day-accent"></span><div class="cal-all-day-date"><strong>${esc(day)}</strong><span>${st.getDate()}</span></div><div class="cal-all-day-copy"><b>${esc(e.summary||'Untitled event')}</b><div class="cal-all-day-meta"><span><i style="display:inline-block;width:7px;height:7px;border-radius:999px;background:${eventColor(e)}"></i>${esc(e._calendarName||'Calendar')}</span>${e.hangoutLink?`<span>${icon('video')} Meet</span>`:''}${e.attendees?.length?`<span>${icon('users')} ${e.attendees.length}</span>`:''}</div></div><span class="cal-all-day-tail">All day ${icon('chevron-right')}</span></button>`;}).join('')}</div></div>`:'';
  const columns=Array.from({length:days},(_,i)=>{
-   const d=addDays(start,i),dayStart=d.getTime(),dayEnd=addDays(d,1).getTime();
+   const d=addDays(start,i), dayStart=d.getTime(), dayEnd=addDays(d,1).getTime(), isToday=isoDay(d)===isoDay(now);
    const segments=visibleEvents().filter(e=>!e.start?.date&&dateStart(e).getTime()<dayEnd&&dateEnd(e).getTime()>dayStart).map(e=>({e,start:Math.max(0,(dateStart(e).getTime()-dayStart)/60000),end:Math.min(1440,(dateEnd(e).getTime()-dayStart)/60000)})).sort((a,b)=>a.start-b.start||b.end-a.end);
    const laneEnds=[];for(const seg of segments){let lane=laneEnds.findIndex(end=>end<=seg.start);if(lane<0){lane=laneEnds.length;laneEnds.push(0);}laneEnds[lane]=seg.end;seg.lane=lane;}
    const lanes=Math.max(1,laneEnds.length);
-   const blocks=segments.map(({e,start:st,end,lane})=>`<button class="timeevent" data-open="${esc(e.id)}" data-calid="${esc(e._calendarId)}" style="top:${(st/60*54+2).toFixed(1)}px;height:${Math.max(20,(end-st)/60*54-3).toFixed(1)}px;left:calc(${(lane/lanes*100).toFixed(4)}% + 2px);width:calc(${(100/lanes).toFixed(4)}% - 4px);border-color:${eventColor(e)}" title="${esc(e.summary||'Event')}">${esc(e.summary||'Event')}<span>${esc(eventTime(e))}</span></button>`).join('');
-   const current=isoDay(d)===isoDay(now)?`<div class="nowline" style="top:${minutes(now)/60*54}px"></div>`:'';
-   return `<div class="timeday" data-day="${isoDay(d)}" aria-label="${dateLabel(d)}">${blocks}${current}</div>`;
+   const blocks=segments.map(({e,start:st,end,lane})=>`<button class="timeevent cal-time-event" data-open="${esc(e.id)}" data-calid="${esc(e._calendarId)}" style="--evt:${eventColor(e)};top:${(st/60*rowH+4).toFixed(1)}px;height:${Math.max(28,(end-st)/60*rowH-6).toFixed(1)}px;left:calc(${(lane/lanes*100).toFixed(4)}% + 4px);width:calc(${(100/lanes).toFixed(4)}% - 8px)" title="${esc(e.summary||'Event')}"><span class="cal-time-kicker">${esc(C.fmtTime(dateStart(e)))} → ${esc(C.fmtTime(dateEnd(e)))}</span><strong class="cal-time-title">${esc(e.summary||'Event')}</strong><span class="cal-time-meta"><span class="cal-time-pill">${esc(e._calendarName||'Calendar')}</span>${e.location?`<span class="cal-time-pill">${esc(e.location)}</span>`:''}</span></button>`).join('');
+   const current=isToday?`<div class="nowline" style="top:${minutes(now)/60*rowH}px"></div>`:'';
+   return `<div class="timeday ${isToday?'today-col':''}" data-day="${isoDay(d)}" aria-label="${dateLabel(d)}">${blocks}${current}</div>`;
  }).join('');
- return `${allDay.length?`<div class="panel" style="margin-bottom:13px"><div class="eyecap" style="margin-bottom:10px">ALL-DAY MOMENTS</div>${eventCards(allDay)}</div>`:''}<div class="help" style="margin-bottom:9px">Click an empty hour to create an event. Time shown in your device's timezone.</div><div class="timeline-scroll"><div class="timeboard" style="grid-template-columns:55px repeat(${days},minmax(${days===7?'110':'240'}px,1fr));min-width:${days===7?'825':'360'}px"><div class="timehead">Time</div>${headings}<div class="timeaxis">${hours}</div>${columns}</div></div>`;
+ const width=days===7?'980':'620';
+ return `<div class="calendar-stats-strip"><div class="calendar-stat-card"><div class="calendar-stat-cap"><span>${days===7?'This week':'This day'}</span><i>${icon(days===7?'calendar-range':'sun-medium')}</i></div><strong>${visibleEvents().filter(e=>dateStart(e)<endRange&&dateEnd(e)>start).length}</strong><small>${days===7?'Seluruh agenda pada pekan terpilih.' : 'Seluruh agenda pada hari terpilih.'}</small></div><div class="calendar-stat-card"><div class="calendar-stat-cap"><span>All day</span><i>${icon('sparkles')}</i></div><strong>${allDay.length}</strong><small>Momen sepanjang hari disusun terpisah agar tetap mudah dipindai.</small></div><div class="calendar-stat-card"><div class="calendar-stat-cap"><span>Focus hours</span><i>${icon('timer')}</i></div><strong>${state.settings.workStart}–${state.settings.workEnd}</strong><small>Patokan jam kerja untuk membaca beban agenda dengan cepat.</small></div></div><div class="cal-timeline-wrap">${allDayCards}<div class="cal-timeline-note">Klik area kosong untuk membuat event baru. Semua waktu mengikuti timezone perangkat Anda.</div><div class="timeline-scroll cal-timeline-scroll"><div class="timeboard cal-timeboard" style="grid-template-columns:78px repeat(${days},minmax(${days===7?'128':'540'}px,1fr));min-width:${width}px"><div class="timehead cal-corner"><strong>Time</strong><span>24-hour flow</span></div>${headings}<div class="timeaxis">${labels}</div>${columns}</div></div></div>`;
 }
-function calendarPage(){if(!state.token)return needCalendar();const current=state.selected,view=state.calendarView,calControls=`<div class="calendar-controls"><div class="date-nav"><button class="icon-btn" data-action="prev" aria-label="Previous">${icon('chevron-left')}</button><button class="icon-btn" data-action="next" aria-label="Next">${icon('chevron-right')}</button><strong>${dateLabel(current,{month:'long',year:'numeric',...(view==='day'?{day:'numeric'}:{})})}</strong><button class="btn small" data-action="today">Today</button></div><div class="seg">${['month','week','day','agenda'].map(s=>`<button data-cview="${s}" class="${view===s?'active':''}">${s[0].toUpperCase()+s.slice(1)}</button>`).join('')}</div></div>`;
- const body=view==='month'?monthView():view==='week'?timelineView(7):view==='day'?timelineView(1):eventCards(visibleEvents().filter(e=>dateStart(e)>=new Date(current.getFullYear(),current.getMonth(),1)&&dateStart(e)<new Date(current.getFullYear(),current.getMonth()+1,1)));
- return `${pageHeading('Calendar experience','See the whole picture. Own every minute.',`<button class="btn small" data-action="sync">${icon('refresh-cw')} Sync</button>`) }<section class="panel">${calControls}${body}</section>`;}
+function calendarPage(){
+ if(!state.token)return needCalendar();
+ const current=state.selected,view=state.calendarView,events=visibleEvents();
+ const rangeStart=view==='week'?startWeek(current):view==='day'?new Date(current.getFullYear(),current.getMonth(),current.getDate()):new Date(current.getFullYear(),current.getMonth(),1);
+ const rangeEnd=view==='week'?addDays(rangeStart,7):view==='day'?addDays(rangeStart,1):new Date(current.getFullYear(),current.getMonth()+1,1);
+ const activeCount=events.filter(e=>dateStart(e)<rangeEnd&&dateEnd(e)>rangeStart).length;
+ const rangeLabel=view==='week'?`${dateLabel(rangeStart,{day:'numeric',month:'long'})} – ${dateLabel(addDays(rangeStart,6),{day:'numeric',month:'long',year:'numeric'})}`:view==='day'?dateLabel(current,{weekday:'long',day:'numeric',month:'long',year:'numeric'}):dateLabel(current,{month:'long',year:'numeric'});
+ const calControls=`<div class="calendar-toolbar-luxe"><div class="calendar-toolbar-main"><span class="calendar-period-badge"><i></i> Calendar atelier</span><div><div class="calendar-range-title">${esc(rangeLabel)}<span class="calendar-mini-tag">${view} view</span></div><div class="help" style="margin-top:6px">Tampilan kalender yang dipoles ulang agar lebih tenang, presisi, dan nyaman dipindai.</div></div></div><div class="calendar-toolbar-tools"><div class="date-nav" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><button class="icon-btn" data-action="prev" aria-label="Previous">${icon('chevron-left')}</button><button class="icon-btn" data-action="next" aria-label="Next">${icon('chevron-right')}</button><button class="btn small" data-action="today">Today</button><button class="btn small" data-action="sync">${icon('refresh-cw')} Sync</button></div><div class="seg">${['month','week','day','agenda'].map(s=>`<button data-cview="${s}" class="${view===s?'active':''}">${s[0].toUpperCase()+s.slice(1)}</button>`).join('')}</div></div></div>`;
+ const statStrip=`<div class="calendar-stats-strip"><div class="calendar-stat-card"><div class="calendar-stat-cap"><span>Visible in range</span><i>${icon('calendar-check')}</i></div><strong>${activeCount}</strong><small>Agenda aktif sesuai rentang yang sedang Anda lihat sekarang.</small></div><div class="calendar-stat-card"><div class="calendar-stat-cap"><span>Connected calendars</span><i>${icon('layers-3')}</i></div><strong>${state.calendars.length}</strong><small>Seluruh kalender terhubung dirangkum dalam satu workspace.</small></div><div class="calendar-stat-card"><div class="calendar-stat-cap"><span>Sync status</span><i>${icon('sparkles')}</i></div><strong>${state.syncAt?new Date(state.syncAt).toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}):'—'}</strong><small>${state.syncAt?'Terakhir diperbarui dari Google Calendar.':'Belum pernah disinkronkan pada sesi ini.'}</small></div></div>`;
+ const body=view==='month'?monthView():view==='week'?timelineView(7):view==='day'?timelineView(1):eventCards(events.filter(e=>dateStart(e)>=new Date(current.getFullYear(),current.getMonth(),1)&&dateStart(e)<new Date(current.getFullYear(),current.getMonth()+1,1)));
+ return `${pageHeading('Calendar experience','See the whole picture. Own every minute.',`<button class="btn small" data-action="sync">${icon('refresh-cw')} Sync</button>`)}<section class="calendar-shell">${statStrip}<div class="cal-surface">${calControls}${view==='agenda'?`<div style="margin-top:18px">${body}</div>`:body}</div></section>`;
+}
 
 // =========================================================================
 // 1. REVISI FUNGSI AGENDA PAGE (CHRONOLOGICAL TIMELINE TERMINAL)
