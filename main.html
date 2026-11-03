@@ -78,7 +78,7 @@ const NAV=[
   ['PREFERENCES',[['notifications','Activity Center','bell'],['profile','My Profile','user-round'],['settings','Settings','settings-2']]]
 ];
 const TITLES=Object.fromEntries(NAV.flatMap(g=>g[1].map(x=>[x[0],x[1]])));
-const state={auth:null,user:null,view:'overview',calendarView:'month',selected:TODAY(),calendars:[],events:[],token:null,expires:0,scope:new Set(),googleRestore:'checking',persisted:false,refreshPromise:null,rangePending:false,lastRange:'',paneCache:new Map(),revision:0,syncAt:0,busy:false,loadPending:0,fetchEpoch:0,search:'',filterCalendar:'all',settings:{timezone:'Asia/Jakarta',workStart:'09:00',workEnd:'17:00',defaultDuration:60,defaultReminder:15,defaultCalendar:'primary',firstDay:1,goals:''},profile:null,preferences:[],templates:[],categories:[],notifications:[],activity:[],metadata:'loading',bridge:null,cache:new Map(),lastFocused:null,editing:null,importRows:[],syncTimer:null};
+const state={auth:null,user:null,view:'overview',calendarView:'month',selected:TODAY(),calendars:[],events:[],token:null,expires:0,scope:new Set(),googleRestore:'checking',persisted:false,refreshPromise:null,bridgeError:'',rangePending:false,lastRange:'',paneCache:new Map(),revision:0,syncAt:0,busy:false,loadPending:0,fetchEpoch:0,search:'',filterCalendar:'all',settings:{timezone:'Asia/Jakarta',workStart:'09:00',workEnd:'17:00',defaultDuration:60,defaultReminder:15,defaultCalendar:'primary',firstDay:1,goals:''},profile:null,preferences:[],templates:[],categories:[],notifications:[],activity:[],metadata:'loading',bridge:null,cache:new Map(),lastFocused:null,editing:null,importRows:[],syncTimer:null};
 const dateStart=e=>new Date(e.start?.dateTime||`${e.start?.date}T00:00:00`),dateEnd=e=>new Date(e.end?.dateTime||`${e.end?.date}T00:00:00`);
 const sortEvents=a=>a.sort((x,y)=>dateStart(x)-dateStart(y));
 const activeCals=()=>state.calendars.filter(c=>!state.preferences.some(p=>p.calendarId===c.id&&(p.visible===false||String(p.visible)==='false')));
@@ -142,7 +142,7 @@ function pageHeading(label,sub='',actions=''){
 }
 const empty=(msg='Belum ada event pada periode ini.',symbol='✦')=>`<div class="empty"><div class="big">${symbol}</div>${esc(msg)}</div>`;
 function skeletonView(){return `<section class="skeleton-wrap" aria-busy="true" aria-label="Memuat data kalender"><div class="skeleton-banner"><div class="sk sk-kicker"></div><div class="sk sk-title"></div><div class="sk sk-caption"></div></div><div class="skeleton-grid">${Array.from({length:4},()=>'<div class="sk-card"><div class="sk sk-icon"></div><div class="sk sk-mid"></div><div class="sk sk-big"></div></div>').join('')}</div><div class="skeleton-duo"><div class="sk-card sk-tall"><div class="sk sk-mid"></div>${Array.from({length:6},()=>'<div class="sk sk-line"></div>').join('')}</div><div class="sk-card sk-tall"><div class="sk sk-mid"></div>${Array.from({length:6},()=>'<div class="sk sk-line"></div>').join('')}</div></div></section>`;}
-function needCalendar(){if(state.googleRestore==='checking')return skeletonView();return `<div class="connect-state"><div class="glyph">${icon('calendar-heart')}</div><h3>Your calendar, your canvas.</h3><p>Hubungkan Google Calendar satu kali agar agenda tersinkron otomatis setiap Anda membuka kembali Calendra, selama izin Google masih berlaku.</p><button class="btn primary" data-action="connect">${icon('link-2')} Connect Google Calendar</button></div>`;}
+function needCalendar(){if(state.googleRestore==='checking')return skeletonView();return `<div class="connect-state"><div class="glyph">${icon('calendar-heart')}</div><h3>Your calendar, your canvas.</h3><p>Hubungkan Google Calendar satu kali agar agenda tersinkron otomatis setiap Anda membuka kembali Calendra, selama izin Google masih berlaku.</p>${state.bridgeError?`<div class="offline" role="alert" style="text-align:left;margin:0 auto 16px;max-width:550px"><b>Auto-connect belum siap:</b> ${esc(state.bridgeError)}<p class="help">Periksa Code.gs (versi deployment), ALLOWED_ORIGINS, Client ID dan Client Secret.</p></div>`:''}<button class="btn primary" data-action="connect">${icon('link-2')} Connect Google Calendar</button></div>`;}
 function getDateRange(){const d=state.selected;return {min:new Date(d.getFullYear(),d.getMonth()-1,1),max:new Date(d.getFullYear(),d.getMonth()+2,1)};}
 function allowedScopes(requested){return requested.every(s=>state.scope.has(s));}
 let oauthResolve,oauthReject;
@@ -192,6 +192,7 @@ async function restoreGoogleSession(quiet=false){
    try{
      if(!state.bridge||!C.gasConfigured())return false;
      const r=await metadata('calendar.oauth.session');
+     state.bridgeError='';
      if(!r?.connected){state.googleRestore='done';state.persisted=false;setConnection();return false;}
      acceptGoogleToken(r);
      if(!quiet){toast('Google Calendar tersambung otomatis.','success');}
@@ -199,6 +200,8 @@ async function restoreGoogleSession(quiet=false){
      return true;
    }catch(e){
      state.googleRestore='done';state.persisted=false;setConnection();
+     state.bridgeError=niceError(e);
+     console.warn('Calendra auto-connect failed:',state.bridgeError);
      if(!quiet)toast('Auto-connect belum tersedia: '+niceError(e),'error');
      return false;
    }finally{state.refreshPromise=null;render();}
@@ -210,9 +213,10 @@ async function connectCalendar(){
    // Persistent flow when metadata bridge is available; fallback remains functional
    // but DOES NOT claim persistence when the backend OAuth secret isn't configured.
    const result=state.bridge?await requestGoogleCode(C.CONFIG.CALENDAR_SCOPES):await requestGoogle(C.CONFIG.CALENDAR_SCOPES);
+   state.bridgeError='';
    toast(result.renewable?'Koneksi otomatis aktif. Kalender sedang disinkronkan…':'Calendar connected for this session. Configure backend OAuth for auto-connect.',result.renewable?'success':'info');
    state.revision++;state.paneCache.clear();await syncAll(true);
- }catch(e){toast(niceError(e),'error');}
+ }catch(e){state.bridgeError=niceError(e);console.error('Calendra connection failed:',e);render();toast(niceError(e),'error');}
 }
 async function requestAdmin(){
  if(state.scope.has(C.CONFIG.CALENDAR_ADMIN_SCOPE))return;
@@ -256,7 +260,7 @@ async function initMetadata(){
    state.profile=r.profile;state.settings={...state.settings,...r.settings};
    state.templates=r.templates||[];state.categories=r.categories||[];state.preferences=r.preferences||[];
    state.metadata='connected';state.revision++;state.paneCache.clear();profileHeader();render();
- }).catch(e=>{state.metadata='unavailable';console.warn('Metadata bridge unavailable:',e.message);render();});
+ }).catch(e=>{state.metadata='unavailable';state.bridgeError=niceError(e);console.warn('Metadata bridge unavailable:',e.message);render();});
  const restoring=restoreGoogleSession(true);
  await Promise.allSettled([bootstrap,restoring]);
  if(state.googleRestore==='checking'){state.googleRestore='done';render();}
