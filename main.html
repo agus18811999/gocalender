@@ -638,91 +638,70 @@ body{background:linear-gradient(180deg,#f9f9fd,#f8f7fe 40%,#f5f5fb);color:var(--
 @keyframes calendraPlanningSpin{to{transform:rotate(360deg)}}
 @media(max-width:700px){.pl-backend-banner{align-items:flex-start;flex-wrap:wrap}.pl-backend-actions{width:100%}.pl-backend-actions .pl-btn{flex:1;justify-content:center}}
 @media(prefers-reduced-motion:reduce){.pl-backend-indicator.pl-loading svg{animation:none}}
-/* ===== CALENDRA LUXE CALENDAR REFRESH ===== */
-.calendar-shell{display:flex;flex-direction:column;gap:18px}
-.calendar-toolbar-luxe{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:18px 20px;border-radius:24px;border:1px solid #e9e4f4;background:radial-gradient(circle at 100% 0%,#efe7ff 0,#f8f5ff 36%,#fff 74%);box-shadow:0 18px 42px rgba(83,54,146,.08)}
-.calendar-toolbar-main{display:flex;align-items:center;gap:12px;flex-wrap:wrap;min-width:0}
-.calendar-period-badge{display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border-radius:999px;background:rgba(117,67,227,.08);border:1px solid rgba(117,67,227,.12);font-size:10px;font-weight:900;letter-spacing:1.8px;text-transform:uppercase;color:#7a55cf}
-.calendar-period-badge i{display:block;width:8px;height:8px;border-radius:999px;background:linear-gradient(135deg,#49d5b7,#7b5af0);box-shadow:0 0 0 5px rgba(73,213,183,.12)}
-.calendar-range-title{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font:850 clamp(18px,2vw,24px)/1.1 'Plus Jakarta Sans';letter-spacing:-.7px;color:#261f45}
-.calendar-range-title .calendar-mini-tag{padding:7px 11px;border-radius:12px;background:#fff;border:1px solid #ece5f6;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#8c79ac;box-shadow:0 10px 24px rgba(76,45,127,.05)}
-.calendar-toolbar-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-left:auto}
-.calendar-toolbar-tools .seg{display:flex;align-items:center;gap:6px;padding:6px;border-radius:17px;background:#f3effa;border:1px solid #ece6f6;box-shadow:inset 0 1px 0 rgba(255,255,255,.9)}
-.calendar-toolbar-tools .seg button{border:0;background:transparent;color:#8c82a1;padding:10px 14px;border-radius:13px;font-size:11px;font-weight:800;transition:all .16s ease;min-width:72px}
-.calendar-toolbar-tools .seg button:hover{color:#6341c8;background:rgba(255,255,255,.6)}
-.calendar-toolbar-tools .seg button.active{background:#fff;color:#6738d9;box-shadow:0 10px 22px rgba(86,54,150,.16)}
-.calendar-stats-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.calendar-stat-card{border:1px solid #ece6f6;border-radius:20px;background:linear-gradient(180deg,#fff,#fcfbff);padding:15px 16px;box-shadow:0 12px 26px rgba(71,42,117,.05)}
-.calendar-stat-cap{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:10px;font-weight:900;letter-spacing:1.3px;color:#9c8fb3;text-transform:uppercase}
-.calendar-stat-cap i{height:34px;width:34px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#f2ebff,#ebe6ff);color:#7043dd;box-shadow:inset 0 1px 0 rgba(255,255,255,.9)}
-.calendar-stat-card strong{display:block;margin-top:13px;font:850 26px/1 'Plus Jakarta Sans';letter-spacing:-1px;color:#261f45}
-.calendar-stat-card small{display:block;margin-top:8px;font-size:11px;line-height:1.6;color:#9489a6}
-.cal-surface{padding:18px;border-radius:28px;border:1px solid #ece7f5;background:linear-gradient(180deg,#fff,#fcfbfe 100%);box-shadow:0 16px 34px rgba(72,43,123,.06)}
-.month-grid.month-grid-luxe{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border:1px solid #ebe6f4;border-radius:22px;overflow:hidden;background:#f7f4fb}
-.cal-month-head{min-height:54px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#fcfbff,#f5f0fb);border-right:1px solid #ebe6f4;font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:#8e82a7}
-.cal-month-head:last-child{border-right:0}
-.month-day{height:170px;min-width:0;background:linear-gradient(180deg,#fff,#fcfbfe);border-right:1px solid #ebe6f4;border-bottom:1px solid #ebe6f4;padding:12px 11px 10px;cursor:pointer;overflow:hidden;display:flex;flex-direction:column;gap:9px;transition:background .18s ease,transform .18s ease,box-shadow .18s ease;position:relative}
-.month-day:hover{background:linear-gradient(180deg,#fff,#faf7ff);transform:translateY(-1px);box-shadow:inset 0 0 0 1px rgba(121,74,221,.10)}
-.month-day.out{background:linear-gradient(180deg,#fcfbfe,#f8f5fb);color:#b8aec8}
-.month-day.out .month-day-date strong{opacity:.72}
-.month-day.today-cell{background:linear-gradient(180deg,#fff,#f8f4ff)}
-.month-day::after{content:'';position:absolute;inset:auto 0 0 0;height:3px;background:linear-gradient(90deg,transparent,rgba(123,90,240,.45),transparent);opacity:0;transition:opacity .18s ease}
-.month-day:hover::after,.month-day.today-cell::after{opacity:1}
-.month-day-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
-.month-day-date{display:flex;align-items:center;gap:8px;min-width:0}
-.month-day .daynumber{display:grid;place-items:center;min-width:30px;height:30px;padding:0 8px;border-radius:11px;background:#f5f0ff;color:#6d47d9;font-size:12px;font-weight:900;letter-spacing:-.2px}
-.month-day .daynumber.now{background:linear-gradient(135deg,#8d63f8,#6238d6);color:#fff;box-shadow:0 12px 24px rgba(98,56,214,.28)}
-.month-day-date strong{font-size:12px;font-weight:900;color:#2a214a}
-.month-day-date span{display:block;font-size:10px;color:#a79db8;margin-top:2px}
-.month-day-count{padding:6px 9px;border-radius:999px;background:#fff;border:1px solid #ece5f6;font-size:10px;font-weight:800;color:#8d7da8;white-space:nowrap}
-.month-events{display:flex;flex-direction:column;gap:7px;min-height:0;overflow:hidden}
-.m-event.cal-month-event{border:1px solid rgba(126,98,203,.10);display:flex;flex-direction:column;align-items:flex-start;gap:4px;width:100%;text-align:left;color:#433165;border-radius:14px;font-size:10px;font-weight:800;margin:0;padding:8px 9px;background:linear-gradient(180deg,#fbf9ff,#f3edff);box-shadow:0 8px 18px rgba(71,42,117,.06);position:relative;overflow:hidden}
-.m-event.cal-month-event::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--evt,#865de1)}
-.m-event.cal-month-event:hover{filter:none;transform:translateY(-1px);box-shadow:0 12px 22px rgba(89,60,150,.10)}
-.cal-month-event-time{font-size:9px;font-weight:900;letter-spacing:.8px;text-transform:uppercase;color:#8b7ea7;padding-left:7px}
-.cal-month-event-title{display:block;padding-left:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
-.month-more{margin-top:auto;font-size:10px;font-weight:800;color:#7c59d6;padding-left:2px}
-.cal-timeline-wrap{display:flex;flex-direction:column;gap:16px}
-.cal-all-day-shell{border:1px solid #ebe5f5;border-radius:22px;background:linear-gradient(180deg,#fff,#fcfbff);padding:16px 17px;box-shadow:0 12px 28px rgba(74,44,127,.05)}
-.cal-all-day-list{display:flex;flex-direction:column;gap:12px;margin-top:12px}
-.cal-all-day-event{display:flex;align-items:center;gap:16px;width:100%;text-align:left;border:1px solid #ebdefb;background:linear-gradient(180deg,#fff,#fbf8ff);border-radius:20px;padding:16px 18px;box-shadow:0 12px 24px rgba(71,42,117,.05)}
-.cal-all-day-accent{width:6px;align-self:stretch;border-radius:999px;background:var(--evt,#82d4e3)}
-.cal-all-day-date{flex:0 0 84px;border-radius:15px;background:#f6f1ff;padding:10px 8px;text-align:center}
-.cal-all-day-date strong{display:block;font-size:11px;font-weight:900;color:#6d47d9;text-transform:uppercase}
-.cal-all-day-date span{display:block;margin-top:4px;font:850 22px/1 'Plus Jakarta Sans';color:#2a214a}
-.cal-all-day-copy{min-width:0;flex:1}
-.cal-all-day-copy b{display:block;font:850 15px/1.25 'Plus Jakarta Sans';letter-spacing:-.4px;color:#261f45;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cal-all-day-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px}
-.cal-all-day-meta span{display:inline-flex;align-items:center;gap:6px;padding:7px 9px;border-radius:11px;background:#f6f2ff;font-size:10px;font-weight:800;color:#7856c9}
-.cal-all-day-tail{margin-left:auto;display:inline-flex;align-items:center;gap:8px;padding:11px 13px;border-radius:14px;background:#fff;border:1px solid #ece6f6;color:#6d47d9;font-size:11px;font-weight:800;white-space:nowrap}
-.cal-all-day-tail svg{width:16px;height:16px}
-.cal-timeline-note{font-size:11px;color:#aa9cb9;padding:0 2px}
-.timeline-scroll.cal-timeline-scroll{overflow-x:auto;border:0;background:transparent}
-.timeboard.cal-timeboard{display:grid;align-items:stretch;background:#fff;border:1px solid #ebe5f5;border-radius:22px;overflow:hidden;box-shadow:0 16px 34px rgba(72,43,123,.06)}
-.timeboard.cal-timeboard .timehead{position:sticky;top:0;z-index:4;min-height:62px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:linear-gradient(180deg,#fcfbff,#f6f1fb);border-bottom:1px solid #ebe5f5;border-right:1px solid #ebe5f5;color:#82759a;font-size:11px;font-weight:900;letter-spacing:.7px;text-transform:uppercase}
-.timeboard.cal-timeboard .timehead span{font-size:10px;color:#a194b5}
-.timeboard.cal-timeboard .timehead strong{font-size:13px;letter-spacing:-.3px;color:#312651;text-transform:none}
-.timeboard.cal-timeboard .timehead.today{background:linear-gradient(180deg,#f5efff,#ede5ff)}
-.timeboard.cal-timeboard .timehead.today strong{color:#6a3fe0}
-.timeboard.cal-timeboard .timehead em{font-style:normal;font-size:9px;font-weight:900;color:#fff;background:linear-gradient(135deg,#8d63f8,#6238d6);padding:4px 8px;border-radius:999px;letter-spacing:.7px;text-transform:uppercase;box-shadow:0 10px 20px rgba(98,56,214,.22)}
-.timeboard.cal-timeboard .timehead.cal-corner{justify-content:center;align-items:flex-start;padding-left:14px}
-.timeaxis{position:relative;background:linear-gradient(180deg,#fbf9fe,#f6f1fb);border-right:1px solid #ebe5f5}
-.timelabel{position:absolute;left:12px;transform:translateY(-50%);color:#a89db8;font-size:10px;font-weight:700}
-.timeday{position:relative;height:1392px;border-right:1px solid #ebe5f5;background:linear-gradient(180deg,rgba(124,90,214,.02),rgba(124,90,214,0) 18%),repeating-linear-gradient(to bottom,#fff 0,#fff 57px,#f1ebf9 57px,#f1ebf9 58px);cursor:crosshair}
-.timeday.today-col{background:linear-gradient(180deg,rgba(124,90,214,.06),rgba(124,90,214,0) 22%),repeating-linear-gradient(to bottom,#fff 0,#fff 57px,#f1ebf9 57px,#f1ebf9 58px)}
-.timeday::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,rgba(120,89,205,.18),rgba(120,89,205,0));opacity:0;transition:opacity .18s ease}
-.timeday.today-col::before{opacity:1}
-.timeevent.cal-time-event{position:absolute;z-index:2;text-align:left;min-height:28px;padding:10px 11px 9px;overflow:hidden;border:1px solid rgba(120,92,196,.10);border-left:4px solid var(--evt,#8052e9);border-radius:16px;background:linear-gradient(180deg,#faf7ff,#f2ebff);color:#483267;font-size:11px;line-height:1.35;box-shadow:0 14px 24px rgba(69,42,117,.10);cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,filter .15s ease}
-.timeevent.cal-time-event:hover{filter:none;transform:translateY(-1px);z-index:3;box-shadow:0 16px 28px rgba(69,42,117,.16)}
-.cal-time-kicker{display:block;font-size:9px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:#8d7ea8;margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cal-time-title{display:block;font-size:12px;font-weight:900;color:#2d224d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cal-time-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:5px;font-size:9px;color:#7f71a0}
-.cal-time-pill{display:inline-flex;align-items:center;gap:4px;padding:4px 7px;border-radius:999px;background:rgba(255,255,255,.75);font-weight:800}
-.nowline{position:absolute;height:3px;background:linear-gradient(90deg,#ff5a8f,#ff8d8d);left:0;right:0;z-index:3;pointer-events:none;box-shadow:0 0 0 1px rgba(255,255,255,.8)}
-.nowline:before{content:'';position:absolute;height:11px;width:11px;left:-5px;top:-4px;border-radius:50%;background:#ff5a8f;box-shadow:0 0 0 3px rgba(255,90,143,.16)}
-.nowline:after{content:'Now';position:absolute;right:10px;top:-12px;padding:2px 8px;border-radius:999px;background:#ff5a8f;color:#fff;font-size:9px;font-weight:900;letter-spacing:.8px;text-transform:uppercase;box-shadow:0 8px 18px rgba(255,90,143,.18)}
-@media(max-width:1050px){.calendar-stats-strip{grid-template-columns:repeat(3,minmax(0,1fr))}.month-day{height:156px}.cal-all-day-event{padding:14px}.calendar-toolbar-tools{width:100%;justify-content:space-between}.calendar-toolbar-tools .seg{margin-left:auto}}
-@media(max-width:760px){.calendar-toolbar-luxe{padding:15px;border-radius:20px}.calendar-toolbar-main,.calendar-toolbar-tools{width:100%}.calendar-range-title{font-size:19px}.calendar-stats-strip{grid-template-columns:1fr}.calendar-stat-card strong{font-size:24px}.cal-surface{padding:13px;border-radius:22px}.month-grid.month-grid-luxe{border-radius:18px}.cal-month-head{min-height:42px;font-size:10px}.month-day{height:118px;padding:8px 7px 7px;gap:6px}.month-day .daynumber{min-width:26px;height:26px;border-radius:9px;font-size:11px}.month-day-date strong{font-size:11px}.month-day-date span,.month-day-count,.cal-month-event-time{display:none}.m-event.cal-month-event{padding:6px 7px;border-radius:10px;font-size:9px}.cal-month-event-title{padding-left:5px}.month-more{font-size:9px}.cal-all-day-shell{padding:13px}.cal-all-day-event{gap:10px;padding:12px 12px 12px 10px;border-radius:16px}.cal-all-day-date{flex-basis:62px;border-radius:12px;padding:8px 6px}.cal-all-day-date span{font-size:18px}.cal-all-day-copy b{font-size:13px;white-space:normal}.cal-all-day-meta span{padding:6px 7px;font-size:9px}.cal-all-day-tail{display:none}.timeboard.cal-timeboard{border-radius:18px}.timeboard.cal-timeboard .timehead{min-height:54px;font-size:10px}.timeboard.cal-timeboard .timehead strong{font-size:11px}.timelabel{left:8px;font-size:9px}.timeday{height:1392px}.timeevent.cal-time-event{padding:7px 7px 6px;border-radius:12px}.cal-time-title{font-size:10px}.cal-time-meta{display:none}}
+/* CALENDRA 2.9 — MY CALENDAR REBUILD: isolated selectors to avoid legacy cascade collisions */
+.calz-calendar{--calz-ink:#282044;--calz-muted:#9386ae;--calz-border:#eae4f3;--calz-violet:#7546e6;min-width:0;display:flex;flex-direction:column;gap:19px;font-family:'DM Sans',sans-serif}
+.calz-calendar *{box-sizing:border-box}
+.calz-calendar button{font:inherit;cursor:pointer}
+.calz-toolbar{min-width:0;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:19px 23px;border:1px solid var(--calz-border);background:linear-gradient(118deg,#fff 0%,#faf8ff 57%,#f3edff 100%);border-radius:24px;box-shadow:0 17px 40px rgba(82,48,142,.07)}
+.calz-toolbar-left,.calz-toolbar-right{display:flex;align-items:center;gap:12px;min-width:0}
+.calz-toolbar-left{flex-wrap:wrap}.calz-toolbar-copy{min-width:0}.calz-toolbar-copy>span{display:block;margin-bottom:7px;font-size:9px;letter-spacing:1.8px;color:#967db6;font-weight:900}.calz-toolbar-copy h2{margin:0;color:var(--calz-ink);font:850 clamp(16px,1.75vw,22px)/1.25 'Plus Jakarta Sans',sans-serif;letter-spacing:-.8px}
+.calz-toolbar-icon{display:grid;place-items:center;flex:none;width:47px;height:47px;border-radius:15px;background:linear-gradient(140deg,#9c76fc,#6535d5);color:#fff;box-shadow:0 12px 20px rgba(102,53,211,.20)}.calz-toolbar-icon svg{width:20px;height:20px}
+.calz-toolbar-count{border:1px solid #e9e0fa;border-radius:999px;padding:7px 11px;background:#fff;color:#805ec7;font-size:10px;font-weight:900;white-space:nowrap}
+.calz-toolbar-right{flex-wrap:wrap;justify-content:flex-end;margin-left:auto}.calz-nav{display:flex;align-items:center;gap:6px}.calz-nav-arrow,.calz-today-btn{height:36px;border:1px solid #e9e2f4;background:#fff;color:#6d50b6;border-radius:11px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(63,34,109,.04);transition:background .16s ease,transform .16s ease}
+.calz-nav-arrow{width:36px}.calz-nav-arrow svg{width:15px;height:15px}.calz-today-btn{padding:0 14px;font-size:11px!important;font-weight:800!important}.calz-nav-arrow:hover,.calz-today-btn:hover{background:#f3ecff;transform:translateY(-1px)}
+.calz-tabs{display:flex;gap:4px;border-radius:14px;padding:5px;background:#f0ebf8;border:1px solid #e9e2f4}.calz-tabs button{min-height:34px;border:0;background:transparent;color:#8f82a2;border-radius:10px;font-size:11px!important;font-weight:850!important;padding:9px 13px;transition:background .15s,color .15s,box-shadow .15s;white-space:nowrap}.calz-tabs button.active{color:#6338d8;background:#fff;box-shadow:0 5px 12px rgba(79,44,140,.11)}.calz-tabs button:hover:not(.active){color:#5d35b9;background:#ffffff91}
+.calz-month-top,.calz-timeline-caption{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap;padding:3px 2px}.calz-section-label{font-size:9px;letter-spacing:1.9px;color:#9f88c8;font-weight:900}.calz-month-top h3,.calz-timeline-caption h3{margin:7px 0 0;color:#302650;font:850 18px/1.25 'Plus Jakarta Sans',sans-serif;letter-spacing:-.5px}.calz-month-top h3 span,.calz-timeline-caption h3 span{font-size:11px;color:#9c90ad;font-family:'DM Sans',sans-serif;letter-spacing:0;font-weight:700}
+.calz-inline-legend{display:flex;align-items:center;gap:7px;font-size:11px;color:#9a8aaa}.calz-inline-legend i{height:7px;width:7px;background:#9871ef;border-radius:50%}
+.calz-month-scroll{min-width:0;width:100%;overflow-x:auto;border-radius:22px;border:1px solid #eae5f4;box-shadow:0 18px 42px rgba(70,43,112,.07);scrollbar-color:#c8b9e7 transparent;scrollbar-width:thin;background:#fff}
+.calz-month{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));min-width:840px;width:100%;background:#fff}
+.calz-weekday{display:flex;align-items:center;justify-content:center;min-height:47px;background:#f7f4fc;border-right:1px solid #eee9f5;border-bottom:1px solid #e9e3f2;color:#8d7ea4;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:1.35px}.calz-weekday:nth-child(7){border-right:0}
+.calz-month .calz-day.month-day{position:relative;min-width:0;height:148px;padding:11px 10px 9px;border-bottom:1px solid #eee9f5;border-right:1px solid #eee9f5;border-radius:0;background:#fff;display:flex;flex-direction:column;gap:9px;overflow:hidden;box-shadow:none;transform:none;cursor:pointer;transition:background .14s ease}.calz-month .calz-day:hover{background:#faf8ff}.calz-month .calz-day:nth-child(7n){border-right:0}.calz-month .calz-day.calz-adjacent{background:#faf9fd}.calz-month .calz-day.calz-today{background:linear-gradient(180deg,#f7f1ff,#fff 56%)}
+.calz-day-head{height:28px;display:flex;align-items:center;justify-content:space-between;gap:5px;flex:none;min-width:0}
+.calz-date{flex:none;display:grid;place-items:center;width:27px;height:27px;border-radius:9px;color:#62518a;font-size:11px;font-weight:900;background:#f5f2fa}.calz-adjacent .calz-date{color:#b3a7c4;background:#f2eff7}.calz-date.calz-date-today{color:#fff;background:linear-gradient(125deg,#9c6fff,#683cdc);box-shadow:0 5px 12px rgba(97,51,203,.25)}
+.calz-day-total{font-size:9px;font-weight:800;color:#9f91b2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.calz-month-events{min-height:0;display:flex;flex-direction:column;gap:5px;flex:1;overflow:hidden}
+.calz-month .calz-event-chip{display:flex;align-items:center;gap:6px;flex:none;min-height:24px;width:100%;min-width:0;max-width:100%;padding:4px 7px;white-space:nowrap;overflow:hidden;border:1px solid #ece3fb;border-radius:7px;background:#f4effd;color:#584288;text-align:left;box-shadow:none;transform:none;transition:background .14s ease,border-color .14s ease}
+.calz-month .calz-event-chip:hover{background:#e9dfff;border-color:#d4bff9}
+.calz-event-chip-dot{flex:none;width:5px;height:14px;border-radius:4px;background:var(--calz-accent,#8b63e8)}
+.calz-event-chip-title{min-width:0;max-width:100%;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px;line-height:1.25;font-weight:800;color:#5a4089}
+.calz-overflow-count{font-size:10px;color:#7e5ac6;font-weight:850;white-space:nowrap;line-height:1.3;flex:none}
+.calz-mobile-hint{display:none;margin:-6px 0 0;color:#a092b2;font-size:10px}
+.calz-timeline-section{display:flex;flex-direction:column;gap:17px;min-width:0}
+.calz-all-day{padding:16px 18px;border-radius:21px;border:1px solid #eae4f4;background:#fff;box-shadow:0 12px 24px rgba(69,45,109,.04)}
+.calz-all-day-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}.calz-all-day-heading strong{font-size:10px;font-weight:850;color:#9b8aaf}
+.calz-all-day-items{margin-top:12px;display:flex;flex-direction:column;gap:7px}
+.calz-all-day-item{display:flex;align-items:center;gap:11px;min-width:0;width:100%;padding:11px 14px;border:1px solid #e9e1f7;border-radius:12px;background:linear-gradient(100deg,#f8f4ff,#fff);text-align:left;transition:background .16s ease,transform .16s ease}
+.calz-all-day-item:hover{transform:translateY(-1px);background:#f1eaff}
+.calz-all-day-dot{width:5px;height:27px;border-radius:7px;background:var(--calz-accent,#8655e3);flex:none}
+.calz-all-day-name{flex:1;min-width:0;font-size:12px;font-weight:850;color:#302447;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.calz-all-day-item small{font-size:10px;color:#9b88b3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:200px}
+.calz-all-day-arrow{color:#936dc9}.calz-all-day-arrow svg{width:15px;height:15px}
+.calz-caption-side{display:inline-flex;align-items:center;gap:7px;font-size:10px;color:#9585ac;font-weight:750}.calz-caption-side svg{width:14px;height:14px}
+.calz-timeline-scroll{max-width:100%;overflow:auto;border:1px solid #e9e4f4;border-radius:20px;background:#fff;box-shadow:0 15px 30px rgba(63,37,109,.07);scrollbar-color:#cbb9e7 transparent;scrollbar-width:thin}
+.calz-timeline-board{display:grid;align-items:stretch;min-width:0;width:100%}.calz-week-board{min-width:1100px}
+.calz-timeline-head{min-height:67px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:3px;border-right:1px solid #eae4f2;border-bottom:1px solid #e8e3f0;background:#f9f6fd;color:#9585ab}
+.calz-timeline-head span{font-size:10px;font-weight:850;text-transform:uppercase;letter-spacing:1px}.calz-timeline-head strong{font:850 19px/1 'Plus Jakarta Sans';color:#3b2e59}.calz-timeline-head em{font-size:8px;font-style:normal;font-weight:900;color:#7545df;letter-spacing:1.1px}
+.calz-timeline-head.calz-timeline-head-today{background:linear-gradient(180deg,#f1eaff,#f8f4ff)}.calz-timeline-head-today strong{color:#7140dc}.calz-timeline-head.calz-axis-title strong{font-size:11px}.calz-timeline-head.calz-axis-title span{font-size:9px}
+.calz-timeaxis{height:1536px;position:relative;background:#faf8fe;border-right:1px solid #e9e4f2}
+.calz-hour-mark{position:absolute;left:8px;transform:translateY(-50%);font-size:9px;font-weight:800;color:#9687ae;white-space:nowrap;pointer-events:none}
+.calz-hour-mark:first-child{transform:translateY(3px)}
+.calz-timeline-day{height:1536px;position:relative;min-width:0;border-right:1px solid #eae4f2;background:repeating-linear-gradient(to bottom,#fff 0,#fff 63px,#eee8f5 63px,#eee8f5 64px);cursor:crosshair;isolation:isolate}
+.calz-timeline-day.calz-timeline-today{background:repeating-linear-gradient(to bottom,#fbf9ff 0,#fbf9ff 63px,#eee8f5 63px,#eee8f5 64px)}
+.calz-timed-event{position:absolute;z-index:2;display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;border:1px solid #e8def7;border-left:3px solid var(--calz-accent,#8964d9);background:linear-gradient(110deg,#f5f0ff,#eee8ff);border-radius:8px;min-width:0;max-width:100%;margin:0;padding:6px 7px;overflow:hidden;box-shadow:0 4px 9px rgba(93,59,144,.06);color:#41305f;cursor:pointer;transition:background .13s ease,filter .13s ease;contain:layout paint}
+.calz-timed-event:hover{filter:saturate(1.10) brightness(.98);z-index:4}
+.calz-timed-event .calz-event-time{font-size:9px;color:#8a73ae;font-weight:850;white-space:nowrap;max-width:100%;text-overflow:ellipsis;overflow:hidden}
+.calz-timed-event strong{font-size:11px;font-weight:900;color:#372854;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis;line-height:1.3}
+.calz-event-calendar{font-size:9px;color:#9a89af;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;max-width:100%;margin-top:4px}
+.calz-timed-event.calz-compact{padding:2px 5px;flex-direction:row;align-items:center;gap:4px;border-radius:6px}
+.calz-compact .calz-event-time{display:none}.calz-compact strong{font-size:10px}.calz-micro{padding:0 4px!important}.calz-micro strong{font-size:8px;line-height:1.0}
+.calz-now-rule{position:absolute;left:0;right:0;z-index:5;height:2px;background:#ed5f94;box-shadow:0 0 0 1px #ffffff98;pointer-events:none}
+.calz-now-rule:before{content:'';position:absolute;left:-5px;top:-4px;background:#ed5f94;width:10px;height:10px;border-radius:50%;box-shadow:0 0 0 3px #ff78a435}
+.calz-timeline-hint{margin:0;color:#a094b2;font-size:10px;line-height:1.6}
+.calz-agenda-view{margin:0;min-width:0}
+@media(min-width:850px){.calz-month .calz-day.month-day{height:154px}}
+@media(max-width:1050px){.calz-toolbar-right{width:100%;justify-content:space-between}.calz-toolbar-right .calz-tabs{margin-left:auto}}
+@media(max-width:760px){.calz-calendar{gap:14px}.calz-toolbar{padding:15px;border-radius:19px;gap:13px}.calz-toolbar-icon{height:38px;width:38px;border-radius:13px}.calz-toolbar-icon svg{width:17px;height:17px}.calz-toolbar-copy h2{font-size:16px}.calz-toolbar-copy>span{font-size:8px}.calz-toolbar-count{font-size:9px;padding:6px 8px}.calz-toolbar-right{gap:8px;justify-content:flex-start}.calz-tabs{max-width:100%;overflow-x:auto;scrollbar-width:none}.calz-tabs::-webkit-scrollbar{display:none}.calz-tabs button{padding:8px 11px;font-size:10px!important}.calz-nav-arrow{width:35px;height:35px}.calz-today-btn{height:35px}.calz-mobile-hint{display:block}.calz-month-top h3,.calz-timeline-caption h3{font-size:16px}.calz-month .calz-day.month-day{height:142px}.calz-all-day{padding:12px}.calz-all-day-name{font-size:11px}.calz-all-day-item small{display:none}.calz-timeline-scroll{border-radius:15px}.calz-timeline-head{min-height:60px}.calz-day-board{min-width:0}.calz-week-board{min-width:1100px}.calz-caption-side{display:none}}
+@media(max-width:370px){.calz-toolbar-count{display:none}.calz-toolbar-copy>span{letter-spacing:1px}.calz-toolbar{padding:12px}.calz-month .calz-day.month-day{height:138px}}
+@media(prefers-reduced-motion:reduce){.calz-calendar *{transition:none!important}}
 
 </style></head><body>
 <div id="authGate" class="loading-gate"><div class="symbol">✦</div><b style="font:800 25px 'Plus Jakarta Sans'">calendra.</b><p>Protecting your personal space…</p></div>
@@ -1958,99 +1937,116 @@ function overview() {
   `;
 }
 function monthView(){
- const d=state.selected,first=firstMonth(d),offset=(first.getDay()+6)%7,start=addDays(first,-offset),todayKey=isoDay(TODAY());
- const dayNames=['Sen','Sel','Rab','Kam','Jum','Sab','Min'];
- const gridDays=Array.from({length:42},(_,i)=>addDays(start,i));
- const dayMap=new Map(gridDays.map(day=>[isoDay(day),[]]));
- const gridEnd=addDays(start,42);
- visibleEvents().forEach(e=>{
-   const a=dateStart(e), b=dateEnd(e);
-   let cursor=new Date(Math.max(new Date(a.getFullYear(),a.getMonth(),a.getDate()).getTime(), start.getTime()));
-   const stop=new Date(Math.min(gridEnd.getTime(), b.getTime()));
-   while(cursor<stop){
-     const key=isoDay(cursor);
-     if(dayMap.has(key)) dayMap.get(key).push(e);
-     cursor=addDays(cursor,1);
-   }
- });
- return `
- <div class="calendar-stats-strip">
-   <div class="calendar-stat-card">
-     <div class="calendar-stat-cap"><span>This month</span><i>${icon('calendar-days')}</i></div>
-     <strong>${visibleEvents().filter(e=>dateStart(e)<new Date(d.getFullYear(),d.getMonth()+1,1)&&dateEnd(e)>new Date(d.getFullYear(),d.getMonth(),1)).length}</strong>
-     <small>Agenda yang tampil pada bulan ${dateLabel(d,{month:'long',year:'numeric'})}.</small>
-   </div>
-   <div class="calendar-stat-card">
-     <div class="calendar-stat-cap"><span>Today spotlight</span><i>${icon('sparkles')}</i></div>
-     <strong>${(dayMap.get(todayKey)||[]).length}</strong>
-     <small>Momen yang jatuh di hari ini untuk memudahkan fokus Anda.</small>
-   </div>
-   <div class="calendar-stat-card">
-     <div class="calendar-stat-cap"><span>Connected calendars</span><i>${icon('layers-3')}</i></div>
-     <strong>${state.calendars.length}</strong>
-     <small>Semua kalender aktif tersaji dalam tampilan bulanan yang lebih rapi.</small>
-   </div>
- </div>
- <div class="cal-surface">
-   <div class="month-grid month-grid-luxe">
-     ${dayNames.map(x=>`<div class="cal-month-head">${x}</div>`).join('')}
-     ${gridDays.map(day=>{
-       const key=isoDay(day);
-       const items=(dayMap.get(key)||[]).slice().sort((a,b)=>{
-         const aa=a.start?.date?0:1, bb=b.start?.date?0:1;
-         return aa-bb || dateStart(a)-dateStart(b);
-       });
-       const shown=items.slice(0,4);
-       return `<div class="month-day ${day.getMonth()!==d.getMonth()?'out':''} ${key===todayKey?'today-cell':''}" data-day="${key}">
-         <div class="month-day-top">
-           <div class="month-day-date">
-             <span class="daynumber ${key===todayKey?'now':''}">${day.getDate()}</span>
-             <div>
-               <strong>${dateLabel(day,{weekday:'short'})}</strong>
-               <span>${day.getMonth()===d.getMonth()?'In view':'Adjacent'}</span>
-             </div>
-           </div>
-           <span class="month-day-count">${items.length||'0'} agenda</span>
-         </div>
-         <div class="month-events">
-           ${shown.map(e=>`<button class="m-event cal-month-event" style="--evt:${eventColor(e)}" data-open="${esc(e.id)}" data-calid="${esc(e._calendarId)}" title="${esc(e.summary||'Event')}"><span class="cal-month-event-time">${esc(e.start?.date?'All day':C.fmtTime(dateStart(e)))}</span><span class="cal-month-event-title">${esc(e.summary||'Event')}</span></button>`).join('')}
-           ${items.length>4?`<div class="month-more">+${items.length-4} momen lainnya</div>`:''}
-         </div>
-       </div>`;
-     }).join('')}
-   </div>
- </div>`;
+  const month=state.selected;
+  const first=firstMonth(month);
+  const firstGridDay=addDays(first,-((first.getDay()+6)%7));
+  const days=Array.from({length:42},(_,i)=>addDays(firstGridDay,i));
+  const today=isoDay(TODAY());
+  const events=visibleEvents();
+  const buckets=new Map(days.map(d=>[isoDay(d),[]]));
+  const gridEnd=addDays(firstGridDay,42);
+  const currentMonthBegin=new Date(month.getFullYear(),month.getMonth(),1);
+  const currentMonthEnd=new Date(month.getFullYear(),month.getMonth()+1,1);
+  let monthCount=0;
+  for(const e of events){
+    const a=dateStart(e),b=dateEnd(e);
+    if(a<currentMonthEnd&&b>currentMonthBegin) monthCount++;
+    if(!(a<gridEnd&&b>firstGridDay))continue;
+    let date=new Date(Math.max(firstGridDay.getTime(),new Date(a.getFullYear(),a.getMonth(),a.getDate()).getTime()));
+    for(let j=0;j<42&&date<gridEnd&&date<b;j++,date=addDays(date,1)){
+      const group=buckets.get(isoDay(date));
+      if(group)group.push(e);
+    }
+  }
+  for(const list of buckets.values())list.sort((a,b)=>Number(!!a.start?.dateTime)-Number(!!b.start?.dateTime)||dateStart(a)-dateStart(b));
+  const cells=days.map(d=>{
+    const key=isoDay(d),todayDay=key===today,adjacent=d.getMonth()!==month.getMonth();
+    const items=buckets.get(key)||[],displayed=items.slice(0,3);
+    return `<div class="calz-day month-day ${adjacent?'calz-adjacent':''} ${todayDay?'calz-today':''}" data-day="${key}">
+      <div class="calz-day-head">
+        <span class="calz-date ${todayDay?'calz-date-today':''}">${d.getDate()}</span>
+        ${items.length?`<span class="calz-day-total">${items.length} agenda</span>`:''}
+      </div>
+      <div class="calz-month-events">
+        ${displayed.map(e=>`<button type="button" class="calz-event-chip" style="--calz-accent:${eventColor(e)}" data-open="${esc(e.id)}" data-calid="${esc(e._calendarId)}" title="${esc(e.summary||'Untitled')} · ${esc(eventTime(e))}"><span class="calz-event-chip-dot"></span><span class="calz-event-chip-title">${esc(e.summary||'Untitled')}</span></button>`).join('')}
+      </div>
+      ${items.length>3?`<div class="calz-overflow-count">+${items.length-3} agenda lainnya</div>`:''}
+    </div>`;
+  });
+  return `<div class="calz-month-top"><div><span class="calz-section-label">MONTHLY PERSPECTIVE</span><h3>${esc(dateLabel(month,{month:'long',year:'numeric'}))} <span>· ${monthCount} agenda</span></h3></div><div class="calz-inline-legend"><i></i> Klik tanggal untuk melihat detail harian</div></div>
+    <div class="calz-month-scroll" aria-label="Kalender bulanan, geser secara horizontal pada layar kecil">
+      <div class="calz-month">
+        ${['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu'].map(n=>`<div class="calz-weekday">${n}</div>`).join('')}
+        ${cells.join('')}
+      </div>
+    </div><p class="calz-mobile-hint">Geser kalender ke samping untuk melihat seluruh hari.</p>`;
 }
+
 function timelineView(days){
- const start=days===7?startWeek(state.selected):new Date(state.selected.getFullYear(),state.selected.getMonth(),state.selected.getDate());
- const rowH=58, now=TODAY(), endRange=addDays(start,days);
- const labels=Array.from({length:24},(_,i)=>`<span class="timelabel" style="top:${i*rowH+4}px">${String(i).padStart(2,'0')}:00</span>`).join('');
- const headings=Array.from({length:days},(_,i)=>{const d=addDays(start,i),isToday=isoDay(d)===isoDay(now);return `<div class="timehead ${isToday?'today':''}"><span>${dateLabel(d,{weekday:'short'})}</span><strong>${dateLabel(d,{day:'numeric',month:'short'})}</strong>${isToday?'<em>Hari ini</em>':''}</div>`;}).join('');
- const allDay=visibleEvents().filter(e=>e.start?.date&&dateStart(e)<endRange&&dateEnd(e)>start);
- const allDayCards=allDay.length?`<div class="cal-all-day-shell"><div class="eyecap">ALL-DAY MOMENTS</div><div class="cal-all-day-list">${allDay.map(e=>{const st=dateStart(e),day=dateLabel(st,{weekday:'short'}).toUpperCase();return `<button class="cal-all-day-event" data-open="${esc(e.id)}" data-calid="${esc(e._calendarId)}" style="--evt:${eventColor(e)}"><span class="cal-all-day-accent"></span><div class="cal-all-day-date"><strong>${esc(day)}</strong><span>${st.getDate()}</span></div><div class="cal-all-day-copy"><b>${esc(e.summary||'Untitled event')}</b><div class="cal-all-day-meta"><span><i style="display:inline-block;width:7px;height:7px;border-radius:999px;background:${eventColor(e)}"></i>${esc(e._calendarName||'Calendar')}</span>${e.hangoutLink?`<span>${icon('video')} Meet</span>`:''}${e.attendees?.length?`<span>${icon('users')} ${e.attendees.length}</span>`:''}</div></div><span class="cal-all-day-tail">All day ${icon('chevron-right')}</span></button>`;}).join('')}</div></div>`:'';
- const columns=Array.from({length:days},(_,i)=>{
-   const d=addDays(start,i), dayStart=d.getTime(), dayEnd=addDays(d,1).getTime(), isToday=isoDay(d)===isoDay(now);
-   const segments=visibleEvents().filter(e=>!e.start?.date&&dateStart(e).getTime()<dayEnd&&dateEnd(e).getTime()>dayStart).map(e=>({e,start:Math.max(0,(dateStart(e).getTime()-dayStart)/60000),end:Math.min(1440,(dateEnd(e).getTime()-dayStart)/60000)})).sort((a,b)=>a.start-b.start||b.end-a.end);
-   const laneEnds=[];for(const seg of segments){let lane=laneEnds.findIndex(end=>end<=seg.start);if(lane<0){lane=laneEnds.length;laneEnds.push(0);}laneEnds[lane]=seg.end;seg.lane=lane;}
-   const lanes=Math.max(1,laneEnds.length);
-   const blocks=segments.map(({e,start:st,end,lane})=>`<button class="timeevent cal-time-event" data-open="${esc(e.id)}" data-calid="${esc(e._calendarId)}" style="--evt:${eventColor(e)};top:${(st/60*rowH+4).toFixed(1)}px;height:${Math.max(28,(end-st)/60*rowH-6).toFixed(1)}px;left:calc(${(lane/lanes*100).toFixed(4)}% + 4px);width:calc(${(100/lanes).toFixed(4)}% - 8px)" title="${esc(e.summary||'Event')}"><span class="cal-time-kicker">${esc(C.fmtTime(dateStart(e)))} → ${esc(C.fmtTime(dateEnd(e)))}</span><strong class="cal-time-title">${esc(e.summary||'Event')}</strong><span class="cal-time-meta"><span class="cal-time-pill">${esc(e._calendarName||'Calendar')}</span>${e.location?`<span class="cal-time-pill">${esc(e.location)}</span>`:''}</span></button>`).join('');
-   const current=isToday?`<div class="nowline" style="top:${minutes(now)/60*rowH}px"></div>`:'';
-   return `<div class="timeday ${isToday?'today-col':''}" data-day="${isoDay(d)}" aria-label="${dateLabel(d)}">${blocks}${current}</div>`;
- }).join('');
- const width=days===7?'980':'620';
- return `<div class="calendar-stats-strip"><div class="calendar-stat-card"><div class="calendar-stat-cap"><span>${days===7?'This week':'This day'}</span><i>${icon(days===7?'calendar-range':'sun-medium')}</i></div><strong>${visibleEvents().filter(e=>dateStart(e)<endRange&&dateEnd(e)>start).length}</strong><small>${days===7?'Seluruh agenda pada pekan terpilih.' : 'Seluruh agenda pada hari terpilih.'}</small></div><div class="calendar-stat-card"><div class="calendar-stat-cap"><span>All day</span><i>${icon('sparkles')}</i></div><strong>${allDay.length}</strong><small>Momen sepanjang hari disusun terpisah agar tetap mudah dipindai.</small></div><div class="calendar-stat-card"><div class="calendar-stat-cap"><span>Focus hours</span><i>${icon('timer')}</i></div><strong>${state.settings.workStart}–${state.settings.workEnd}</strong><small>Patokan jam kerja untuk membaca beban agenda dengan cepat.</small></div></div><div class="cal-timeline-wrap">${allDayCards}<div class="cal-timeline-note">Klik area kosong untuk membuat event baru. Semua waktu mengikuti timezone perangkat Anda.</div><div class="timeline-scroll cal-timeline-scroll"><div class="timeboard cal-timeboard" style="grid-template-columns:78px repeat(${days},minmax(${days===7?'128':'540'}px,1fr));min-width:${width}px"><div class="timehead cal-corner"><strong>Time</strong><span>24-hour flow</span></div>${headings}<div class="timeaxis">${labels}</div>${columns}</div></div></div>`;
+  const start=days===7?startWeek(state.selected):new Date(state.selected.getFullYear(),state.selected.getMonth(),state.selected.getDate());
+  const end=addDays(start,days),now=TODAY(),rowPx=64;
+  const visible=visibleEvents();
+  const inRange=visible.filter(e=>dateStart(e)<end&&dateEnd(e)>start);
+  const allDay=inRange.filter(e=>e.start?.date);
+  const headings=Array.from({length:days},(_,i)=>{
+    const d=addDays(start,i),isToday=isoDay(d)===isoDay(now);
+    return `<div class="calz-timeline-head ${isToday?'calz-timeline-head-today':''}"><span>${esc(dateLabel(d,{weekday:'short'}))}</span><strong>${d.getDate()}</strong>${isToday?'<em>HARI INI</em>':''}</div>`;
+  }).join('');
+  const axis=Array.from({length:24},(_,h)=>`<span class="calz-hour-mark" style="top:${h*rowPx}px">${String(h).padStart(2,'0')}:00</span>`).join('');
+  const columns=Array.from({length:days},(_,i)=>{
+    const day=addDays(start,i),next=addDays(day,1);
+    const dayStart=day.getTime(),dayEnd=next.getTime(),isToday=isoDay(day)===isoDay(now);
+    const intervals=inRange.filter(e=>!e.start?.date&&dateStart(e).getTime()<dayEnd&&dateEnd(e).getTime()>dayStart).map(e=>({
+      e,start:Math.max(0,(dateStart(e).getTime()-dayStart)/60000),end:Math.min(1440,(dateEnd(e).getTime()-dayStart)/60000)
+    })).filter(v=>v.end>v.start).sort((a,b)=>a.start-b.start||b.end-a.end);
+    // Split long events only where concurrency changes. A 15-minute conflict must
+    // not force a four-hour focus block into half-width for the whole morning.
+    const cuts=[...new Set(intervals.flatMap(x=>[x.start,x.end]))].sort((a,b)=>a-b);
+    const fragments=[];
+    for(let t=0;t<cuts.length-1;t++){
+      const from=cuts[t],to=cuts[t+1];
+      if(to<=from)continue;
+      const active=intervals.filter(x=>x.start<to&&x.end>from).sort((a,b)=>a.start-b.start||b.end-a.end);
+      active.forEach((x,lane)=>{
+        const existing=fragments.findLast(f=>f.e===x.e&&f.end===from&&f.lane===lane&&f.lanes===active.length);
+        if(existing){existing.end=to;return;}
+        fragments.push({e:x.e,start:from,end:to,lane,lanes:active.length});
+      });
+    }
+    const blocks=fragments.map(({e,start:from,end:to,lane,lanes})=>{
+      const duration=to-from,height=Math.max(4,duration/60*rowPx-2);
+      const compact=height<56,micro=height<28;
+      const continued=from>Math.max(0,(dateStart(e).getTime()-dayStart)/60000)+0.1;
+      return `<button type="button" class="calz-timed-event ${compact?'calz-compact':''} ${micro?'calz-micro':''}" data-open="${esc(e.id)}" data-calid="${esc(e._calendarId)}" style="--calz-accent:${eventColor(e)};top:${(from/60*rowPx+1).toFixed(2)}px;height:${height.toFixed(2)}px;left:calc(${(lane/lanes*100).toFixed(5)}% + 3px);width:calc(${(100/lanes).toFixed(5)}% - 6px)" title="${esc(e.summary||'Event')} · ${esc(C.fmtTime(dateStart(e)))}–${esc(C.fmtTime(dateEnd(e)))}">
+        <span class="calz-event-time">${continued?"LANJUTAN · ":""}${esc(C.fmtTime(dateStart(e)))} – ${esc(C.fmtTime(dateEnd(e)))}</span>
+        <strong>${continued?"↳ ":""}${esc(e.summary||'(Untitled event)')}</strong>
+        ${!compact?`<span class="calz-event-calendar">${esc(e._calendarName||'Google Calendar')}</span>`:''}
+      </button>`;
+    });
+    return `<div class="calz-timeline-day ${isToday?'calz-timeline-today':''}" data-day="${isoDay(day)}" data-hour-grid="${rowPx}" aria-label="${esc(dateLabel(day))}">${blocks.join('')}${isToday?`<span class="calz-now-rule" style="top:${minutes(now)/60*rowPx}px"></span>`:''}</div>`;
+  }).join('');
+  const allDayHTML=allDay.length?`<section class="calz-all-day"><div class="calz-all-day-heading"><span class="calz-section-label">ALL-DAY MOMENTS</span><strong>${allDay.length} ${allDay.length===1?'event':'events'}</strong></div><div class="calz-all-day-items">${allDay.map(e=>`<button type="button" class="calz-all-day-item" data-open="${esc(e.id)}" data-calid="${esc(e._calendarId)}" style="--calz-accent:${eventColor(e)}"><span class="calz-all-day-dot"></span><span class="calz-all-day-name">${esc(e.summary||'Untitled event')}</span><small>${esc(e._calendarName||'Calendar')}</small><span class="calz-all-day-arrow">${icon('chevron-right')}</span></button>`).join('')}</div></section>`:'';
+  const title=days===7?'Weekly time canvas':'Daily time canvas';
+  return `<section class="calz-timeline-section">${allDayHTML}<div class="calz-timeline-caption"><div><span class="calz-section-label">${days===7?'WEEKLY':'DAILY'} SCHEDULE</span><h3>${title}<span> · ${inRange.length} agenda</span></h3></div><span class="calz-caption-side">${icon('clock-3')} 24-hour timeline</span></div>
+  <div class="calz-timeline-scroll" aria-label="${days===7?'Weekly':'Daily'} timeline">
+    <div class="calz-timeline-board ${days===7?'calz-week-board':'calz-day-board'}" style="grid-template-columns:${days===7?'64px repeat(7,minmax(148px,1fr))':'64px minmax(0,1fr)'}">
+      <div class="calz-timeline-head calz-axis-title"><span>LOCAL</span><strong>Time</strong></div>${headings}
+      <div class="calz-timeaxis">${axis}</div>${columns}
+    </div>
+  </div><p class="calz-timeline-hint">Klik ruang kosong untuk membuat event baru pada jam tersebut. Geser ke samping untuk melihat seluruh minggu pada layar kecil.</p></section>`;
 }
+
 function calendarPage(){
- if(!state.token)return needCalendar();
- const current=state.selected,view=state.calendarView,events=visibleEvents();
- const rangeStart=view==='week'?startWeek(current):view==='day'?new Date(current.getFullYear(),current.getMonth(),current.getDate()):new Date(current.getFullYear(),current.getMonth(),1);
- const rangeEnd=view==='week'?addDays(rangeStart,7):view==='day'?addDays(rangeStart,1):new Date(current.getFullYear(),current.getMonth()+1,1);
- const activeCount=events.filter(e=>dateStart(e)<rangeEnd&&dateEnd(e)>rangeStart).length;
- const rangeLabel=view==='week'?`${dateLabel(rangeStart,{day:'numeric',month:'long'})} – ${dateLabel(addDays(rangeStart,6),{day:'numeric',month:'long',year:'numeric'})}`:view==='day'?dateLabel(current,{weekday:'long',day:'numeric',month:'long',year:'numeric'}):dateLabel(current,{month:'long',year:'numeric'});
- const calControls=`<div class="calendar-toolbar-luxe"><div class="calendar-toolbar-main"><span class="calendar-period-badge"><i></i> Calendar atelier</span><div><div class="calendar-range-title">${esc(rangeLabel)}<span class="calendar-mini-tag">${view} view</span></div><div class="help" style="margin-top:6px">Tampilan kalender yang dipoles ulang agar lebih tenang, presisi, dan nyaman dipindai.</div></div></div><div class="calendar-toolbar-tools"><div class="date-nav" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><button class="icon-btn" data-action="prev" aria-label="Previous">${icon('chevron-left')}</button><button class="icon-btn" data-action="next" aria-label="Next">${icon('chevron-right')}</button><button class="btn small" data-action="today">Today</button><button class="btn small" data-action="sync">${icon('refresh-cw')} Sync</button></div><div class="seg">${['month','week','day','agenda'].map(s=>`<button data-cview="${s}" class="${view===s?'active':''}">${s[0].toUpperCase()+s.slice(1)}</button>`).join('')}</div></div></div>`;
- const statStrip=`<div class="calendar-stats-strip"><div class="calendar-stat-card"><div class="calendar-stat-cap"><span>Visible in range</span><i>${icon('calendar-check')}</i></div><strong>${activeCount}</strong><small>Agenda aktif sesuai rentang yang sedang Anda lihat sekarang.</small></div><div class="calendar-stat-card"><div class="calendar-stat-cap"><span>Connected calendars</span><i>${icon('layers-3')}</i></div><strong>${state.calendars.length}</strong><small>Seluruh kalender terhubung dirangkum dalam satu workspace.</small></div><div class="calendar-stat-card"><div class="calendar-stat-cap"><span>Sync status</span><i>${icon('sparkles')}</i></div><strong>${state.syncAt?new Date(state.syncAt).toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}):'—'}</strong><small>${state.syncAt?'Terakhir diperbarui dari Google Calendar.':'Belum pernah disinkronkan pada sesi ini.'}</small></div></div>`;
- const body=view==='month'?monthView():view==='week'?timelineView(7):view==='day'?timelineView(1):eventCards(events.filter(e=>dateStart(e)>=new Date(current.getFullYear(),current.getMonth(),1)&&dateStart(e)<new Date(current.getFullYear(),current.getMonth()+1,1)));
- return `${pageHeading('Calendar experience','See the whole picture. Own every minute.',`<button class="btn small" data-action="sync">${icon('refresh-cw')} Sync</button>`)}<section class="calendar-shell">${statStrip}<div class="cal-surface">${calControls}${view==='agenda'?`<div style="margin-top:18px">${body}</div>`:body}</div></section>`;
+  if(!state.token)return needCalendar();
+  const selected=state.selected,view=state.calendarView;
+  const start=view==='week'?startWeek(selected):view==='day'?new Date(selected.getFullYear(),selected.getMonth(),selected.getDate()):new Date(selected.getFullYear(),selected.getMonth(),1);
+  const end=view==='week'?addDays(start,7):view==='day'?addDays(start,1):new Date(selected.getFullYear(),selected.getMonth()+1,1);
+  const rangeName=view==='week'?`${dateLabel(start,{day:'numeric',month:'short'})} – ${dateLabel(addDays(start,6),{day:'numeric',month:'short',year:'numeric'})}`:view==='day'?dateLabel(selected,{weekday:'long',day:'numeric',month:'long',year:'numeric'}):dateLabel(selected,{month:'long',year:'numeric'});
+  const total=visibleEvents().filter(e=>dateStart(e)<end&&dateEnd(e)>start).length;
+  const tabs=['month','week','day','agenda'];
+  const toolbar=`<div class="calz-toolbar"><div class="calz-toolbar-left"><div class="calz-toolbar-icon">${icon('calendar-days')}</div><div class="calz-toolbar-copy"><span>CALENDRA · CALENDAR WORKSPACE</span><h2>${esc(rangeName)}</h2></div><span class="calz-toolbar-count">${total} agenda</span></div><div class="calz-toolbar-right"><div class="calz-nav"><button type="button" class="calz-nav-arrow" data-action="prev" aria-label="Periode sebelumnya">${icon('chevron-left')}</button><button type="button" class="calz-nav-arrow" data-action="next" aria-label="Periode berikutnya">${icon('chevron-right')}</button><button type="button" class="calz-today-btn" data-action="today">Hari ini</button></div><div class="calz-tabs">${tabs.map(t=>`<button type="button" data-cview="${t}" class="${view===t?'active':''}" aria-pressed="${view===t}">${t[0].toUpperCase()+t.slice(1)}</button>`).join('')}</div></div></div>`;
+  const body=view==='month'?monthView():view==='week'?timelineView(7):view==='day'?timelineView(1):`<div class="calz-agenda-view">${eventCards(visibleEvents().filter(e=>dateStart(e)>=start&&dateStart(e)<end))}</div>`;
+  return `${pageHeading('My Calendar','Ruang agenda pribadi Anda — terhubung, terstruktur, dan dibuat untuk setiap momen penting.',`<button class="btn small" data-action="sync">${icon('refresh-cw')} Sync</button>`)}<section class="calz-calendar">${toolbar}${body}</section>`;
 }
 
 // =========================================================================
@@ -4714,7 +4710,18 @@ document.addEventListener('click',async ev=>{
  const read=target.closest('[data-mark-read]');if(read)return metaGuard(async()=>{await metadata('notifications.markRead',{id:read.dataset.markRead});state.notifications=state.notifications.map(n=>n.id===read.dataset.markRead?{...n,read:true}:n);render();});
  const slot=target.closest('[data-slot]');if(slot)return openEventForm(null,{kind:'meeting',start:new Date(slot.dataset.slot)});
  const hourCell=target.closest('.timeday');if(hourCell){const rect=hourCell.getBoundingClientRect();const hour=Math.min(23,Math.max(0,Math.floor((ev.clientY-rect.top)/54)));return openEventForm(null,{start:new Date(`${hourCell.dataset.day}T${String(hour).padStart(2,'0')}:00:00`)});}
- const day=target.closest('[data-day]');if(day){state.selected=new Date(day.dataset.day+'T12:00:00');if(day.classList.contains('month-day')){state.calendarView='day';render();}else openEventForm(null,{start:new Date(day.dataset.day+'T09:00:00')});}
+ const day=target.closest('[data-day]');if(day){
+    const picked=day.dataset.day;
+    state.selected=new Date(picked+'T12:00:00');
+    if(day.classList.contains('month-day')){state.calendarView='day';render();}
+    else if(day.hasAttribute('data-hour-grid')){
+      const unit=Number(day.dataset.hourGrid)||64;
+      const point=Math.max(0,Math.min(1439,(ev.clientY-day.getBoundingClientRect().top)/unit*60));
+      const snapped=Math.round(point/15)*15;
+      const start=new Date(picked+'T00:00:00');start.setMinutes(Math.min(1439,snapped));
+      openEventForm(null,{start});
+    }else openEventForm(null,{start:new Date(picked+'T09:00:00')});
+  }
 });
 document.addEventListener('change',async ev=>{const t=ev.target;
  if(t.matches('[data-calendar-visible]')){const id=t.dataset.calendarVisible,visible=t.checked,cal=state.calendars.find(c=>c.id===id);const old=state.preferences.find(p=>p.calendarId===id);state.preferences=state.preferences.filter(p=>p.calendarId!==id).concat({...(old||{}),calendarId:id,visible});render();if(state.metadata==='connected'){try{await metadata('calendar.preferences.save',{calendarId:id,visible,color:cal?.backgroundColor});}catch(e){toast('Preference could not be saved: '+niceError(e),'error');}}else toast('Only changed in current session: metadata backend unavailable.','error');return;}
