@@ -741,9 +741,36 @@ body{background:linear-gradient(180deg,#f9f9fd,#f8f7fe 40%,#f5f5fb);color:var(--
 @media(max-width:360px){.cth-hero{padding:18px 15px}.cth-kicker{font-size:7px}.cth-live-tag{padding:8px;font-size:7px}.cth-hero-actions>button{flex:1;font-size:9px}.cth-stat>span{font-size:8px}.cth-stat-icon{height:27px;width:27px}.cth-stat>strong{font-size:25px}.cth-toolbar{padding-inline:10px}.cth-filters button{padding:9px 7px}.cth-event-buttons{align-items:stretch}.cth-event-details span{max-width:100%;overflow-wrap:anywhere}}
 @media(prefers-reduced-motion:reduce){.cth-workspace *{animation:none!important;transition:none!important}}
 
+
+/* CALENDRA 3.1 — Global live timezone clock and worldwide IANA selector */
+.cal-global-clock{flex:0 0 auto;display:inline-flex;align-items:center;gap:11px;min-width:151px;max-width:210px;text-align:left;padding:9px 13px;border-radius:15px;border:1px solid #e8e0f7;background:linear-gradient(125deg,#fff,#f5f0ff);box-shadow:0 8px 20px rgba(99,62,171,.07);color:#2c2252;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}
+.cal-global-clock:hover{transform:translateY(-1px);box-shadow:0 12px 26px rgba(99,62,171,.13)}
+.cal-global-clock-mark{display:grid;place-items:center;width:32px;height:32px;flex:0 0 32px;border-radius:11px;color:#7142df;background:#eee5ff}
+.cal-global-clock-mark svg{width:17px;height:17px}
+.cal-global-clock-values{display:flex;flex-direction:column;gap:3px;min-width:0}
+.cal-global-clock-values strong{font:850 14px/1 'Plus Jakarta Sans',sans-serif;letter-spacing:.25px;white-space:nowrap;font-variant-numeric:tabular-nums;color:#36235f}
+.cal-global-clock-values small{color:#988ab0;font-size:9px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cal-tz-picker{display:flex;flex-direction:column;gap:9px;min-width:0}
+.cal-tz-picker input{min-width:0}
+.cal-tz-preset{display:flex;gap:5px;flex-wrap:wrap}
+.cal-tz-preset button{background:#fff;border:1px solid #e5dafa;padding:7px 9px;border-radius:10px;font-weight:900;font-size:10px;color:#7653cf;transition:all .18s ease}
+.cal-tz-preset button:hover,.cal-tz-preset button.selected{background:linear-gradient(135deg,#8c61f8,#6740d6);color:#fff;border-color:#8155ed;box-shadow:0 6px 14px rgba(103,64,214,.16)}
+.cal-tz-preview{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:11px;border-radius:13px;background:linear-gradient(105deg,#f8f4ff,#f1eaff);border:1px solid #e9ddff;font-size:11px;color:#7351c1}
+.cal-tz-preview svg{width:15px;height:15px;flex-shrink:0}
+.cal-tz-preview strong{color:#342558;font:900 15px/1 'Plus Jakarta Sans';font-variant-numeric:tabular-nums}
+.cal-tz-preview span{overflow-wrap:anywhere}
+.cal-tz-preview.invalid{background:#fff5f5;color:#c4455b;border-color:#ffdfdf}
+.cal-tz-help{display:block;font-size:10px;line-height:1.7;color:#998eac}
+@media(max-width:1160px){.cal-global-clock{min-width:auto;max-width:155px;padding:9px}.cal-global-clock-mark{display:none}}
+@media(max-width:890px){.cal-global-clock{min-width:auto;padding:8px}.cal-global-clock-values small{display:none}.cal-global-clock-values strong{font-size:11px}}
+@media(max-width:490px){.cal-global-clock{min-width:auto;max-width:100px;padding:7px 8px;border-radius:11px}.cal-global-clock-values strong{font-size:10px}.cal-global-clock-mark{display:none}.cal-tz-preview{align-items:flex-start}}
+
+
+@media(max-width:760px){.topbar .cal-global-clock{order:1;margin-left:auto}.topbar .top-start{max-width:32%;overflow:hidden}.topbar .pagetitle{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.topbar .btn.primary{order:3}.topbar #notiBtn{order:2}}
+@media(max-width:375px){.topbar .top-start{max-width:26%}.topbar .btn.primary{padding:8px 7px}.cal-global-clock-values strong{font-size:9px}.cal-global-clock{padding:7px 5px}}
 </style></head><body>
 <div id="authGate" class="loading-gate"><div class="symbol">✦</div><b style="font:800 25px 'Plus Jakarta Sans'">calendra.</b><p>Protecting your personal space…</p></div>
-<div class="side-overlay" id="overlay"></div><div class="app"><aside class="sidebar" id="sidebar"><div class="side-top"><a class="logo" href="main.html"><b>✦</b><span>calendra<em>PERSONAL TIME STUDIO</em></span></a></div><div class="sidebar-workspace-caption"><span class="sidebar-identity-icon">✧</span><span>PRIVATE WORKSPACE<br><strong>My calendar suite</strong></span><i data-lucide="chevrons-up-down"></i></div><div class="side-scroll" id="nav"></div><div class="side-bottom"><button class="connection-mini cal-sync-control" data-action="sync" id="sidebarSync" title="Klik untuk sinkronisasi kalender" aria-label="Sinkronkan Google Calendar" type="button"><i class="cal-sync-icon">✦</i><div><b id="connectionLabel">Calendar not connected</b><div class="small"><span class="status-dot" id="connectionDot"></span><span id="syncLabel">Connect to sync</span></div></div></button><button class="profile-mini" id="profileBtn"><span class="avatar" id="sideAvatar">✦</span><span style="min-width:0"><div class="name" id="sideName">My workspace</div><div class="small">Personal account</div></span><i data-lucide="chevrons-up-down"></i></button></div></aside><div class="workspace"><header class="topbar"><button class="top-icon mobmenu" id="menuBtn" aria-label="Open navigation"><i data-lucide="menu"></i></button><div class="top-start"><div class="breadcrumb">WORKSPACE / <span id="crumb">OVERVIEW</span></div><div class="pagetitle" id="pageTitle">Overview</div></div><label class="top-search"><i data-lucide="search"></i><input id="globalSearch" placeholder="Search your schedule…" autocomplete="off" aria-label="Search events"><span style="font-size:9px">⌘ K</span></label><button class="top-icon" id="notiBtn" type="button" aria-label="Buka notifikasi" aria-haspopup="dialog" aria-expanded="false" aria-controls="notificationPanel"><i data-lucide="bell"></i><span class="red" id="unreadDot" hidden></span></button><button class="btn primary" id="quickBtn"><i data-lucide="plus"></i> <span>New event</span></button></header><section class="cal-noti-panel" id="notificationPanel" role="dialog" aria-modal="false" aria-label="Notifikasi Calendra" hidden>
+<div class="side-overlay" id="overlay"></div><div class="app"><aside class="sidebar" id="sidebar"><div class="side-top"><a class="logo" href="main.html"><b>✦</b><span>calendra<em>PERSONAL TIME STUDIO</em></span></a></div><div class="sidebar-workspace-caption"><span class="sidebar-identity-icon">✧</span><span>PRIVATE WORKSPACE<br><strong>My calendar suite</strong></span><i data-lucide="chevrons-up-down"></i></div><div class="side-scroll" id="nav"></div><div class="side-bottom"><button class="connection-mini cal-sync-control" data-action="sync" id="sidebarSync" title="Klik untuk sinkronisasi kalender" aria-label="Sinkronkan Google Calendar" type="button"><i class="cal-sync-icon">✦</i><div><b id="connectionLabel">Calendar not connected</b><div class="small"><span class="status-dot" id="connectionDot"></span><span id="syncLabel">Connect to sync</span></div></div></button><button class="profile-mini" id="profileBtn"><span class="avatar" id="sideAvatar">✦</span><span style="min-width:0"><div class="name" id="sideName">My workspace</div><div class="small">Personal account</div></span><i data-lucide="chevrons-up-down"></i></button></div></aside><div class="workspace"><header class="topbar"><button class="top-icon mobmenu" id="menuBtn" aria-label="Open navigation"><i data-lucide="menu"></i></button><div class="top-start"><div class="breadcrumb">WORKSPACE / <span id="crumb">OVERVIEW</span></div><div class="pagetitle" id="pageTitle">Overview</div></div><button type="button" id="calendraGlobalClock" class="cal-global-clock" aria-label="Jam sesuai zona waktu Calendra; klik untuk mengubah"><span class="cal-global-clock-mark"><i data-lucide="clock-3"></i></span><span class="cal-global-clock-values"><strong id="calendraHeaderTime">--:--:--</strong><small id="calendraHeaderZone">WIB · Asia/Jakarta</small></span></button><label class="top-search"><i data-lucide="search"></i><input id="globalSearch" placeholder="Search your schedule…" autocomplete="off" aria-label="Search events"><span style="font-size:9px">⌘ K</span></label><button class="top-icon" id="notiBtn" type="button" aria-label="Buka notifikasi" aria-haspopup="dialog" aria-expanded="false" aria-controls="notificationPanel"><i data-lucide="bell"></i><span class="red" id="unreadDot" hidden></span></button><button class="btn primary" id="quickBtn"><i data-lucide="plus"></i> <span>New event</span></button></header><section class="cal-noti-panel" id="notificationPanel" role="dialog" aria-modal="false" aria-label="Notifikasi Calendra" hidden>
  <div class="cal-noti-head"><div><div class="cal-noti-kicker">✦ CALENDRA / NOTIFICATION CENTER</div><h3>Inbox & Updates</h3><p>Notifikasi dari workspace pribadi Anda.</p></div><button type="button" id="notificationClose" aria-label="Tutup notifikasi"><i data-lucide="x"></i></button></div>
  <div class="cal-noti-summary"><span><i data-lucide="bell-ring"></i><span id="notificationCount">0 belum dibaca</span></span><span id="notificationState">Disinkronkan dengan Calendra</span></div>
  <div class="cal-noti-items" id="notificationItems" aria-live="polite"></div>
@@ -780,12 +807,144 @@ const CALPERF=(()=>{
  console.info('%c✦ Calendra Performance Observatory active · type CalendraPerf.summary()','color:#7653e7;font-weight:800');
  return {log,boot,summary};
 })();
-const TODAY=()=>new Date(),isoDay=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+/* CALENDRA 3.1 — One IANA timezone engine for display, wall time and API writes. */
+let __calendraZone='Asia/Jakarta';
+let __calendraDatePartsCache=new Map();
+const __calendraWallPartsCache=new WeakMap();
+const __calendraClockFormatters=new Map();
+const __calendraLabelFormatters=new Map();
+const calendraZone=()=>__calendraZone;
+function calendraValidateZone(zone){
+ const value=String(zone||'').trim();
+ if(!value)throw Error('Pilih zona waktu terlebih dahulu.');
+ try{return new Intl.DateTimeFormat('en-US',{timeZone:value}).resolvedOptions().timeZone;}
+ catch{throw Error('Zona waktu tidak dikenal. Gunakan nama IANA seperti Asia/Makassar atau Europe/London.');}
+}
+function calendraIntl(zone){
+ const key=String(zone);
+ if(!__calendraDatePartsCache.has(key)){
+   __calendraDatePartsCache.set(key,new Intl.DateTimeFormat('en-US',{timeZone:key,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}));
+ }
+ return __calendraDatePartsCache.get(key);
+}
+function calendraParts(value,zone=calendraZone()){
+ const date=value instanceof Date?value:new Date(value);
+ if(date instanceof CalendraZonedDate){const cached=__calendraWallPartsCache.get(date);if(cached&&cached.zone===zone&&cached.t===date.getTime())return cached.parts;}
+ const p=Object.fromEntries(calendraIntl(zone).formatToParts(date).filter(x=>x.type!=='literal').map(x=>[x.type,Number(x.value)]));
+ const parts={year:p.year,month:p.month,day:p.day,hour:p.hour,minute:p.minute,second:p.second};
+ if(date instanceof CalendraZonedDate)__calendraWallPartsCache.set(date,{zone,t:date.getTime(),parts});
+ return parts;
+}
+/* Date subclass keeps the REAL UTC timestamp while exposing calendar-wall fields
+   in the selected timezone. Date comparisons and toISOString still use the true instant. */
+class CalendraZonedDate extends Date{
+ getFullYear(){return calendraParts(this).year;}
+ getMonth(){return calendraParts(this).month-1;}
+ getDate(){return calendraParts(this).day;}
+ getDay(){const p=calendraParts(this);return new Date(Date.UTC(p.year,p.month-1,p.day)).getUTCDay();}
+ getHours(){return calendraParts(this).hour;}
+ getMinutes(){return calendraParts(this).minute;}
+ getSeconds(){return calendraParts(this).second;}
+}
+function calendraWallDate(value,zone=calendraZone()){
+ const str=String(value||'').trim();
+ const m=/^(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2})(?::(\d{2}))?)?$/.exec(str);
+ if(!m)throw Error('Masukkan tanggal/jam dengan format yang benar.');
+ const y=+m[1],mo=+m[2],d=+m[3],h=+(m[4]||0),mi=+(m[5]||0),sec=+(m[6]||0);
+ const wall=Date.UTC(y,mo-1,d,h,mi,sec);
+ const check=new Date(wall);
+ if(check.getUTCFullYear()!==y||check.getUTCMonth()!==mo-1||check.getUTCDate()!==d||h>23||mi>59||sec>59)throw Error('Tanggal atau jam tidak valid.');
+ let instant=wall;
+ // Resolve actual zone offset iteratively (supports non-integer offsets and DST).
+ for(let i=0;i<6;i++){
+   const p=calendraParts(new Date(instant),zone);
+   const got=Date.UTC(p.year,p.month-1,p.day,p.hour,p.minute,p.second);
+   const diff=wall-got;
+   if(diff===0)return new Date(instant);
+   instant+=diff;
+ }
+ const p=calendraParts(new Date(instant),zone);
+ if(Date.UTC(p.year,p.month-1,p.day,p.hour,p.minute,p.second)!==wall){
+   throw Error('Jam tersebut tidak tersedia akibat perubahan daylight saving time. Pilih jam yang lain.');
+ }
+ return new Date(instant);
+}
+function calendraWallDateFromDay(d,hhmm='00:00'){
+ const day=typeof d==='string'?d:`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+ return calendraWallDate(`${day}T${hhmm}`);
+}
+function calendraWallDateKey(date,zone=calendraZone()){
+ const p=calendraParts(date,zone);
+ return `${p.year}-${String(p.month).padStart(2,'0')}-${String(p.day).padStart(2,'0')}`;
+}
+function calendraZonedTime(date,options={hour:'2-digit',minute:'2-digit',hourCycle:'h23'}){
+ const key=calendraZone()+'|'+JSON.stringify(options);
+ let fmt=__calendraClockFormatters.get(key);if(!fmt){fmt=new Intl.DateTimeFormat('id-ID',{...options,timeZone:calendraZone()});__calendraClockFormatters.set(key,fmt);}
+ return fmt.format(date);
+}
+function calendraShortZone(zone=calendraZone()){
+ if(zone==='Asia/Jakarta'||zone==='Asia/Pontianak')return 'WIB';
+ if(zone==='Asia/Makassar')return 'WITA';
+ if(zone==='Asia/Jayapura')return 'WIT';
+ if(zone==='UTC'||zone==='Etc/UTC')return 'UTC';
+ try{return new Intl.DateTimeFormat('en-US',{timeZone:zone,timeZoneName:'shortOffset'}).formatToParts(new Date()).find(p=>p.type==='timeZoneName')?.value.replace('GMT','UTC')||zone;}
+ catch{return zone;}
+}
+let __calendraIanaCache=null;
+function calendraIanaOptions(){
+ if(__calendraIanaCache)return __calendraIanaCache;
+ let arr=[];
+ try{if(typeof Intl.supportedValuesOf==='function')arr=Intl.supportedValuesOf('timeZone');}catch{}
+ const favorites=['Asia/Jakarta','Asia/Makassar','Asia/Jayapura','UTC','Asia/Kuala_Lumpur','Asia/Singapore','Asia/Tokyo','Asia/Dubai','Asia/Kolkata','Europe/London','Europe/Paris','America/New_York','America/Los_Angeles','Australia/Sydney'];
+ return __calendraIanaCache=[...new Set([...favorites,...arr])].filter(x=>{try{calendraValidateZone(x);return true;}catch{return false;}});
+}
+function calendraTimezoneUI(){
+ const quick=[['WIB','Asia/Jakarta'],['WITA','Asia/Makassar'],['WIT','Asia/Jayapura'],['UTC','UTC']];
+ const options=calendraIanaOptions();
+ return `<div class="cal-tz-picker"><input class="luxury-input-atelier w-full px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-800" id="calendraTimezoneField" name="timezone" list="calendraWorldTimezones" value="${esc(calendraZone())}" required autocomplete="off" placeholder="Cari kota: Asia/Tokyo, Europe/London…"><datalist id="calendraWorldTimezones">${options.map(z=>`<option value="${esc(z)}"></option>`).join('')}</datalist><div class="cal-tz-preset">${quick.map(([label,zone])=>`<button type="button" data-cal-zone="${zone}" class="${calendraZone()===zone?'selected':''}">${label}</button>`).join('')}</div><div class="cal-tz-preview" id="calendraTimezonePreview">${icon('clock')} <strong>${esc(calendraZonedTime(new Date(),{hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}))}</strong><span>${esc(calendraShortZone())} · ${esc(calendraZone())}</span></div><small class="cal-tz-help">Cari salah satu dari ${options.length} zona waktu IANA. Pengaturan berlaku untuk tampilan kalender dan jadwal baru setelah disimpan.</small></div>`;
+}
+function calendraTimezonePreviewTick(){
+ const input=document.getElementById('calendraTimezoneField');
+ const preview=document.getElementById('calendraTimezonePreview');
+ if(!input||!preview)return;
+ const zone=input.value.trim();
+ try{
+   const valid=calendraValidateZone(zone);
+   const now=new Date();
+   const clock=new Intl.DateTimeFormat('id-ID',{timeZone:valid,hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).format(now);
+   preview.innerHTML=`<span aria-hidden="true">◷</span> <strong>${esc(clock)}</strong><span>${esc(calendraShortZone(zone))} · ${esc(zone)}</span>`;
+   preview.classList.remove('invalid');
+ }catch{preview.classList.add('invalid');preview.textContent='Pilih nama zona waktu yang valid dari daftar.';}
+}
+function calendraSetActiveZone(zone){
+ const valid=calendraValidateZone(zone);
+ if(__calendraZone===valid)return false;
+ __calendraZone=valid;
+ __eventTimes=new WeakMap();
+ if(typeof state!=='undefined'){
+  state.lastRange='';state.paneCache.clear();state.cache.clear();state.revision++;
+  state.selected=TODAY();
+ }
+ calendraHeaderClock();
+ return true;
+}
+function calendraHeaderClock(){
+ const display=document.getElementById('calendraHeaderTime');
+ const caption=document.getElementById('calendraHeaderZone');
+ if(!display||!caption)return;
+ const now=new Date(),zone=calendraZone();
+ display.textContent=calendraZonedTime(now,{hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'});
+ caption.textContent=calendraShortZone(zone)+' · '+zone;
+ const clock=document.getElementById('calendraGlobalClock');
+ if(clock)clock.title='Jam sekarang di '+zone+'. Klik untuk membuka pengaturan zona waktu.';
+}
+
+const TODAY=()=>new CalendraZonedDate(),isoDay=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 const addDays=(d,n)=>new Date(d.getFullYear(),d.getMonth(),d.getDate()+n);
 const startWeek=(d)=>addDays(d,-(d.getDay()+6)%7);
 const firstMonth=d=>new Date(d.getFullYear(),d.getMonth(),1);
-const dateLabel=(d,options={weekday:'long',day:'numeric',month:'long'})=>new Intl.DateTimeFormat('id-ID',options).format(d);
-const dtLocal=d=>`${isoDay(d)}T${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+const dateLabel=(d,options={weekday:'long',day:'numeric',month:'long'})=>{const x=d instanceof Date?d:new Date(d),day=new Date(Date.UTC(x.getFullYear(),x.getMonth(),x.getDate(),12,0,0));const key=JSON.stringify(options);let fmt=__calendraLabelFormatters.get(key);if(!fmt){fmt=new Intl.DateTimeFormat('id-ID',{...options,timeZone:'UTC'});__calendraLabelFormatters.set(key,fmt);}return fmt.format(day);};
+const dtLocal=d=>{const z=new CalendraZonedDate(d);return `${isoDay(z)}T${String(z.getHours()).padStart(2,'0')}:${String(z.getMinutes()).padStart(2,'0')}`;};
 const minutes=d=>d.getHours()*60+d.getMinutes();
 const icon=(name)=>`<i data-lucide="${name}"></i>`;
 const niceError=e=>C.errorMessage(e);
@@ -798,15 +957,15 @@ const NAV=[
 ];
 const TITLES=Object.fromEntries(NAV.flatMap(g=>g[1].map(x=>[x[0],x[1]])));
 const state={auth:null,user:null,view:'overview',calendarView:'month',calendarAgendaTodayOnly:false,selected:TODAY(),calendars:[],events:[],token:null,expires:0,scope:new Set(),googleRestore:'checking',persisted:false,refreshPromise:null,bridgeError:'',rangePending:false,lastRange:'',paneCache:new Map(),revision:0,syncAt:0,busy:false,loadPending:0,fetchEpoch:0,search:'',filterCalendar:'all',settings:{timezone:'Asia/Jakarta',workStart:'09:00',workEnd:'17:00',defaultDuration:60,defaultReminder:15,defaultCalendar:'primary',firstDay:1,goals:''},profile:null,preferences:[],templates:[],categories:[],notifications:[],activity:[],metadata:'loading',bridge:null,cache:new Map(),lastFocused:null,editing:null,importRows:[],syncTimer:null,syncing:false,syncRequestKey:'',eventCardLimit:70,agendaLimit:160};
-const __eventTimes=new WeakMap();
-function __eventTime(e,kind){let m=__eventTimes.get(e);if(!m){m={};__eventTimes.set(e,m);}if(!m[kind]){const raw=e[kind]?.dateTime||(e[kind]?.date?e[kind].date+'T00:00:00':null);m[kind]=raw?new Date(raw):new Date(0);}return m[kind];}
+let __eventTimes=new WeakMap();
+function __eventTime(e,kind){let m=__eventTimes.get(e);if(!m){m={};__eventTimes.set(e,m);}if(!m[kind]){const raw=e[kind]?.dateTime||(e[kind]?.date?e[kind].date+'T00:00:00':null);m[kind]=raw?new CalendraZonedDate(e[kind]?.date?calendraWallDate(raw):new Date(raw)):new CalendraZonedDate(0);}return m[kind];}
 const dateStart=e=>__eventTime(e,'start'),dateEnd=e=>__eventTime(e,'end');
 const sortEvents=a=>a.sort((x,y)=>dateStart(x)-dateStart(y));
 const activeCals=()=>state.calendars.filter(c=>!state.preferences.some(p=>p.calendarId===c.id&&(p.visible===false||String(p.visible)==='false')));
 let __visibleMemo={events:null,preferences:null,calendars:null,value:[]};
 const visibleEvents=()=>{if(__visibleMemo.events===state.events&&__visibleMemo.preferences===state.preferences&&__visibleMemo.calendars===state.calendars)return __visibleMemo.value;const ids=new Set(activeCals().map(c=>c.id));const value=state.events.filter(e=>ids.has(e._calendarId)&&e.status!=='cancelled');__visibleMemo={events:state.events,preferences:state.preferences,calendars:state.calendars,value};return value;};
 const eventColor=e=>e._color||'#9468e8';
-const eventTime=e=>e.start?.date?'All day':C.fmtTime(dateStart(e));
+const eventTime=e=>e.start?.date?'All day':calendraZonedTime(dateStart(e));
 const eventDuration=e=>Math.max(0,(dateEnd(e)-dateStart(e))/60000);
 const writable=id=>['owner','writer'].includes(state.calendars.find(c=>c.id===id)?.accessRole);
 
@@ -986,7 +1145,7 @@ function setConnection(){
  const on=!!state.token&&state.expires>Date.now(),waiting=state.googleRestore==='checking';
  el('connectionLabel').textContent=on?'Google Calendar linked':waiting?'Restoring connection…':'Calendar not connected';
  el('connectionDot').classList.toggle('online',on);
- el('syncLabel').textContent=state.syncing?'Sync berlangsung…':on?(state.syncAt?'Synced '+C.fmtTime(state.syncAt):state.persisted?'Auto-connect enabled':'Connected for this visit'):waiting?'Verifying secure session':'Klik untuk hubungkan';
+ el('syncLabel').textContent=state.syncing?'Sync berlangsung…':on?(state.syncAt?'Synced '+calendraZonedTime(state.syncAt):state.persisted?'Auto-connect enabled':'Connected for this visit'):waiting?'Verifying secure session':'Klik untuk hubungkan';
  updateSyncControls();
 }
 function updateSyncControls(){
@@ -1112,7 +1271,7 @@ function pageHeading(label,sub='',actions=''){
 const empty=(msg='Belum ada event pada periode ini.',symbol='✦')=>`<div class="empty"><div class="big">${symbol}</div>${esc(msg)}</div>`;
 function skeletonView(){return `<section class="skeleton-wrap" aria-busy="true" aria-label="Memuat data kalender"><div class="skeleton-banner"><div class="sk sk-kicker"></div><div class="sk sk-title"></div><div class="sk sk-caption"></div></div><div class="skeleton-grid">${Array.from({length:4},()=>'<div class="sk-card"><div class="sk sk-icon"></div><div class="sk sk-mid"></div><div class="sk sk-big"></div></div>').join('')}</div><div class="skeleton-duo"><div class="sk-card sk-tall"><div class="sk sk-mid"></div>${Array.from({length:6},()=>'<div class="sk sk-line"></div>').join('')}</div><div class="sk-card sk-tall"><div class="sk sk-mid"></div>${Array.from({length:6},()=>'<div class="sk sk-line"></div>').join('')}</div></div></section>`;}
 function needCalendar(){if(state.googleRestore==='checking')return skeletonView();return `<div class="connect-state"><div class="glyph">${icon('calendar-heart')}</div><h3>Your calendar, your canvas.</h3><p>Hubungkan Google Calendar satu kali agar agenda tersinkron otomatis setiap Anda membuka kembali Calendra, selama izin Google masih berlaku.</p>${state.bridgeError?`<div class="offline" role="alert" style="text-align:left;margin:0 auto 16px;max-width:550px"><b>Auto-connect belum siap:</b> ${esc(state.bridgeError)}<p class="help">Periksa Code.gs (versi deployment), ALLOWED_ORIGINS, Client ID dan Client Secret.</p></div>`:''}<button class="btn primary" data-action="connect">${icon('link-2')} Connect Google Calendar</button></div>`;}
-function getDateRange(){const d=state.selected;return {min:new Date(d.getFullYear(),d.getMonth()-1,1),max:new Date(d.getFullYear(),d.getMonth()+2,1)};}
+function getDateRange(){const d=state.selected;return {min:calendraWallDateFromDay(new Date(d.getFullYear(),d.getMonth()-1,1)),max:calendraWallDateFromDay(new Date(d.getFullYear(),d.getMonth()+2,1))};}
 function allowedScopes(requested){return requested.every(s=>state.scope.has(s));}
 let oauthResolve,oauthReject;
 function acceptGoogleToken(result){
@@ -1266,7 +1425,7 @@ async function initMetadata(){
  if(!C.gasConfigured()){state.metadata='missing';state.googleRestore='done';render();return;}
  state.bridge=C.makeMetadataBridge();
  const bootstrap=metadata('system.bootstrap').then(r=>{
-   state.profile=r.profile;state.settings={...state.settings,...r.settings};
+   state.profile=r.profile;state.settings={...state.settings,...r.settings};calendraSetActiveZone(state.settings.timezone||'Asia/Jakarta');
    state.templates=r.templates||[];state.categories=r.categories||[];state.preferences=r.preferences||[];
    state.metadata='connected';state.revision++;state.paneCache.clear();profileHeader();render();void plannerSyncFromBackend();
  }).catch(e=>{state.metadata='unavailable';state.bridgeError=niceError(e);planner.loading=false;planner.synced=false;planner.backendError='Backend metadata tidak tersedia: '+niceError(e);console.warn('Metadata bridge unavailable:',e.message);render();});
@@ -1984,15 +2143,19 @@ function monthView(){
   const events=visibleEvents();
   const buckets=new Map(days.map(d=>[isoDay(d),[]]));
   const gridEnd=addDays(firstGridDay,42);
-  const currentMonthBegin=new Date(month.getFullYear(),month.getMonth(),1);
-  const currentMonthEnd=new Date(month.getFullYear(),month.getMonth()+1,1);
+  const currentMonthBegin=calendraWallDateFromDay(new Date(month.getFullYear(),month.getMonth(),1));
+  const currentMonthEnd=calendraWallDateFromDay(new Date(month.getFullYear(),month.getMonth()+1,1));
   let monthCount=0;
   for(const e of events){
     const a=dateStart(e),b=dateEnd(e);
     if(a<currentMonthEnd&&b>currentMonthBegin) monthCount++;
-    if(!(a<gridEnd&&b>firstGridDay))continue;
-    let date=new Date(Math.max(firstGridDay.getTime(),new Date(a.getFullYear(),a.getMonth(),a.getDate()).getTime()));
-    for(let j=0;j<42&&date<gridEnd&&date<b;j++,date=addDays(date,1)){
+    const gridStartInstant=calendraWallDateFromDay(firstGridDay),gridEndInstant=calendraWallDateFromDay(gridEnd);
+    if(!(a<gridEndInstant&&b>gridStartInstant))continue;
+    const firstEventDay=new Date(a.getFullYear(),a.getMonth(),a.getDate());
+    const lastMoment=new CalendraZonedDate(b.getTime()-1);
+    const lastEventDay=new Date(lastMoment.getFullYear(),lastMoment.getMonth(),lastMoment.getDate());
+    let date=new Date(Math.max(firstGridDay.getTime(),firstEventDay.getTime()));
+    for(let j=0;j<42&&date<gridEnd&&date<=lastEventDay;j++,date=addDays(date,1)){
       const group=buckets.get(isoDay(date));
       if(group)group.push(e);
     }
@@ -2025,7 +2188,7 @@ function timelineView(days){
   const start=days===7?startWeek(state.selected):new Date(state.selected.getFullYear(),state.selected.getMonth(),state.selected.getDate());
   const end=addDays(start,days),now=TODAY(),rowPx=64;
   const visible=visibleEvents();
-  const inRange=visible.filter(e=>dateStart(e)<end&&dateEnd(e)>start);
+  const inRange=visible.filter(e=>dateStart(e)<calendraWallDateFromDay(end)&&dateEnd(e)>calendraWallDateFromDay(start));
   const allDay=inRange.filter(e=>e.start?.date);
   const headings=Array.from({length:days},(_,i)=>{
     const d=addDays(start,i),isToday=isoDay(d)===isoDay(now);
@@ -2034,9 +2197,9 @@ function timelineView(days){
   const axis=Array.from({length:24},(_,h)=>`<span class="calz-hour-mark" style="top:${h*rowPx}px">${String(h).padStart(2,'0')}:00</span>`).join('');
   const columns=Array.from({length:days},(_,i)=>{
     const day=addDays(start,i),next=addDays(day,1);
-    const dayStart=day.getTime(),dayEnd=next.getTime(),isToday=isoDay(day)===isoDay(now);
+    const dayStart=calendraWallDateFromDay(day).getTime(),dayEnd=calendraWallDateFromDay(next).getTime(),isToday=isoDay(day)===isoDay(now);
     const intervals=inRange.filter(e=>!e.start?.date&&dateStart(e).getTime()<dayEnd&&dateEnd(e).getTime()>dayStart).map(e=>({
-      e,start:Math.max(0,(dateStart(e).getTime()-dayStart)/60000),end:Math.min(1440,(dateEnd(e).getTime()-dayStart)/60000)
+      e,start:dateStart(e).getTime()<=dayStart?0:minutes(dateStart(e)),end:dateEnd(e).getTime()>=dayEnd?1440:minutes(dateEnd(e))
     })).filter(v=>v.end>v.start).sort((a,b)=>a.start-b.start||b.end-a.end);
     // Split long events only where concurrency changes. A 15-minute conflict must
     // not force a four-hour focus block into half-width for the whole morning.
@@ -2055,9 +2218,9 @@ function timelineView(days){
     const blocks=fragments.map(({e,start:from,end:to,lane,lanes})=>{
       const duration=to-from,height=Math.max(4,duration/60*rowPx-2);
       const compact=height<56,micro=height<28;
-      const continued=from>Math.max(0,(dateStart(e).getTime()-dayStart)/60000)+0.1;
-      return `<button type="button" class="calz-timed-event ${compact?'calz-compact':''} ${micro?'calz-micro':''}" data-open="${esc(e.id)}" data-calid="${esc(e._calendarId)}" style="--calz-accent:${eventColor(e)};top:${(from/60*rowPx+1).toFixed(2)}px;height:${height.toFixed(2)}px;left:calc(${(lane/lanes*100).toFixed(5)}% + 3px);width:calc(${(100/lanes).toFixed(5)}% - 6px)" title="${esc(e.summary||'Event')} · ${esc(C.fmtTime(dateStart(e)))}–${esc(C.fmtTime(dateEnd(e)))}">
-        <span class="calz-event-time">${continued?"LANJUTAN · ":""}${esc(C.fmtTime(dateStart(e)))} – ${esc(C.fmtTime(dateEnd(e)))}</span>
+      const continued=from>(dateStart(e).getTime()<=dayStart?0:minutes(dateStart(e)))+0.1;
+      return `<button type="button" class="calz-timed-event ${compact?'calz-compact':''} ${micro?'calz-micro':''}" data-open="${esc(e.id)}" data-calid="${esc(e._calendarId)}" style="--calz-accent:${eventColor(e)};top:${(from/60*rowPx+1).toFixed(2)}px;height:${height.toFixed(2)}px;left:calc(${(lane/lanes*100).toFixed(5)}% + 3px);width:calc(${(100/lanes).toFixed(5)}% - 6px)" title="${esc(e.summary||'Event')} · ${esc(calendraZonedTime(dateStart(e)))}–${esc(calendraZonedTime(dateEnd(e)))}">
+        <span class="calz-event-time">${continued?"LANJUTAN · ":""}${esc(calendraZonedTime(dateStart(e)))} – ${esc(calendraZonedTime(dateEnd(e)))}</span>
         <strong>${continued?"↳ ":""}${esc(e.summary||'(Untitled event)')}</strong>
         ${!compact?`<span class="calz-event-calendar">${esc(e._calendarName||'Google Calendar')}</span>`:''}
       </button>`;
@@ -2085,10 +2248,10 @@ function calendarPage(){
   const rangeName=focusedToday?dateLabel(focusDate,{weekday:'long',day:'numeric',month:'long',year:'numeric'}):view==='week'?`${dateLabel(start,{day:'numeric',month:'short'})} – ${dateLabel(addDays(start,6),{day:'numeric',month:'short',year:'numeric'})}`:view==='day'?dateLabel(selected,{weekday:'long',day:'numeric',month:'long',year:'numeric'}):dateLabel(selected,{month:'long',year:'numeric'});
   const todayStart=new Date(focusDate.getFullYear(),focusDate.getMonth(),focusDate.getDate());
   const todayEnd=addDays(todayStart,1);
-  const total=visibleEvents().filter(e=>dateStart(e)<(focusedToday?todayEnd:end)&&dateEnd(e)>(focusedToday?todayStart:start)).length;
+  const total=visibleEvents().filter(e=>dateStart(e)<calendraWallDateFromDay(focusedToday?todayEnd:end)&&dateEnd(e)>calendraWallDateFromDay(focusedToday?todayStart:start)).length;
   const tabs=['month','week','day','agenda'];
   const toolbar=`<div class="calz-toolbar"><div class="calz-toolbar-left"><div class="calz-toolbar-icon">${icon('calendar-days')}</div><div class="calz-toolbar-copy"><span>CALENDRA · CALENDAR WORKSPACE</span><h2>${esc(rangeName)}</h2></div><span class="calz-toolbar-count">${total} agenda</span></div><div class="calz-toolbar-right"><div class="calz-nav"><button type="button" class="calz-nav-arrow" data-action="prev" aria-label="Periode sebelumnya">${icon('chevron-left')}</button><button type="button" class="calz-nav-arrow" data-action="next" aria-label="Periode berikutnya">${icon('chevron-right')}</button><button type="button" class="calz-today-btn" data-action="today" aria-pressed="${focusedToday}">${focusedToday?'✓ Hari ini':'Hari ini'}</button></div><div class="calz-tabs">${tabs.map(t=>`<button type="button" data-cview="${t}" class="${view===t?'active':''}" aria-pressed="${view===t}">${t[0].toUpperCase()+t.slice(1)}</button>`).join('')}</div></div></div>`;
-  const agendaEvents=visibleEvents().filter(e=>dateStart(e)<(focusedToday?todayEnd:end)&&dateEnd(e)>(focusedToday?todayStart:start));
+  const agendaEvents=visibleEvents().filter(e=>dateStart(e)<calendraWallDateFromDay(focusedToday?todayEnd:end)&&dateEnd(e)>calendraWallDateFromDay(focusedToday?todayStart:start));
   const todayFocusBanner=focusedToday?`<div class="calz-today-focus" role="status" aria-live="polite"><div class="calz-today-focus-mark">${icon('sunrise')}</div><div class="calz-today-focus-copy"><span>TODAY'S SCHEDULE · ${esc(dateLabel(focusDate,{weekday:'long',day:'numeric',month:'long'}))}</span><strong>${total} agenda untuk hari ini</strong><p>Menampilkan agenda pada tanggal hari ini, bukan seluruh bulan.</p></div><button type="button" class="calz-back-month" data-action="calendar-month-all">${icon('calendar-range')} Tampilkan sebulan</button></div>`:'';
   const body=view==='month'?monthView():view==='week'?timelineView(7):view==='day'?timelineView(1):`<div class="calz-agenda-view">${todayFocusBanner}${eventCards(agendaEvents)}</div>`;
   return `${pageHeading('My Calendar','Ruang agenda pribadi Anda — terhubung, terstruktur, dan dibuat untuk setiap momen penting.',`<button class="btn small" data-action="sync">${icon('refresh-cw')} Sync</button>`)}<section class="calz-calendar">${toolbar}${body}</section>`;
@@ -3291,8 +3454,8 @@ async function scheduling(ev) {
 
     if (Number.isNaN(d.getTime())) throw Error('Pilih tanggal yang valid.');
 
-    const start = new Date(`${isoDay(d)}T${state.settings.workStart}`);
-    const end = new Date(`${isoDay(d)}T${state.settings.workEnd}`);
+    const start = calendraWallDate(`${isoDay(d)}T${state.settings.workStart}`);
+    const end = calendraWallDate(`${isoDay(d)}T${state.settings.workEnd}`);
 
     if (end <= start) throw Error('Jam selesai kerja harus lebih besar dari jam mulai.');
 
@@ -3302,7 +3465,7 @@ async function scheduling(ev) {
       body: {
         timeMin: start.toISOString(),
         timeMax: end.toISOString(),
-        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Jakarta',
+        timeZone: calendraZone(),
         items: cals.map(c => ({ id: c.id }))
       }
     });
@@ -3335,7 +3498,7 @@ async function scheduling(ev) {
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500/50 flex-shrink-0"></span>
               <div class="min-w-0">
                 <strong class="text-xs sm:text-sm font-extrabold text-slate-800 tracking-tight block">
-                  ${C.fmtTime(st)} – ${C.fmtTime(endSlot)}
+                  ${calendraZonedTime(st)} – ${calendraZonedTime(endSlot)}
                 </strong>
                 <span class="text-[10px] text-slate-400 block truncate">
                   Tersedia di ${cals.length} kalender · ${duration} min
@@ -3419,7 +3582,7 @@ function quickAddPage() {
           </div>
 
           <p class="text-xs text-slate-500 leading-relaxed mb-6">
-            Waktu yang diisi akan disinkronkan otomatis sesuai zona waktu browser Anda (${esc(Intl.DateTimeFormat().resolvedOptions().timeZone)}).
+            Waktu yang diisi menggunakan zona waktu Calendra (${esc(calendraZone())}).
           </p>
 
           <!-- Form Quick Add Asli (Binding ID & Names 100% Utuh) -->
@@ -3994,9 +4157,7 @@ function settingsPage() {
                 <span class="text-[11px] font-bold tracking-wider text-slate-600 uppercase flex items-center gap-1.5 mb-1.5">
                   ${icon('globe')} Time zone (IANA)
                 </span>
-                <input class="luxury-input-atelier w-full px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-800" 
-                       name="timezone" value="${esc(s.timezone || 'Asia/Jakarta')}" required placeholder="Asia/Jakarta">
-                <span class="text-[10px] text-slate-400 mt-1 block">Standar waktu sinkronisasi agenda</span>
+                ${calendraTimezoneUI()}
               </label>
 
               <label class="block">
@@ -4298,12 +4459,12 @@ function plannerSyncBanner(){
 }
 const plannerId=()=>window.crypto?.randomUUID?.()||`${Date.now()}-${Math.random().toString(36).slice(2,11)}`;
 const plannerDay=d=>new Date(d+'T12:00:00');
-const plannerDayEnd=d=>new Date(d+'T23:59:59');
-const plannerToday=()=>isoDay(new Date());
+const plannerDayEnd=d=>calendraWallDate(d+'T23:59:59');
+const plannerToday=()=>isoDay(TODAY());
 const plannerNum=n=>new Intl.NumberFormat('id-ID').format(n||0);
 const plannerHours=m=>`${(m/60).toLocaleString('id-ID',{maximumFractionDigits:1})} jam`;
-const plannerTime=d=>new Intl.DateTimeFormat('id-ID',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).format(d);
-const plannerWeek=()=>startWeek(addDays(new Date(),planner.weekOffset*7));
+const plannerTime=d=>new Intl.DateTimeFormat('id-ID',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit',timeZone:calendraZone()}).format(d);
+const plannerWeek=()=>startWeek(addDays(TODAY(),planner.weekOffset*7));
 const plannerPriority=p=>p==='high'?'Tinggi':p==='low'?'Rendah':'Sedang';
 const plannerBadge=p=>`<span class="pl-priority pl-${esc(p||'medium')}"><i></i>${plannerPriority(p)}</span>`;
 const plannerButton=(action,title,opts='')=>`<button class="pl-btn ${opts}" data-planner="${action}">${title}</button>`;
@@ -4345,7 +4506,7 @@ function plannerBusyOverlaps(events,start,end){
 function plannerWeekCapacity(week){
  const [ws,we]=plannerWorkWindow(),now=Date.now(),events=visibleEvents();let capacity=0,busy=0;
  for(let i=0;i<5;i++){
-  const d=addDays(week,i),start=new Date(d.getFullYear(),d.getMonth(),d.getDate(),0,ws).getTime(),end=new Date(d.getFullYear(),d.getMonth(),d.getDate(),0,we).getTime();
+  const d=addDays(week,i),fmt=m=>`${String(Math.floor(m/60)).padStart(2,'0')}:${String(m%60).padStart(2,'0')}`,start=calendraWallDateFromDay(d,fmt(ws)).getTime(),end=calendraWallDateFromDay(d,fmt(we)).getTime();
   const from=Math.max(start,now);if(end>from){capacity+=(end-from)/60000;busy+=plannerBusyOverlaps(events,from,end);}
  }
  return {capacity:Math.round(capacity),busy:Math.round(busy),free:Math.round(Math.max(0,capacity-busy))};
@@ -4362,8 +4523,8 @@ function plannerWeeklyPage(){
  <div class="pl-explain">¹ Kapasitas adalah estimasi cepat dari event yang sudah termuat, dengan jam kerja Senin–Jumat. Sebelum membuat event, Calendra memverifikasi ketersediaan langsung lewat Google FreeBusy API.</div>`;
 }
 function plannerBriefPage(){
- const now=new Date(),day=plannerToday(),week=isoDay(startWeek(now));
- const today=visibleEvents().filter(e=>isoDay(dateStart(e))<=day&&isoDay(new Date(dateEnd(e).getTime()-1))>=day).sort((a,b)=>dateStart(a)-dateStart(b));
+ const now=TODAY(),day=plannerToday(),week=isoDay(startWeek(now));
+ const today=visibleEvents().filter(e=>isoDay(dateStart(e))<=day&&isoDay(new CalendraZonedDate(dateEnd(e).getTime()-1))>=day).sort((a,b)=>dateStart(a)-dateStart(b));
  // Timed events and all-day events crossing midnight are included; excludes events already ended from upcoming.
  const upcoming=today.filter(e=>dateEnd(e)>now).slice(0,8),meeting=today.filter(e=>e.hangoutLink||e.conferenceData||((e.attendees||[]).length>0)).length;
  const timed=today.filter(e=>!e.start?.date).sort((a,b)=>dateStart(a)-dateStart(b));let conflicts=0;
@@ -4409,11 +4570,11 @@ async function plannerFetchBusy(start,end){
  return all;
 }
 function plannerFirstSlot(busy,from,until,duration){
- const work=plannerWorkWindow(),ms=duration*60000,now=Date.now();let day=new Date(from.getFullYear(),from.getMonth(),from.getDate());
- for(let i=0;i<35&&day.getTime()<=until.getTime();i++,day=addDays(day,1)){
+ const work=plannerWorkWindow(),ms=duration*60000,now=Date.now();const zonedFrom=new CalendraZonedDate(from);let day=new Date(zonedFrom.getFullYear(),zonedFrom.getMonth(),zonedFrom.getDate());
+ for(let i=0;i<35&&isoDay(day)<=calendraWallDateKey(until);i++,day=addDays(day,1)){
   if(day.getDay()===0||day.getDay()===6)continue;
-  const start=new Date(day.getFullYear(),day.getMonth(),day.getDate(),0,work[0]);
-  const finish=new Date(day.getFullYear(),day.getMonth(),day.getDate(),0,work[1]);
+  const start=calendraWallDate(`${isoDay(day)}T${String(Math.floor(work[0]/60)).padStart(2,'0')}:${String(work[0]%60).padStart(2,'0')}`);
+  const finish=calendraWallDate(`${isoDay(day)}T${String(Math.floor(work[1]/60)).padStart(2,'0')}:${String(work[1]%60).padStart(2,'0')}`);
   let candidate=Math.max(start.getTime(),from.getTime(),now+60000);candidate=Math.ceil(candidate/900000)*900000;
   for(let step=0;step<120&&candidate+ms<=finish.getTime()&&candidate+ms<=until.getTime();step++,candidate+=900000){
    const conflict=busy.some(b=>new Date(b.start).getTime()<candidate+ms&&new Date(b.end).getTime()>candidate);
@@ -4429,7 +4590,7 @@ function plannerOptimisticEvent(created,calId){
 }
 async function plannerCreateEvent(title,description,slot,calId){
  if(!writable(calId))throw Error('Pilih kalender dengan izin membuat event.');
- const timezone=Intl.DateTimeFormat().resolvedOptions().timeZone||'Asia/Jakarta';
+ const timezone=calendraZone();
  const event=await api('/calendars/'+encodeURIComponent(calId)+'/events',{method:'POST',body:{summary:title,description,start:{dateTime:slot.start.toISOString(),timeZone:timezone},end:{dateTime:slot.end.toISOString(),timeZone:timezone},reminders:{useDefault:true},transparency:'opaque'}});
  if(!event?.id)throw Error('Google Calendar belum mengembalikan ID event. Periksa kalender sebelum mencoba lagi agar tidak membuat duplikat.');
  plannerOptimisticEvent(event,calId);return event;
@@ -4477,7 +4638,7 @@ async function plannerRunScheduling(item,kind){
  plannerRequireBackend();
  if(!state.token)throw Error('Hubungkan Google Calendar agar Calendra dapat membuat event.');
  const calId=plannerCalendarId(item.calendarId);if(!calId)throw Error('Tidak ditemukan Google Calendar dengan izin menulis.');
- const now=new Date(),from=kind==='week'?new Date(Math.max(now.getTime(),plannerWeek().getTime())):now,duration=Number(item.duration),target=kind==='task'?plannerDayEnd(item.deadline):plannerDayEnd(isoDay(addDays(plannerWeek(),6)));
+ const now=new Date(),from=kind==='week'?new Date(Math.max(now.getTime(),calendraWallDateFromDay(plannerWeek()).getTime())):now,duration=Number(item.duration),target=kind==='task'?plannerDayEnd(item.deadline):plannerDayEnd(isoDay(addDays(plannerWeek(),6)));
  if(target<from)throw Error('Deadline sudah lewat. Ubah tanggal terlebih dahulu.');
  const horizon=new Date(Math.min(target.getTime(),from.getTime()+21*86400000));
  const busy=await plannerFetchBusy(from,horizon);
@@ -4494,17 +4655,18 @@ async function plannerScheduleGoal(goal){
  plannerRequireBackend();
  if(!state.token)throw Error('Hubungkan Google Calendar sebelum menjadwalkan sesi goal.');
  const calId=plannerCalendarId(goal.calendarId);if(!calId)throw Error('Tidak ada kalender yang bisa diedit.');
- const now=new Date(),week=startWeek(now),weekEnd=plannerDayEnd(isoDay(addDays(week,6))),target=plannerDayEnd(goal.target);
+ const now=new Date(),week=startWeek(TODAY()),weekEnd=plannerDayEnd(isoDay(addDays(week,6))),target=plannerDayEnd(goal.target);
  const until=new Date(Math.min(weekEnd.getTime(),target.getTime()));
  if(until<now)throw Error('Target goal atau minggu ini sudah berakhir. Ubah tanggal target untuk melanjutkan.');
- const already=(goal.sessions||[]).filter(x=>x.at>=week.toISOString()&&new Date(x.at)<=weekEnd).length;
+ const weekStart=calendraWallDateFromDay(week);
+ const already=(goal.sessions||[]).filter(x=>new Date(x.at)>=weekStart&&new Date(x.at)<=weekEnd).length;
  const remain=Math.max(0,Number(goal.sessionsPerWeek)-already);
  if(!remain){toast('Target sesi untuk minggu ini sudah terjadwal.','info');return;}
  const busy=await plannerFetchBusy(now,until),slots=[];let cursor=now;
  for(let i=0;i<remain;i++){
   const slot=plannerFirstSlot(busy,cursor,until,goal.sessionMinutes);
   if(!slot)break;slots.push(slot);busy.push(plannerInterval(slot.start,slot.end));
-  cursor=new Date(slot.start.getFullYear(),slot.start.getMonth(),slot.start.getDate()+1);
+  const wall=new CalendraZonedDate(slot.start);cursor=calendraWallDateFromDay(new Date(wall.getFullYear(),wall.getMonth(),wall.getDate()+1));
  }
  if(!slots.length)throw Error('Tidak tersedia slot fokus minggu ini. Periksa jam kerja atau agenda sibuk.');
  const preview=slots.map(x=>plannerTime(x.start)).join(' · ');
@@ -4594,7 +4756,7 @@ function resetUpcoming3h(){
 function upcoming3hSafeLink(raw){try{const url=new URL(raw);return url.protocol==='https:'?url.href:'';}catch{return '';}}
 function upcoming3hColor(e){const raw=String(eventColor(e)||'');return /^#[0-9a-f]{3,8}$/i.test(raw)?raw:'#8356ea';}
 function upcoming3hFormatMinutes(min){if(min<1)return 'sekarang';if(min<60)return `${min} menit`;const h=Math.floor(min/60),m=min%60;return m?`${h}j ${m}m`:`${h} jam`;}
-function upcoming3hClock(date){return new Intl.DateTimeFormat('id-ID',{hour:'2-digit',minute:'2-digit'}).format(date);}
+function upcoming3hClock(date){return calendraZonedTime(date);}
 function upcoming3hStatus(e,now){if(e.start?.date)return 'allday';return +dateStart(e)<=+now?'ongoing':'upcoming';}
 function upcoming3hFiltered(now=new Date()){
  const horizon=now.getTime()+NEXT3H_MS;
@@ -4683,7 +4845,7 @@ function upcomingThreeHoursPage(){
  const avail=free.best?upcoming3hFormatMinutes(Math.round((free.best.end-free.best.start)/60000)):'Tidak ada';
  const status=upcoming3h.loading?'Menyegarkan agenda…':upcoming3h.error?'Sinkronisasi sebagian':'Live overview';
  const nextText=nearest?upcoming3hFormatMinutes(Math.max(0,Math.ceil((dateStart(nearest)-now)/60000))):'Belum ada';
- const message=upcoming3h.loading?'Mengambil agenda dari Google Calendar…':upcoming3h.error?esc(upcoming3h.error):`Diperbarui ${lastSync?upcoming3hClock(lastSync):'belum tersedia'} · zona waktu ${esc(Intl.DateTimeFormat().resolvedOptions().timeZone||'lokal')}`;
+ const message=upcoming3h.loading?'Mengambil agenda dari Google Calendar…':upcoming3h.error?esc(upcoming3h.error):`Diperbarui ${lastSync?upcoming3hClock(lastSync):'belum tersedia'} · zona waktu ${esc(calendraZone())}`;
  const filtered=upcoming3h.filter==='ongoing'?data.ongoing:upcoming3h.filter==='upcoming'?data.waiting:upcoming3h.filter==='allday'?data.daylong:data.timed;
  const pct=Math.min(100,Math.max(0,(free.busyMinutes/180)*100));
  const calOptions=activeCals().filter(c=>upcoming3h.items.some(e=>e._calendarId===c.id));
@@ -4751,7 +4913,7 @@ function writableCalendarOptions(value){const cals=state.calendars.filter(c=>wri
 function openEventForm(item=null,{kind='',template=null,start=null}={}){
  if(!state.token)return toast('Connect Google Calendar first.','error');
  const e=item||{},st=start?new Date(start):item?dateStart(item):new Date(Math.ceil(Date.now()/1800000)*1800000),en=item?dateEnd(item):new Date(st.getTime()+(Number(template?.duration||state.settings.defaultDuration)||60)*60000),allDay=!!e.start?.date;
- const formattedStart=dtLocal(st),formattedEnd=dtLocal(en);
+ const formattedStart=dtLocal(st),formattedEnd=dtLocal(allDay&&item?new Date(en.getTime()-1000):en);
  const recurringRule=(e.recurrence||[]).find(x=>x.startsWith('RRULE:'))||'',freq=/FREQ=(DAILY|WEEKLY|MONTHLY|YEARLY)/.exec(recurringRule)?.[1]?.toLowerCase()||'none';
  const guests=(e.attendees||[]).map(a=>a.email).filter(Boolean).join(', ');
  const workingCalendar=(item?item._calendarId:(state.settings.defaultCalendar!=='primary'?state.settings.defaultCalendar:state.calendars.find(c=>c.primary)?.id));
@@ -4775,13 +4937,13 @@ function openEventForm(item=null,{kind='',template=null,start=null}={}){
  <label class="field"><span>Availability</span><select name="transparency" class="input"><option value="opaque" ${e.transparency!=='transparent'?'selected':''}>Busy</option><option value="transparent" ${e.transparency==='transparent'?'selected':''}>Free</option></select></label>
  ${item?.recurringEventId?`<label class="field full"><span>Edit recurrence</span><select class="input" name="editScope"><option value="instance">Only this occurrence</option><option value="series">Entire original series</option></select></label>`:''}
  <label class="field full checkbox-row"><input name="meet" type="checkbox" ${!!e.conferenceData?.entryPoints?.length?'checked':''}> ${item?'Keep existing Google Meet details':'Generate Google Meet link if supported'}</label>
- <div class="field full"><div class="help">Event times use your device's timezone (${esc(Intl.DateTimeFormat().resolvedOptions().timeZone)}). Google Calendar will sync actual event data after successful saving.</div></div>
+ <div class="field full"><div class="help">Event times follow your selected Calendra timezone (${esc(calendraZone())}). Google Calendar preserves the absolute instant when you save.</div></div>
  <div class="field full modal-foot"><button class="btn" type="button" data-action="closeModal">Cancel</button><button class="btn primary" type="submit" ${!writableCalendarOptions()?'disabled':''}>${icon('check')} ${item?'Save changes':'Create event'}</button></div></form>`,()=>{el('eventForm').onsubmit=ev=>saveEvent(ev,item);});
 }
-function eventPayload(form,old=null){const f=new FormData(form),title=String(f.get('title')||'').trim(),calId=String(f.get('calendarId')||''),start=new Date(String(f.get('start'))),end=new Date(String(f.get('end'))),allDay=f.get('allDay')==='on';
+function eventPayload(form,old=null){const f=new FormData(form),title=String(f.get('title')||'').trim(),calId=String(f.get('calendarId')||''),start=calendraWallDate(String(f.get('start'))),end=calendraWallDate(String(f.get('end'))),allDay=f.get('allDay')==='on';
  if(!title||title.length>200)throw Error('Event title must be 1–200 characters.');if(!writable(calId))throw Error('You do not have write access to this calendar.');if(!Number.isFinite(start.getTime())||!Number.isFinite(end.getTime())||end<=start)throw Error('End time must be after start time.');
- const tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'Asia/Jakarta';const body={summary:title,description:String(f.get('description')||'').slice(0,4000),location:String(f.get('location')||'').slice(0,500),visibility:String(f.get('visibility')||'default'),transparency:String(f.get('transparency')||'opaque')};
- if(allDay){body.start={date:isoDay(start)};body.end={date:isoDay(addDays(end,1))};}else{body.start={dateTime:start.toISOString(),timeZone:tz};body.end={dateTime:end.toISOString(),timeZone:tz};}
+ const tz=calendraZone();const body={summary:title,description:String(f.get('description')||'').slice(0,4000),location:String(f.get('location')||'').slice(0,500),visibility:String(f.get('visibility')||'default'),transparency:String(f.get('transparency')||'opaque')};
+ if(allDay){const startDay=String(f.get('start')).slice(0,10),endDay=String(f.get('end')).slice(0,10);body.start={date:startDay};body.end={date:isoDay(addDays(new Date(endDay+'T12:00:00'),1))};}else{body.start={dateTime:start.toISOString(),timeZone:tz};body.end={dateTime:end.toISOString(),timeZone:tz};}
  const mails=String(f.get('guests')||'').split(',').map(x=>x.trim()).filter(Boolean);if(mails.some(m=>!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m)))throw Error('One or more guest email addresses are invalid.');body.attendees=mails.map(email=>({email}));
  const rem=Number(f.get('reminder'));if(!Number.isInteger(rem)||rem<0||rem>40320)throw Error('Reminder must be 0–40320 minutes.');body.reminders={useDefault:false,overrides:[{method:'popup',minutes:rem}]};
  const kind=String(f.get('kind')||'event');body.extendedProperties={private:{...(old?.extendedProperties?.private||{}),calendraType:kind,calendraCategory:String(f.get('category')||'')}};
@@ -4798,9 +4960,9 @@ function showEvent(calId,id){
  const e=findEvent(calId,id);
  if(!e)return toast('Event no longer in the loaded range. Refresh your calendar.','error');
  const rw=writable(calId),attendees=e.attendees||[],allDay=!!e.start?.date;
- const startDate=dateStart(e),endDate=allDay?new Date(dateEnd(e).getTime()-86400000):dateEnd(e);
+ const startDate=dateStart(e),endDate=allDay?new CalendraZonedDate(dateEnd(e).getTime()-1):dateEnd(e);
  const eventDate=(value)=>dateLabel(value,{weekday:'long',day:'numeric',month:'long',year:'numeric'});
- const eventClock=(value)=>allDay?'Sepanjang hari':C.fmtTime(value);
+ const eventClock=(value)=>allDay?'Sepanjang hari':calendraZonedTime(value);
  const statusClass=rw?'':' readonly';
  const calLabel=e._calendarName||'Google Calendar';
  const guestText=attendees.map(a=>esc(a.displayName||a.email||'Guest')).join(', ');
@@ -4840,7 +5002,7 @@ async function eventAction(act,calId,id){const e=findEvent(calId,id);if(!e)retur
  await api(`/calendars/${encodeURIComponent(calId)}/events/${encodeURIComponent(target)}`,{method:'DELETE',query:{sendUpdates:'all'}});hideModal();await afterMutation('Event deleted in Google Calendar.');return;}
  if(act==='move'){const choices=state.calendars.filter(c=>c.id!==calId&&writable(c.id));if(!choices.length)return toast('No other writable calendar is available.','error');showModal('Move event',`<form id="moveForm" class="fieldgrid"><label class="field full"><span>Destination calendar</span><select class="input" name="target">${choices.map(c=>`<option value="${esc(c.id)}">${esc(c.summary)}</option>`).join('')}</select></label><div class="field full modal-foot"><button type="button" class="btn" data-action="closeModal">Cancel</button><button type="submit" class="btn primary">Move event</button></div></form>`,()=>{el('moveForm').onsubmit=async ev=>{ev.preventDefault();const btn=ev.currentTarget.querySelector('[type=submit]');try{btn.disabled=true;const dest=new FormData(ev.currentTarget).get('target');await api(`/calendars/${encodeURIComponent(calId)}/events/${encodeURIComponent(id)}/move`,{method:'POST',query:{destination:dest,sendUpdates:'all'}});hideModal();await afterMutation('Event moved successfully.');}catch(err){toast(niceError(err),'error');}finally{btn.disabled=false;}};});}
  }catch(err){toast(niceError(err),'error');}}
-async function createQuick(ev){ev.preventDefault();const btn=ev.currentTarget.querySelector('[type=submit]');try{btn.disabled=true;const f=new FormData(ev.currentTarget),title=String(f.get('title')).trim(),start=new Date(`${f.get('day')}T${f.get('time')}`),duration=Number(f.get('duration')),calId=String(f.get('calendarId'));if(!title||!Number.isFinite(start.getTime())||!writable(calId))throw Error('Complete title, date, time, and writable calendar.');const tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'Asia/Jakarta';await api(`/calendars/${encodeURIComponent(calId)}/events`,{method:'POST',body:{summary:title,start:{dateTime:start.toISOString(),timeZone:tz},end:{dateTime:new Date(start.getTime()+duration*60000).toISOString(),timeZone:tz},reminders:{useDefault:true}},query:{sendUpdates:'all'}});await afterMutation('Quick event created.');navigate('overview');}catch(e){toast(niceError(e),'error');}finally{btn.disabled=false;}}
+async function createQuick(ev){ev.preventDefault();const btn=ev.currentTarget.querySelector('[type=submit]');try{btn.disabled=true;const f=new FormData(ev.currentTarget),title=String(f.get('title')).trim(),start=calendraWallDate(`${f.get('day')}T${f.get('time')}`),duration=Number(f.get('duration')),calId=String(f.get('calendarId'));if(!title||!Number.isFinite(start.getTime())||!writable(calId))throw Error('Complete title, date, time, and writable calendar.');const tz=calendraZone();await api(`/calendars/${encodeURIComponent(calId)}/events`,{method:'POST',body:{summary:title,start:{dateTime:start.toISOString(),timeZone:tz},end:{dateTime:new Date(start.getTime()+duration*60000).toISOString(),timeZone:tz},reminders:{useDefault:true}},query:{sendUpdates:'all'}});await afterMutation('Quick event created.');navigate('overview');}catch(e){toast(niceError(e),'error');}finally{btn.disabled=false;}}
 
 function openTemplateForm(t){if(state.metadata!=='connected')return toast('Metadata backend is unavailable.','error');showModal(t?'Edit template':'New event template',`<form id="templateForm" class="fieldgrid"><label class="field full"><span>Template title</span><input class="input" name="title" maxlength="140" value="${esc(t?.title||'')}" required></label><label class="field"><span>Duration (minutes)</span><input class="input" name="duration" type="number" min="5" max="1440" value="${t?.duration||60}" required></label><label class="field"><span>Reminder (minutes)</span><input class="input" name="reminder" type="number" min="0" max="40320" value="${t?.reminder??15}"></label><label class="field full"><span>Description</span><textarea class="input" name="description">${esc(t?.description||'')}</textarea></label><div class="field full modal-foot"><button class="btn" type="button" data-action="closeModal">Cancel</button><button class="btn primary" type="submit">Save template</button></div></form>`,()=>{el('templateForm').onsubmit=async ev=>{ev.preventDefault();const b=ev.currentTarget.querySelector('[type=submit]');if(b.disabled)return;try{b.disabled=true;const x=Object.fromEntries(new FormData(ev.currentTarget));if(t)x.id=t.id;const result=await metadata(t?'eventTemplates.update':'eventTemplates.create',x);state.templates=t?state.templates.map(i=>i.id===t.id?result:i):[...state.templates,result];hideModal();render();toast('Template saved to Google Sheets.','success');}catch(e){toast(niceError(e),'error');}finally{b.disabled=false;}};});}
 function calendarManage(id){const cal=state.calendars.find(c=>c.id===id);if(!cal)return;showModal('Calendar properties',`<div class="fieldgrid"><div class="field full"><span>Calendar</span><b>${esc(cal.summary)}</b><p class="help">${esc(cal.id)} · ${esc(cal.accessRole)}</p></div><label class="field full"><span>Default calendar</span><button class="btn" id="makeDefault">${icon('star')} Make default</button></label>${cal.accessRole==='owner'?`<div class="field full"><div class="section-actions"><button class="btn" id="renameCalendar">${icon('pencil')} Rename calendar</button>${cal.primary?'':`<button class="btn danger" id="removeCalendar">${icon('trash-2')} Delete calendar</button>`}</div></div>`:''}</div>`,()=>{
@@ -4859,7 +5021,7 @@ function icsStamp(d){return new Date(d).toISOString().replaceAll('-','').replace
 function exportICS(){const events=visibleEvents(),lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Calendra//Calendar Export//EN','CALSCALE:GREGORIAN'];for(const e of events){lines.push('BEGIN:VEVENT','UID:'+icsEscape(e.id+'@calendra.export'),'DTSTAMP:'+icsStamp(new Date()),e.start?.date?'DTSTART;VALUE=DATE:'+e.start.date.replaceAll('-',''):'DTSTART:'+icsStamp(e.start.dateTime),e.end?.date?'DTEND;VALUE=DATE:'+e.end.date.replaceAll('-',''):'DTEND:'+icsStamp(e.end.dateTime),'SUMMARY:'+icsEscape(e.summary),'DESCRIPTION:'+icsEscape(e.description),'LOCATION:'+icsEscape(e.location),'END:VEVENT');}lines.push('END:VCALENDAR');const folded=lines.flatMap(line=>{const parts=[];while(line.length>73){parts.push(line.slice(0,73));line=' '+line.slice(73);}parts.push(line);return parts;});downloadFile('calendra-events-'+isoDay(TODAY())+'.ics',folded.join('\r\n')+'\r\n','text/calendar;charset=utf-8');toast('ICS exported.','success');}
 function csvParse(text){const data=[];let row=[],cell='',quote=false;for(let i=0;i<text.length;i++){const ch=text[i];if(ch==='"'){if(quote&&text[i+1]==='"'){cell+='"';i++;}else quote=!quote;}else if(ch===','&&!quote){row.push(cell);cell='';}else if((ch==='\n'||ch==='\r'&&text[i+1]!=='\n')&&!quote){row.push(cell);if(row.some(x=>x.trim()))data.push(row);row=[];cell='';}else if(ch==='\r'&&!quote){}else{cell+=ch;}}row.push(cell);if(row.some(x=>x.trim()))data.push(row);const head=data.shift()?.map(s=>s.toLowerCase().trim().replace(/^\uFEFF/,''))||[];for(const required of ['title','start','end'])if(!head.includes(required))throw Error('CSV must contain title,start,end columns.');return data.map(row=>Object.fromEntries(head.map((h,i)=>[h,row[i]||'']))).filter(r=>r.title&&r.start&&r.end);}
 async function importFile(input){const f=input.files?.[0];if(!f)return;if(f.size>2e6)return toast('CSV must be under 2 MB.','error');try{const parsed=csvParse(await f.text());if(parsed.length>150)throw Error('Import is limited to 150 events per batch.');const valid=parsed.filter(r=>!Number.isNaN(new Date(r.start).getTime())&&!Number.isNaN(new Date(r.end).getTime())&&new Date(r.end)>new Date(r.start));state.importRows=valid;const dup=valid.filter(r=>state.events.some(e=>e.summary===r.title&&Math.abs(dateStart(e)-new Date(r.start))<60000)).length;el('importPreview').innerHTML=`<span class="tag">${valid.length} valid rows · ${dup} potential duplicates</span><div style="max-height:240px;overflow:auto;margin:14px 0">${valid.slice(0,5).map(r=>`<div class="event-card"><div style="font-weight:800;font-size:11px">${esc(r.title)}<div class="help">${esc(r.start)} – ${esc(r.end)}</div></div></div>`).join('')}</div><button class="btn primary" id="confirmImport" ${!valid.length?'disabled':''}>Import valid events to default calendar</button><p class="help" id="importStatus">Duplicate title + exact start time will be skipped.</p>`;el('confirmImport').onclick=commitImport;}catch(e){toast(niceError(e),'error');}}
-async function commitImport(){const b=el('confirmImport'),status=el('importStatus'),c=state.calendars.find(x=>x.id===state.settings.defaultCalendar)||state.calendars.find(x=>x.primary&&writable(x.id))||state.calendars.find(x=>writable(x.id));if(!c)return toast('No writable default calendar found.','error');if(!await askConfirm(`Import maksimal ${state.importRows.length} agenda ke ${c.summary}?`,{title:'Konfirmasi impor'}))return;b.disabled=true;let success=0,skipped=0,failed=0;const existing=new Set(state.events.map(e=>e.summary+'|'+dateStart(e).getTime()));for(const row of state.importRows){const key=row.title+'|'+new Date(row.start).getTime();if(existing.has(key)){skipped++;continue;}try{const start=new Date(row.start),end=new Date(row.end),tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'Asia/Jakarta';await api(`/calendars/${encodeURIComponent(c.id)}/events`,{method:'POST',body:{summary:row.title.slice(0,200),description:(row.description||'').slice(0,4000),location:(row.location||'').slice(0,500),start:{dateTime:start.toISOString(),timeZone:tz},end:{dateTime:end.toISOString(),timeZone:tz}},query:{sendUpdates:'none'}});success++;existing.add(key);}catch(e){failed++;}status.textContent=`Imported ${success}, skipped ${skipped}, failed ${failed} of ${state.importRows.length}`;}b.disabled=false;toast(`Import finished: ${success} created, ${skipped} skipped, ${failed} failed.`,failed?'error':'success');await syncAll(false);}
+async function commitImport(){const b=el('confirmImport'),status=el('importStatus'),c=state.calendars.find(x=>x.id===state.settings.defaultCalendar)||state.calendars.find(x=>x.primary&&writable(x.id))||state.calendars.find(x=>writable(x.id));if(!c)return toast('No writable default calendar found.','error');if(!await askConfirm(`Import maksimal ${state.importRows.length} agenda ke ${c.summary}?`,{title:'Konfirmasi impor'}))return;b.disabled=true;let success=0,skipped=0,failed=0;const existing=new Set(state.events.map(e=>e.summary+'|'+dateStart(e).getTime()));for(const row of state.importRows){const key=row.title+'|'+new Date(row.start).getTime();if(existing.has(key)){skipped++;continue;}try{const start=new Date(row.start),end=new Date(row.end),tz=calendraZone();await api(`/calendars/${encodeURIComponent(c.id)}/events`,{method:'POST',body:{summary:row.title.slice(0,200),description:(row.description||'').slice(0,4000),location:(row.location||'').slice(0,500),start:{dateTime:start.toISOString(),timeZone:tz},end:{dateTime:end.toISOString(),timeZone:tz}},query:{sendUpdates:'none'}});success++;existing.add(key);}catch(e){failed++;}status.textContent=`Imported ${success}, skipped ${skipped}, failed ${failed} of ${state.importRows.length}`;}b.disabled=false;toast(`Import finished: ${success} created, ${skipped} skipped, ${failed} failed.`,failed?'error':'success');await syncAll(false);}
 async function disconnectCalendar(){
  try{if(state.bridge)await metadata('calendar.oauth.disconnect');else if(state.token&&window.google?.accounts?.oauth2){await new Promise(resolve=>google.accounts.oauth2.revoke(state.token,resolve));}}
  catch(e){toast('Tidak dapat mencabut izin backend: '+niceError(e),'error');return;}
@@ -4870,8 +5032,8 @@ async function disconnectCalendar(){
 async function refreshMeta(){await metaGuard(async()=>{const [n,a]=await Promise.all([metadata('notifications.list'),metadata('activity.list')]);state.notifications=n||[];state.activity=a||[];updateNotificationBadge();if(!el('notificationPanel').hidden)renderNotificationPreview();render();});}
 async function saveProfile(form){await metaGuard(async()=>{const f=new FormData(form),name=String(f.get('name')||'').trim(),email=String(f.get('email')||'').trim(),photoURL=String(f.get('photoURL')||'').trim(),bio=String(f.get('bio')||'');if(!name)throw Error('Name is required.');if(photoURL&&!/^https:\/\//i.test(photoURL))throw Error('Photo URL must use HTTPS.');const u=state.user;if(email!==u.email){if(!await askConfirm('Mengubah alamat email Firebase mungkin memerlukan login ulang. Lanjutkan?',{title:'Ubah email'}))return;await verifyBeforeUpdateEmail(u,email,{url:new URL('index.html',location.href).href});toast('Email change verification sent. Click the link in the new inbox.','success');return;}
  await updateProfile(u,{displayName:name,photoURL:photoURL||null});state.profile=await metadata('user.profile.update',{name,photoURL,bio});profileHeader();render();toast('Profile updated successfully.','success');});}
-async function saveSettings(form){await metaGuard(async()=>{const p=Object.fromEntries(new FormData(form));if(p.workStart>=p.workEnd)throw Error('Working hours are invalid.');try{new Intl.DateTimeFormat('en-US',{timeZone:p.timezone});}catch{throw Error('Invalid IANA timezone.');}p.defaultDuration=Number(p.defaultDuration);p.defaultReminder=Number(p.defaultReminder);state.settings=await metadata('user.settings.update',p);render();toast('Preferences saved to Google Sheets.','success');});}
-async function resetPrefs(){await metaGuard(async()=>{if(!await askConfirm('Kembalikan semua preferensi dashboard ke pengaturan awal?',{title:'Reset preferences',danger:true}))return;state.settings=await metadata('user.settings.update',{timezone:'Asia/Jakarta',workStart:'09:00',workEnd:'17:00',defaultDuration:60,defaultReminder:15,defaultCalendar:'primary',goals:''});render();toast('Preferences reset.','success');});}
+async function saveSettings(form){await metaGuard(async()=>{const p=Object.fromEntries(new FormData(form));if(p.workStart>=p.workEnd)throw Error('Working hours are invalid.');try{new Intl.DateTimeFormat('en-US',{timeZone:p.timezone});}catch{throw Error('Invalid IANA timezone.');}p.defaultDuration=Number(p.defaultDuration);p.defaultReminder=Number(p.defaultReminder);state.settings=await metadata('user.settings.update',p);const zoneChanged=calendraSetActiveZone(state.settings.timezone||p.timezone);render();calendraHeaderClock();if(zoneChanged&&state.token)void syncAll(false);toast('Preferences saved. All event times now follow '+calendraZone()+'.','success');});}
+async function resetPrefs(){await metaGuard(async()=>{if(!await askConfirm('Kembalikan semua preferensi dashboard ke pengaturan awal?',{title:'Reset preferences',danger:true}))return;state.settings=await metadata('user.settings.update',{timezone:'Asia/Jakarta',workStart:'09:00',workEnd:'17:00',defaultDuration:60,defaultReminder:15,defaultCalendar:'primary',goals:''});const zoneChanged=calendraSetActiveZone(state.settings.timezone||'Asia/Jakarta');render();if(zoneChanged&&state.token)void syncAll(false);toast('Preferences reset.','success');});}
 let logoutInProgress=false;
 async function doLogout(){
  if(logoutInProgress)return;
@@ -4890,7 +5052,7 @@ async function doLogout(){
   location.replace('index.html?page=login');
  }catch(e){progress.remove();logoutInProgress=false;toast('Tidak dapat logout: '+niceError(e),'error');}
 }
-async function handleAction(action){switch(action){case'upcoming-refresh':return fetchUpcoming3h(true);case'upcoming-create':return openEventForm();case'upcoming-free':{const gap=upcoming3hFreeSlot(upcoming3hFiltered(new Date())).best;return gap?openEventForm(null,{start:new Date(gap.start),template:{duration:Math.max(15,Math.min(Number(state.settings.defaultDuration)||60,Math.floor((gap.end-gap.start)/60000)))}}):toast('Tidak ada slot kosong minimal 15 menit dalam tiga jam ke depan.','info');}case'connect':return connectCalendar();case'sync':return state.token?syncAll(false,{manual:true}):connectCalendar();case'moreEvents':state.eventCardLimit=(state.eventCardLimit||70)+70;return render();case'moreAgenda':state.agendaLimit=(state.agendaLimit||160)+160;return render();case'create':return openEventForm();case'meeting':return openEventForm(null,{kind:'meeting'});case'block':return openEventForm(null,{kind:'block'});case'today':{state.selected=TODAY();state.calendarAgendaTodayOnly=state.view==='calendar'&&state.calendarView==='agenda';refreshAfterDate();return;}case'calendar-month-all':{state.calendarAgendaTodayOnly=false;return render();}case'prev':case'next':{state.calendarAgendaTodayOnly=false;const jump=action==='next'?1:-1,d=state.selected,view=state.calendarView;state.selected=view==='month'||view==='agenda'?new Date(d.getFullYear(),d.getMonth()+jump,Math.min(d.getDate(),28)):addDays(d,jump*(view==='week'?7:1));return refreshAfterDate();}case'closeModal':return hideModal();case'clearFilters':state.search='';state.filterCalendar='all';el('globalSearch').value='';return render();case'templateCreate':return openTemplateForm();case'newcal':return newCalendar();case'newCategory':return addCategory();case'csvExport':return exportCSV();case'icsExport':return exportICS();case'refreshMeta':return refreshMeta();case'disconnect':return disconnectCalendar();case'clearCache':state.cache.clear();return toast('Local cache cleared.','success');case'resetPrefs':return resetPrefs();case'logout':return doLogout();case'deleteMetadata':return metaGuard(async()=>{if(!await askConfirm('Hapus SELURUH metadata Calendra di Google Sheets? Event Google Calendar tidak diubah.',{title:'Hapus data aplikasi',danger:true}))return;await metadata('user.profile.delete');state.profile=null;state.templates=[];state.categories=[];state.preferences=[];state.settings={timezone:'Asia/Jakarta',workStart:'09:00',workEnd:'17:00',defaultDuration:60,defaultReminder:15,defaultCalendar:'primary',goals:''};profileHeader();render();toast('Your Calendra metadata has been deleted.','success');});}}
+async function handleAction(action){switch(action){case'upcoming-refresh':return fetchUpcoming3h(true);case'upcoming-create':return openEventForm();case'upcoming-free':{const gap=upcoming3hFreeSlot(upcoming3hFiltered(new Date())).best;return gap?openEventForm(null,{start:new Date(gap.start),template:{duration:Math.max(15,Math.min(Number(state.settings.defaultDuration)||60,Math.floor((gap.end-gap.start)/60000)))}}):toast('Tidak ada slot kosong minimal 15 menit dalam tiga jam ke depan.','info');}case'connect':return connectCalendar();case'sync':return state.token?syncAll(false,{manual:true}):connectCalendar();case'moreEvents':state.eventCardLimit=(state.eventCardLimit||70)+70;return render();case'moreAgenda':state.agendaLimit=(state.agendaLimit||160)+160;return render();case'create':return openEventForm();case'meeting':return openEventForm(null,{kind:'meeting'});case'block':return openEventForm(null,{kind:'block'});case'today':{state.selected=TODAY();state.calendarAgendaTodayOnly=state.view==='calendar'&&state.calendarView==='agenda';refreshAfterDate();return;}case'calendar-month-all':{state.calendarAgendaTodayOnly=false;return render();}case'prev':case'next':{state.calendarAgendaTodayOnly=false;const jump=action==='next'?1:-1,d=state.selected,view=state.calendarView;state.selected=view==='month'||view==='agenda'?new Date(d.getFullYear(),d.getMonth()+jump,Math.min(d.getDate(),28)):addDays(d,jump*(view==='week'?7:1));return refreshAfterDate();}case'closeModal':return hideModal();case'clearFilters':state.search='';state.filterCalendar='all';el('globalSearch').value='';return render();case'templateCreate':return openTemplateForm();case'newcal':return newCalendar();case'newCategory':return addCategory();case'csvExport':return exportCSV();case'icsExport':return exportICS();case'refreshMeta':return refreshMeta();case'disconnect':return disconnectCalendar();case'clearCache':state.cache.clear();return toast('Local cache cleared.','success');case'resetPrefs':return resetPrefs();case'logout':return doLogout();case'deleteMetadata':return metaGuard(async()=>{if(!await askConfirm('Hapus SELURUH metadata Calendra di Google Sheets? Event Google Calendar tidak diubah.',{title:'Hapus data aplikasi',danger:true}))return;await metadata('user.profile.delete');state.profile=null;state.templates=[];state.categories=[];state.preferences=[];state.settings={timezone:'Asia/Jakarta',workStart:'09:00',workEnd:'17:00',defaultDuration:60,defaultReminder:15,defaultCalendar:'primary',goals:''};calendraSetActiveZone('Asia/Jakarta');profileHeader();render();toast('Your Calendra metadata has been deleted.','success');});}}
 /* Instrument existing functions while retaining data flow, handlers, and OAuth logic. */
 const __calApi=api;
 api=async function(path,opts){const started=performance.now();try{return await __calApi(path,opts);}finally{CALPERF.log('Google Calendar API',performance.now()-started);}};
@@ -4918,7 +5080,7 @@ document.addEventListener('click',async ev=>{
  const calManage=target.closest('[data-calmanage]');if(calManage)return calendarManage(calManage.dataset.calmanage);
  const read=target.closest('[data-mark-read]');if(read)return metaGuard(async()=>{await metadata('notifications.markRead',{id:read.dataset.markRead});state.notifications=state.notifications.map(n=>n.id===read.dataset.markRead?{...n,read:true}:n);render();});
  const slot=target.closest('[data-slot]');if(slot)return openEventForm(null,{kind:'meeting',start:new Date(slot.dataset.slot)});
- const hourCell=target.closest('.timeday');if(hourCell){const rect=hourCell.getBoundingClientRect();const hour=Math.min(23,Math.max(0,Math.floor((ev.clientY-rect.top)/54)));return openEventForm(null,{start:new Date(`${hourCell.dataset.day}T${String(hour).padStart(2,'0')}:00:00`)});}
+ const hourCell=target.closest('.timeday');if(hourCell){const rect=hourCell.getBoundingClientRect();const hour=Math.min(23,Math.max(0,Math.floor((ev.clientY-rect.top)/54)));return openEventForm(null,{start:calendraWallDate(`${hourCell.dataset.day}T${String(hour).padStart(2,'0')}:00:00`)});}
  const day=target.closest('[data-day]');if(day){
     const picked=day.dataset.day;
     state.selected=new Date(picked+'T12:00:00');
@@ -4927,9 +5089,10 @@ document.addEventListener('click',async ev=>{
       const unit=Number(day.dataset.hourGrid)||64;
       const point=Math.max(0,Math.min(1439,(ev.clientY-day.getBoundingClientRect().top)/unit*60));
       const snapped=Math.round(point/15)*15;
-      const start=new Date(picked+'T00:00:00');start.setMinutes(Math.min(1439,snapped));
+      const hh=String(Math.floor(Math.min(1439,snapped)/60)).padStart(2,'0'),mm=String(Math.min(1439,snapped)%60).padStart(2,'0');
+      const start=calendraWallDate(`${picked}T${hh}:${mm}`);
       openEventForm(null,{start});
-    }else openEventForm(null,{start:new Date(picked+'T09:00:00')});
+    }else openEventForm(null,{start:calendraWallDate(picked+'T09:00:00')});
   }
 });
 document.addEventListener('change',async ev=>{const t=ev.target;
@@ -4941,6 +5104,11 @@ document.addEventListener('change',async ev=>{const t=ev.target;
 });
 document.addEventListener('submit',async ev=>{const id=ev.target.id;if(!['quickForm','scheduleForm','profileForm','settingsForm'].includes(id))return;ev.preventDefault();const btn=ev.target.querySelector('[type=submit]');if(btn?.disabled)return;try{if(btn)btn.disabled=true;if(id==='quickForm')await createQuick(ev);if(id==='scheduleForm')await scheduling(ev);if(id==='profileForm')await saveProfile(ev.target);if(id==='settingsForm')await saveSettings(ev.target);}finally{if(btn?.isConnected)btn.disabled=false;}});
 let searchTimer;document.addEventListener('input',ev=>{if(ev.target.id==='filterQuery'){const value=ev.target.value;clearTimeout(searchTimer);searchTimer=setTimeout(()=>{state.search=value;const results=el('searchResults');if(results){results.innerHTML=eventCards(filterEvents());refreshIcons();}},190);}});
+el('calendraGlobalClock').onclick=()=>navigate('settings');
+setInterval(()=>{calendraHeaderClock();if(document.getElementById('calendraTimezoneField'))calendraTimezonePreviewTick();},1000);
+calendraHeaderClock();
+document.addEventListener('click',event=>{const b=event.target.closest('[data-cal-zone]');if(!b)return;const f=document.getElementById('calendraTimezoneField');if(!f)return;f.value=b.dataset.calZone;document.querySelectorAll('[data-cal-zone]').forEach(x=>x.classList.toggle('selected',x===b));calendraTimezonePreviewTick();});
+document.addEventListener('input',event=>{if(event.target.id==='calendraTimezoneField')calendraTimezonePreviewTick();});
 el('globalSearch').addEventListener('input',e=>{clearTimeout(searchTimer);const val=e.target.value;searchTimer=setTimeout(()=>{state.search=val;navigate('search');},210);});
 el('quickBtn').onclick=()=>openEventForm();el('notiBtn').onclick=ev=>{ev.stopPropagation();void toggleNotificationPanel();};el('profileBtn').onclick=()=>navigate('profile');
 el('notificationClose').onclick=closeNotificationPanel;
